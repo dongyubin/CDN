@@ -1,4 +1,4 @@
 # CDN
 jsDelivr CDN
 
-![测试001](F:\公众号\11\ceshi001.jpg)
+![测试001](https://cdn.jsdelivr.net/gh/dongyubin/cdn-imgs/imgs-public/ceshi001.jpg)
