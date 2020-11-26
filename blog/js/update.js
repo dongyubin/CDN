@@ -1,5 +1,5 @@
 // window.onload = function() {
-var requestURL = 'https://py.wangdu.site/soft/?format=json';
+var requestURL = 'https://py.wangdu.site/software/?format=json';
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
