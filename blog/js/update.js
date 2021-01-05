@@ -30,7 +30,8 @@ function getDataRow(h) {
     idCell.innerHTML = h.yym + '(' + h.version + ')'; //填充数据
     row.appendChild(idCell); //加入行  ，下面类似
     var bigImg = document.createElement('a');
-    var text = document.createTextNode(h.wp_url);
+    // var wp_str=h.wp_url
+    var text = document.createTextNode('高速下载👍');
     var nameCell = document.createElement('td'); //创建第二列name
     bigImg.href = h.wp_url;
     bigImg.target = '_blank';
