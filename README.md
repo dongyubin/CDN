@@ -1,7 +1,0 @@
-![003](https://cdn.jsdelivr.net/gh/dongyubin/cdn-imgs/imgs-public/ceshi003.jpg)
-
-![002](https://cdn.jsdelivr.net/gh/dongyubin/cdn-imgs/imgs-public/ceshi002.jpg)
-
-![001](https://cdn.jsdelivr.net/gh/dongyubin/cdn-imgs/imgs-public/ceshi001.jpg)
-
-![004](https://cdn.jsdelivr.net/gh/dongyubin/cdn-imgs/imgs-public/ceshi004.jpg)
