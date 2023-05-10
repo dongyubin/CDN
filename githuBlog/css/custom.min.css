@@ -1,0 +1,161 @@
+body {
+    cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur), default
+}
+
+a,
+img {
+    cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), default
+}
+
+.card-info-avatar:hover {
+    background: url(https://ae01.alicdn.com/kf/H3342af90d24b4d62b9bbfec9688ccc25M.gif)
+}
+
+#vcomment textarea {
+    background: url(https://cdn.jsdelivr.net/gh/blogimg/HexoStaticFile1/imgbed/2020/02/13/20200213164243.png) 100% 100% no-repeat
+}
+
+#web_bg {
+    background: -webkit-linear-gradient(0deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
+    background: -moz-linear-gradient(0deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
+    background: -o-linear-gradient(0deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
+    background: -ms-linear-gradient(0deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
+    background: linear-gradient(90deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%)
+}
+
+#aside_content .card-widget,
+#recent-posts>.recent-post-item,
+.layout_page>div:first-child:not(.recent-posts),
+.layout_post>#page,
+.layout_post>#post,
+.read-mode .layout_post>#post {
+    background: var(--light_bg_color)
+}
+
+[data-theme=dark] #nav,
+[data-theme=dark] .layout_page>div:first-child:not(.recent-posts),
+[data-theme=dark] .layout_post>#post {
+    background-color: var(--dark_bg_color)
+}
+
+span.inline-tag {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 90%;
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .1rem;
+    border-radius: 6px;
+    background-color: var(--Color)
+}
+
+p.red,
+span.red {
+    --Color: rgb(233, 30, 100)
+}
+
+p.green,
+span.green {
+    --Color: rgb(139, 195, 74)
+}
+
+p.blue,
+span.blue {
+    --Color: rgb(3, 169, 244)
+}
+
+p.yellow,
+span.yellow {
+    --Color: rgb(255, 193, 7)
+}
+
+p.grey,
+span.grey {
+    --Color: rgb(76, 76, 76)
+}
+
+p.div-border {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: transparent
+}
+
+p.left {
+    border-left-width: 5px;
+    border-left-color: var(--Color)
+}
+
+p.bottom {
+    border-bottom-width: 5px;
+    border-bottom-color: var(--Color)
+}
+
+p.right {
+    border-right-width: 5px;
+    border-right-color: var(--Color)
+}
+
+p.top {
+    border-top-width: 5px;
+    border-top-color: var(--Color)
+}
+
+.hide-block>a.hide-button.open,
+.hide-inline>a.hide-button.open {
+    display: inline-block
+}
+
+.layout_post img {
+    display: block
+}
+
+.imgList li::before {
+    content: none!important
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(73, 177, 245, .2);
+    border-radius: 2em
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #49b1f5;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent);
+    border-radius: 2em
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent
+}
+
+::-moz-selection {
+    color: #fff;
+    background-color: #49b1f5
+}
+
+#footer {
+    background: rgba(255, 255, 255, .15);
+    color: #000;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px
+}
+
+#footer #footer-wrap {
+    color: #333
+}
+
+#footer #footer-wrap a {
+    color: #333
+}

@@ -1,0 +1,136 @@
+<div class="textwidget custom-html-widget">
+  <style>
+    .wiui-rqyy-demo {
+      width: 100%;
+      height: 180px;
+      position: relative;
+    }
+
+    .wiui-rqyy-item {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      color: white;
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: pointer;
+      background-image: url(https://img.wiiuii.cn/rqyy-imgs/rqyy-bg-5.png);
+    }
+
+    .wiui-rqyy-date {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .wiui-rqyy-day {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .wiui-rqyy-month {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .wiui-rqyy-month::before {
+      content: "/";
+      padding-right: 2px;
+    }
+
+    .wiui-rqyy-text {
+      position: absolute;
+      width: 90%;
+      height: auto;
+      line-height: 30px;
+      font-family: "宋体";
+      font-size: 1.5rem;
+      font-weight: 700;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .wiiui-rqyy-yy::after {
+      display: inline-block;
+      content: "_";
+      animation: fadeInHX 1s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fadeInHX {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .wiui-rqyy-btn {
+      display: inline-block;
+      font-family: "新宋体";
+      font-weight: 700;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin: 10px;
+    }
+
+    #wiui-yybtn {
+      width: 100%;
+      position: relative;
+    }
+
+    #wiui-yybtn:hover {
+      color: #e99896;
+    }
+
+    #wiui-yybtn:hover>.wiui-rqyy-msg {
+      visibility: unset;
+    }
+
+    .wiui-rqyy-icon {
+      font-size: 18px;
+    }
+
+    .wiui-rqyy-msg {
+      visibility: hidden;
+      font-size: 10px;
+      color: #9784a0;
+      position: absolute;
+      padding: 5px;
+      top: -5px;
+      left: -60px;
+      border-radius: 2px;
+      background: white;
+      transition: all 0.2s;
+    }
+
+    .wiui-rqyy-msg::after {
+      content: " ";
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      background: white;
+      position: absolute;
+      top: 10px;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+  </style>
+  <div class="wiui-rqyy-demo">
+    <div class="wiui-rqyy-item"
+      style="background-image: url(&quot;https://img.wiiuii.cn/rqyy-imgs/rqyy-bg-0.png&quot;);">
+      <div class="wiui-rqyy-date"> <span class="wiui-rqyy-day">27</span> <span class="wiui-rqyy-month">07</span></div>
+      <div class="wiui-rqyy-text"> <span class="wiiui-rqyy-yy">穷人的绅士一文不值，富人的流氓异常迷人。</span></div>
+      <div class="wiui-rqyy-btn">
+        <div id="wiui-yybtn"> <span class="wiui-rqyy-msg">换一句</span> <i class="fa fa-dot-circle-o wiui-rqyy-icon"
+            aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://youpaiyun.wangdu.site/CDN/js/yiyan.js"></script>
+</div>
