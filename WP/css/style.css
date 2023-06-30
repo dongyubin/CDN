@@ -483,9 +483,10 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:#1a1
 #respond .form-submit{margin-bottom:0}
 @media (max-width:767px){.comments-area .children{padding-left:0}
 }
-.social-bar{border-bottom:1px solid #e6e6e6;max-width: 1160px;margin: 0 auto;padding-bottom: 30px;text-align: center}
+.social-bar{max-width: 1160px;margin: 0 auto;padding-bottom: 30px;text-align: center}
 .social-bar li{list-style: none;margin: 0 12px 5px 0;padding:0;display: inline-block;}
 .social-bar li>a{font-size:13px;font-weight:500;color: #777}
+.site-footer{border-top:1px solid #e6e6e6;}
 .site-footer>.site-info{padding:10px 30px;text-align:center;font-size: 13px;}
 .site-footer>.site-info a {color: #777;}
 .explore .explore-row{margin-top:20px}
