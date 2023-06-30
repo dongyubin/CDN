@@ -942,9 +942,9 @@ to{transform:rotate(360deg)}
 .excerpt time,.excerpt .pv,.excerpt .pc,.excerpt .comment,.excerpt .author{margin-right:20px;}
 .excerpt .share{margin-left: 20px;}
 .excerpt .note{font-size:14px;color:#999;word-wrap:break-word;line-height:22px;margin-bottom: 0;}
-.excerpt .meta{color:#999;font-size:12px;margin-bottom:10px;}
+.excerpt .meta{color:#363636;font-size:12px;margin-bottom:10px;}
 .excerpt .meta .fa{margin-right:4px;}
-.excerpt .meta a{color:#999;}
+.excerpt .meta a{color:#363636;}
 .excerpt .meta a:hover{color:var(--accent-color);}
 .dark-mode .excerpt{background-color: #2b2b2b;border: 1px solid #333;}
 .dark-mode .excerpt:hover {background-color: #f9f9f900;opacity: 0.5;}
