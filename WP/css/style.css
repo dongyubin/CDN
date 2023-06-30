@@ -141,7 +141,7 @@ html{box-sizing:border-box;--accent-color:#519f97}
 body{background-color:#f4f4f4;font-family:PingFang SC,-apple-system,sans-serif,"Microsoft YaHei","WenQuanYi Micro Hei",Arial,Verdana,Tahoma;font-size:14px;line-height:20px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 a{color:#1a1a1a;text-decoration:none}
 a:hover{opacity:.8}
-h1,h2,h3,h4,h5,h6{color:#1a1a1a;font-weight:500;line-height:1.4;margin:0 0 15px}
+h1,h2,h3,h4,h5,h6{color:#363636;font-weight:500;line-height:1.4;margin:0 0 15px}
 p{margin:0 0 15px}
 img{display:block;height:auto;max-width:100%;vertical-align:middle}
 blockquote{border-left:4px solid var(--accent-color);color:#1a1a1a;font-size:18px;font-weight:500;line-height:28px;margin:30px 0;padding:10px 0 10px 20px}
@@ -941,7 +941,7 @@ to{transform:rotate(360deg)}
 .excerpt h2 a:hover span{color:#45B6F7;}
 .excerpt time,.excerpt .pv,.excerpt .pc,.excerpt .comment,.excerpt .author{margin-right:20px;}
 .excerpt .share{margin-left: 20px;}
-.excerpt .note{font-size:14px;color:#999;word-wrap:break-word;line-height:22px;margin-bottom: 0;}
+.excerpt .note{font-size:14px;color:#363636;word-wrap:break-word;line-height:22px;margin-bottom: 0;opacity: 0.8;}
 .excerpt .meta{color:#363636;font-size:12px;margin-bottom:10px;}
 .excerpt .meta .fa{margin-right:4px;}
 .excerpt .meta a{color:#363636;}
