@@ -274,6 +274,7 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:#1a1
 .navbar .menu-item.menu-item-has-children>a:after{color: #aaa;content: "\e638";margin-left: 5px;font-family: "iconfont" !important;font-size: 12px;}
 .navbar .menu-item:hover>.sub-menu{opacity:1;-webkit-transform:translateY(0);transform:translateY(0);visibility:visible}
 .navbar .nav-list>.menu-item>a{font-size:14px;line-height:35px;margin:0 8px;}
+.navbar .nav-list>.menu-item:hover>a{padding: 0rem 0.7rem;border-radius: 18px;color: white;}
 .navbar .sub-menu{background-color:#fff;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,.05);list-style-type:none;margin:0 0 0 -15px;min-width:220px;opacity:0;padding:20px 0;position:absolute;top:100%;-webkit-transform:translateY(5px);transform:translateY(5px);transition:all .5s cubic-bezier(.4,.01,.165,.99);visibility:hidden;z-index:80}
 .navbar .sub-menu .menu-item{display:block}
 .navbar .sub-menu .menu-item>a{font-size:12px;font-weight:400;padding:7px 30px;transition:-webkit-transform .3s cubic-bezier(.4,.01,.165,.99);transition:transform .3s cubic-bezier(.4,.01,.165,.99);transition:transform .3s cubic-bezier(.4,.01,.165,.99),-webkit-transform .3s cubic-bezier(.4,.01,.165,.99)}
