@@ -100,6 +100,8 @@
 }
 
 /*目录*/
+/* 注册登录弹窗出现时，将页面放置在阴影里 */
+.is-visible2 .toc-sidebar-button{z-index: 0;}
 #toc-sidebar-button {position: fixed;top: 50%;left: 0;transform: translateY(-50%);background-color: #fff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 1px 1px 5px rgba(0,0,0,0.25);padding: 8px;font-size: 14px;cursor: pointer;z-index: 9999;writing-mode: vertical-rl;text-orientation: upright;
 }
 /*面包屑*/
@@ -118,3 +120,81 @@
 .breadcrumbs a:hover {color: #555;}
  
 .breadcrumbs i {color: #666;margin: 0 5px;} 
+
+/*fancybox*/
+.single .entry-content .gallery{margin-bottom: 30px;clear:both;font-size:18px;}
+.single .entry-content .gallery .gallery-item{margin:0!important;overflow:hidden;position:relative;float:left;clear: none}
+.single .entry-content.gallery-caption{pointer-events:none;padding:1000px 20px;position:absolute;top:50%;left:0;right:0;-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);webkit-transition:.5s ease all;-moz-transition:.5s ease all;-o-transition:.5s ease all;transition:.5s ease all;text-align:center;color:#fff;opacity:0;background-color:rgba(0,0,0,.70);cursor:pointer;}
+.single .entry-content .gallery .gallery-item:hover .gallery-caption{opacity:1;}
+.single .entry-content .gallery .gallery-item dt:before{content:"";display:block;padding-top:100%;}
+.single .entry-content .gallery .gallery-item dt{position:relative;box-shadow:0 0 0 1px rgba(0,0,0,.1) inset;background:#eee;cursor:pointer;overflow:hidden;}
+.single .entry-content .gallery .gallery-item a{display:block;width:100%;height:100%;position:absolute;top:0;border:0;margin:0;}
+.single .entry-content .gallery .gallery-item img{position:absolute;top:0;left:0;height:100%;width:100%;object-fit:cover;border:0!important;box-shadow:none;}
+.single .entry-content .gallery .gallery-item a img{margin:0}
+.single .entry-content .gallery .gallery-item a:hover:after,.single .entry-content .gallery .gallery-item a:hover:before{visibility:visible}
+.single .entry-content .gallery .gallery-item a:hover:after{opacity:.75}
+.single .entry-content .gallery .gallery-item a:hover:before{opacity:1}
+.single .entry-content .gallery .gallery-item a:after,.single .entry-content .gallery .gallery-item a:before{-webkit-transition:opacity .25s ease,visibility .25s ease;-moz-transition:opacity .25s ease,visibility .25s ease;-ms-transition:opacity .25s ease,visibility .25s ease;-o-transition:opacity .25s ease,visibility .25s ease;transition:opacity .25s ease,visibility .25s ease;position:absolute;opacity:0;visibility:hidden}
+.single .entry-content .gallery .gallery-item a:after{content:'';top:0;right:0;left:0;bottom:0;overflow:hidden;border-radius:3px}
+.single .entry-content .gallery .gallery-item a:before{font-size:28px;line-height:1;z-index:1;color:#fff;content:"\e633";font-family:iconfont;top:50%;left:50%;margin-left:-12px;margin-top:-12px}
+.single .entry-content .gallery .gallery-item a:after {background: var(--accent-color);background: -moz-linear-gradient(top,  #bebbaa 0%, var(--accent-color) 100%);background: -webkit-gradient(linear, top center, bottom center, color-stop(0%,var(--accent-color)), color-stop(100%,var(--accent-color)));background: -webkit-linear-gradient(top,  #bebbaa 0%,var(--accent-color) 100%);background: -o-linear-gradient(top,  #bebbaa 0%,var(--accent-color) 100%);background: -ms-linear-gradient(top,  #bebbaa 0%,var(--accent-color) 100%);background: linear-gradient(to bottom,  #bebbaa 0%,var(--accent-color) 100%);}
+/* 评论区域 */
+.comments-area #reply-title,.comments-area .comments-title,.explore .explore-category,.instagram-footer .widget-title,.instagram-slider .widget-title,.related-posts h3{font-size:16px;margin-bottom:30px;text-transform:uppercase}
+@media (max-width:991px){.related-posts{margin:45px auto 0;max-width:400px}
+}
+.comments-area{background-color:#fff;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,.05);margin-top:30px;padding:30px}
+.comments-area #reply-title{align-items:center;display:flex;justify-content:space-between;margin-bottom:10px;position:relative;font-size: 22px;}
+.comments-area #reply-title a,.comments-area .edit-link a,.comments-area .reply-link a{color:#aaa;font-size:0;height:20px;line-height:20px;position:absolute;right:0;text-align:center;top:0;width:20px}
+.comments-area #reply-title a:before,.comments-area .edit-link a:before,.comments-area .reply-link a:before{content:"\e600";font-family:"iconfont" !important;font-size:16px}
+.comments-area .children,.comments-area .comment-list{list-style-type:none;margin:0;padding:0}
+.comments-area .children{padding-left:20px}
+.comments-area .comment-wrapper{margin-bottom:30px}
+.comments-area .comment-author-avatar{float:left;margin-top:3px;width:50px}
+.comments-area .comment-author-avatar .avatar{border-radius:50%}
+.comments-area .comment-content{border-bottom:1px solid #f4f4f4;margin-left:70px;overflow:hidden;padding-bottom:30px;position:relative}
+.dark-mode .comments-area .comment-content{border-color: #333}
+.comments-area .comment-author-name{color:#1a1a1a;font-weight:500}
+.dark-mode .comments-area .comment-author-name{color: #fff}
+.comments-area .comment-author-name .fn{font-style:normal}
+.comments-area .bypostauthor>.comment-wrapper .fn:before{color:var(--accent-color);content:"\e606";font-family:"iconfont" !important;margin:0 5px 0 1px}
+.comments-area .comment-metadata{color:#aaa;font-size:11px;font-weight:500;margin-bottom:10px;text-transform:uppercase}
+.comments-area .comment-body>:first-child{margin-top:0}
+.comments-area .comment-body>:last-child{margin-bottom:0}
+.comments-area .comment-body dl dl,.comments-area .comment-body dl ol,.comments-area .comment-body dl ul,.comments-area .comment-body ol dl,.comments-area .comment-body ol ol,.comments-area .comment-body ol ul,.comments-area .comment-body ul dl,.comments-area .comment-body ul ol,.comments-area .comment-body ul ul{margin:0}
+.comments-area .comment-body li{margin:5px 0}
+.comments-area .comment-body a{text-decoration:underline}
+.comments-area .comment-list>.comment:last-child>#respond,.comments-area>#respond{margin-bottom:0}
+.comments-area .edit-link a{right:20px}
+.comments-area .reply-link a:before{content:"\e64c"}
+.comments-area .edit-link a:before{content:"\f3eb"}
+.comments-area .comment-awaiting-moderation{color:#aaa;margin:10px 0 0}
+.comments-area .pingback{margin-bottom:10px}
+.comments-area .pingback .edit-link{display:none}
+.comments-area .pingback+.comment{margin-top:40px}
+.comments-area .no-comments{margin:0}
+#respond{margin-bottom:45px}
+#respond .logged-in-as>a:first-child{color:#777}
+#respond .comment-form-comment{margin:30px 0}
+#respond .comment-author-inputs{margin:0 -15px 30px}
+#respond .form-submit{margin-bottom:0}
+@media (max-width:767px){.comments-area .children{padding-left:0}
+}
+/*评论列表头像动态特效*/
+.comment-list .comment-wrapper:hover .avatar{-webkit-animation-name:avatar;animation-name:avatar;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-timing-function:ease-in-out;animation-timing-function:ease-in-out;-webkit-animation-iteration-count:1;animation-iteration-count:1}
+@keyframes avatar{16.65%{-webkit-transform:translateY(8px);transform:translateY(8px)}
+33.3%{-webkit-transform:translateY(-6px);transform:translateY(-6px)}
+49.95%{-webkit-transform:translateY(4px);transform:translateY(4px)}
+66.6%{-webkit-transform:translateY(-2px);transform:translateY(-2px)}
+83.25%{-webkit-transform:translateY(1px);transform:translateY(1px)}
+100%{-webkit-transform:translateY(0);transform:translateY(0)}
+}
+/*评论等级*/
+.level{margin-right:8px;font-size:12px;color:#fff;background-color:#666;padding:0 4px;border-radius:2px;font-size:12px;cursor:pointer;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;-ms-transition:.3s;filter:alpha(opacity=50);-moz-opacity:.5;-khtml-opacity:.5;line-height:150%;display:inline-block;vertical-align:middle;margin-top: -2px;}
+.level:hover{filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;opacity:.5}
+.level-0{background-color:#bfbfbf}
+.level-1{background-color:#bfbfbf}
+.level-2{background-color:#95ddb2}
+.level-3{background-color:#92d1e5}
+.level-4{background-color:#ffb37c}
+.level-5{background-color:#ff6c00}
+.level-6{background-color:red}
