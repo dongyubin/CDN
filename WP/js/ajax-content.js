@@ -56,14 +56,14 @@ $("#qqinfo").blur(function(){
               success:function(data){
                   $("#email").val(qq_num+'@qq.com');
                   $('#comment').focus();
-                  if(data==null){
-                  $("#author").val('QQ游客'); 
-                  }else{
-                  $("#author").val(data[qq_num][6]==""?'QQ游客':data[qq_num][6]);
-                  } 
+                  // if(data==null){
+                  // $("#author").val('QQ游客'); 
+                  // }else{
+                  // $("#author").val(data[qq_num][6]==""?'QQ游客':data[qq_num][6]);
+                  // } 
               },
               error:function(err){
-                  $("#author").val('QQ游客');
+                  // $("#author").val('QQ游客');
                   $("#email").val(qq_num+'@qq.com');
                   $('#comment').focus();
               }
