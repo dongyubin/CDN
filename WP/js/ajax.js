@@ -91,7 +91,7 @@ jQuery(function($){
 			},
 			success: function (response) {
 				// 更新页面内容
-				$('.site-content').html(response);
+				$('.site').html(response);
 			}
 		});
 	});
