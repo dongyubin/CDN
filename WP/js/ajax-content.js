@@ -16,28 +16,6 @@ $('.shang_close').click(function() {
 })
 });
 
-// 文章目录
-jQuery(document).ready(function($) {
-  var $tocSidebar = $('#toc');
-  var $tocButton = $('#toc-sidebar-button');
- $tocButton.on('click', function() {
-     $tocSidebar.fadeToggle();
-     $tocButton.fadeToggle();
-     $('#toc span').html('[隐藏]');
-   });
- $('#toc span').on('click',function(){
-     $tocSidebar.fadeToggle();
-     $tocButton.fadeToggle();
-    // if($('#toc span').html() == '[显示]'){
-    //       $('#toc span').html('[隐藏]');
-    //   }else{
-    //       $('#toc span').html('[显示]'); 
-       //}
-       //$('#toc ul').toggle();
-       //$('#toc small').toggle();
-   });
- });
-
 // 点赞
 $(".like").click(function() {
   if ($(this).hasClass('liked')) {
