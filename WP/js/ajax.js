@@ -74,6 +74,28 @@ jQuery(function($){
 		});
 	}
 
+	// 拦截所有链接的点击事件
+	$('a').on('click', function (e) {
+		e.preventDefault();
+
+		// 获取链接的目标URL
+		var url = $(this).attr('href');
+
+		// 发送AJAX请求到目标URL
+		$.ajax({
+			url: url,
+			type: 'GET',
+			beforeSend: function () {
+				console.log("正在加载中。。。");
+				// 在请求发送之前可以进行一些加载动画等操作
+			},
+			success: function (response) {
+				// 更新页面内容
+				$('body').html(response);
+			}
+		});
+	});
+
 	//投稿
 	$(document).on('click', '.publish_post', function(event) {
 	    event.preventDefault();
