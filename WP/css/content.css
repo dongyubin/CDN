@@ -2,7 +2,7 @@
 .img-alt{font-size: 16px;margin: 0;color: #858585;}
 .is-center{text-align:center;}
 /*代码块优化*/
-pre{margin:20px 0px 30px 0px;position:relative;background:#4270f5;padding-top:36px;border-radius:5px;border:1px solid #efefef;}
+pre{margin:20px 0px 30px 0px;position:relative;padding-top:36px;border-radius:5px;border:1px solid #efefef;overflow: hidden;}
 pre code{font-size:13px;line-height:1.8;padding:15px 20px;}
 pre code:before{content:attr(class);position:absolute;top:6px;right:20px;color:#7e7cfe;text-transform:uppercase;}
 pre code table{border:none;line-height:1.8;margin:0;width:100%;}
