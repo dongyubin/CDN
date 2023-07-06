@@ -814,13 +814,16 @@ to{transform:rotate(360deg)}
 }
 /*返回顶部*/
 #goTopBtn {display: none;border-radius: 3px;}
+#goBlackBtn{cursor: pointer;position: fixed;right: 75px;bottom: 90px;display: inline;border-radius: 3px;}
 .gotop a{z-index: 9999;display: block;width: 50px;height: 50px;background-color: var(--accent-color);color: #fff;line-height: 15px;padding: 10px;text-align: center;}
 .gotop a i{line-height: 30px;font-size: 20px;}
 .gotop a em{display: none;font-size: 12px;}
 .gotop a:hover{background-color: var(--accent-color);color: #fff;}
 .gotop a:hover i{display: none;}
 .gotop a:hover em{display: block;font-style: normal;}
-@media (max-width:767px){#goTopBtn {right: 30px !important;bottom: 30px !important;}
+@media (max-width:767px){
+#goTopBtn {right: 30px !important;bottom: 30px !important;}
+#goBlackBtn{right: 30px !important;bottom: 90px !important;}
 }
 
 /*标签云*/
@@ -855,6 +858,7 @@ to{transform:rotate(360deg)}
 .excerpt-text .note{margin-bottom:0;}
 .posts-wrapper .excerpt{border-radius:5px;}
 .excerpt:hover{background-color:#f9f9f9;position:relative;z-index:2;}
+.excerpt .post_def_right{display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box}
 .excerpt .focus{float:left;margin-left:-235px;width:220px;}
 .excerpt .thumb{width:220px;height:150px;}
 .excerpt header{margin-bottom:10px;}
@@ -868,14 +872,17 @@ to{transform:rotate(360deg)}
 .excerpt h2 a:hover span{color:#45B6F7;}
 .excerpt time,.excerpt .pv,.excerpt .pc,.excerpt .comment,.excerpt .author{margin-right:20px;}
 .excerpt .share{margin-left: 20px;}
-.excerpt .note{font-size:14px;color:#363636;word-wrap:break-word;line-height:22px;margin-bottom: 0;opacity: 0.8;}
-.excerpt .meta{color:#363636;font-size:12px;margin-bottom:10px;}
+.excerpt .note{font-size:14px;color:#363636;word-wrap:break-word;line-height:22px;margin-bottom: 0;opacity: 0.8;line-height: 1.8;margin-top: 15px;}
+.excerpt .meta{color:#363636;font-size:12px;margin-bottom:10px;display: flex;justify-content: space-between;align-items: center;}
 .excerpt .meta .fa{margin-right:4px;}
 .excerpt .meta a{color:#363636;}
 .excerpt .meta a:hover{color:var(--accent-color);}
 .dark-mode .excerpt{background-color: #2b2b2b;border: 1px solid #333;}
 .dark-mode .excerpt:hover {background-color: #f9f9f900;opacity: 0.5;}
 .dark-mode .excerpt h2 a {color: #fff;opacity: 0.7;}
+.dark-mode .excerpt .note{color: #999;}
+.dark-mode .excerpt .meta{color: #999;}
+.dark-mode .excerpt .meta a {color: #fff;}
 @media (max-width:640px){
 .modal {width: auto;}
 .excerpt{padding: 0;margin-left: 15px;margin-right: 15px;}
