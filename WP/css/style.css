@@ -1048,7 +1048,7 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 .wxpic{margin:0 auto;display:block!important;margin-left: 0px!important;}
 }
 /*近期更新*/
-.recent-updated-posts ul {padding: 0;margin: 0;list-style: none;
+/* .recent-updated-posts ul {padding: 0;margin: 0;list-style: none;
 }
 .recent-updated-posts li {
     margin-bottom: 10px;display: flex;align-items: center;
@@ -1059,7 +1059,19 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 .post-updated-date {
     margin-left: auto;padding: 5px;background-color: #555;color: #fff;
     font-size: 12px;border-radius: 3px;
-}
+} */
+.widget_recent_entries{}
+.widget_recent_entries ul{margin-left:5px;}
+.widget_recent_entries ul li{border-left:2px solid #eaeef5;padding-bottom:20px;padding-left:20px;position:relative;}
+.widget_recent_entries ul li a{margin-bottom:6px;display:block;font-size:13px;}
+.widget_recent_entries ul li span{color:#7d7d7d;display:block;font-weight:300;font-size:12px;}
+.widget_recent_entries ul li:last-child{border-bottom:none;padding-bottom:0px;margin-bottom:0px;}
+.widget_recent_entries ul li:before{content:"";position:absolute;background-color:#fff;height:4px;width:4px;border-radius:50%;left:-3px;top:8px;z-index:9;}
+.widget_recent_entries ul li:after{content:"";position:absolute;background-color:var(--accent-color);height:14px;width:14px;border-radius:50%;left:-8px;top:3px;transition:.6s;border:3px solid #fff;}
+.widget_recent_entries ul li:hover:after{background-color:#ffc109;}
+.dark .widget_recent_entries ul li{border-left:2px solid #343434;}
+.dark .widget_recent_entries ul li:before{background-color:#292a2a;}
+.dark .widget_recent_entries ul li:after{border:2px solid #2a2a2b;}
 /*底部信息*/
 .site-infos {display: flex;justify-content: center;padding:10px 30px;
 }
