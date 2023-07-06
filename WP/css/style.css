@@ -1069,9 +1069,9 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 .widget_recent_entries ul li:before{content:"";position:absolute;background-color:#fff;height:4px;width:4px;border-radius:50%;left:-3px;top:8px;z-index:9;}
 .widget_recent_entries ul li:after{content:"";position:absolute;background-color:var(--accent-color);height:14px;width:14px;border-radius:50%;left:-8px;top:3px;transition:.6s;border:3px solid #fff;}
 .widget_recent_entries ul li:hover:after{background-color:#ffc109;}
-.dark .widget_recent_entries ul li{border-left:2px solid #343434;}
-.dark .widget_recent_entries ul li:before{background-color:#292a2a;}
-.dark .widget_recent_entries ul li:after{border:2px solid #2a2a2b;}
+.dark-mode .widget_recent_entries ul li{border-left:2px solid #343434;}
+.dark-mode .widget_recent_entries ul li:before{background-color:#292a2a;}
+.dark-mode .widget_recent_entries ul li:after{border:2px solid #2a2a2b;}
 /*底部信息*/
 .site-infos {display: flex;justify-content: center;padding:10px 30px;
 }
