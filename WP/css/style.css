@@ -17,7 +17,6 @@ abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration
 b,strong{font-weight:inherit}
 b,strong{font-weight:bolder}
 code,kbd,samp{font-family:monospace,monospace;font-size:1em}
-code{color: var(--accent-color);margin: 3px;}
 dfn{font-style:italic}
 mark{background-color:#ff0;color:#000}
 small{font-size:80%}

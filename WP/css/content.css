@@ -2,11 +2,20 @@
 .img-alt{font-size: 16px;margin: 0;color: #858585;}
 .is-center{text-align:center;}
 /*代码块优化*/
-pre {background: #263238;border-radius: 5px;color: #b3b3b3;font-size: 16px;line-height: 1.5;overflow: auto;padding: 1.5rem;white-space: pre-wrap;word-wrap: break-word;}
-pre code{font-family:Consolas,Menlo,Monaco,'Andale Mono WT','Andale Mono','Lucida Console','Lucida Sans Typewriter','DejaVu Sans Mono','Bitstream Vera Sans Mono','Liberation Mono','Nimbus Mono L','Courier New',Courier,monospace;font-size:16px;margin:0;padding:0}
-pre::-webkit-scrollbar{width:12px}
-pre::-webkit-scrollbar-thumb{-webkit-border-radius:10px;border-radius:10px;background:#7a7e87}
-pre::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);-webkit-border-radius:10px;border-radius:10px;background:#2e373f}
+pre{margin:20px 0px 30px 0px;position:relative;background:#4270f5;padding-top:36px;border-radius:5px;border:1px solid #efefef;}
+pre code{font-size:13px;line-height:1.8;padding:15px 20px;}
+pre code:before{content:attr(class);position:absolute;top:6px;right:20px;color:#7e7cfe;text-transform:uppercase;}
+pre code table{border:none;line-height:1.8;margin:0;width:100%;}
+pre code table tr{}
+pre code table tr:nth-child(odd){background:none;}
+pre code table tr:last-child{border-bottom:none;}
+pre code table tr td.hljs-ln-numbers{width:30px;}
+pre code table tr td.hljs-ln-numbers .hljs-ln-n{text-align:center;color:#d3d3d3;font-weight:300;}
+pre code table tr td.hljs-ln-numbers .hljs-ln-n:before{padding-right:10px;}
+pre code table tr td.hljs-ln-code{border-left:1px solid #eaeaea;padding-left:20px;}
+pre code table tr td{border:none;text-align:inherit;line-height:inherit;}
+pre:before{content:"";position:absolute;border-radius:50%;background:#fc625d;width:12px;height:12px;left:14px;top:12px;box-shadow:20px 0 #fdbc40,40px 0 #35cd4b;z-index:2;}
+.dark-mode pre{background:#363636;border:1px solid #363636;}
 /*评论区美化*/
 .comment-form-author,.comment-form-email,.comment-form-url,.comment-form-cookies-consent{display:flex;flex: 0 0 33.333333%;max-width: 33.333333%;float: left;padding-left: 15px;padding-right: 15px;}
 .form-submit{flex: 0 0 33.333333%;max-width: 33.333333%;}
