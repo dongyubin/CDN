@@ -860,13 +860,13 @@ to{transform:rotate(360deg)}
 .excerpt:hover{position:relative;}
 .excerpt:hover img{transform:scale(1.1);}
 .excerpt .post_def_right{display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box}
-.excerpt .focus{float:left;margin-left:-235px;width:220px;}
+.excerpt .focus{float:left;margin-left:-235px;width:220px;overflow: hidden;}
 .excerpt .thumb{width:220px;height:150px;}
 .excerpt header{margin-bottom:10px;}
 .excerpt a[rel~="category"]{color:#fff;background-color:var(--accent-color);padding:3px 6px;font-size:12px;display:inline-block;position:relative;top:-2px;margin-right:6px;border-radius: 6px;}
 .excerpt a[rel~="category"]:hover{opacity:0.85;filter:alpha(opacity=85);}
 .excerpt a[rel~="category"] i{position:absolute;top:50%;margin-top:-4px;right:-4px;display:inline-block;width:0;height:0;vertical-align:middle;border-left:4px solid var(--accent-color);border-top:4px solid transparent;border-bottom:4px solid transparent;}
-.excerpt img{width:220px;height:124px;}
+.excerpt img{width:220px;height:124px;transition:.6s;}
 .excerpt h2{display:inline;font-size:18px;line-height:1.4;margin-top:0;font-weight:bold;}
 .excerpt h2 a{color:#555;}
 .excerpt h2 a span{color:#FF5E52;}
@@ -917,7 +917,7 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 @media (max-width:640px){.main-nav{margin-top: 5px;}
 .dahuzi-land {margin-left: 10px;}
 .navbar .navbar-button {background-color: #0000;border: none;}
-.excerpt img{width: 100%;height: 235px;}
+.excerpt img{width: 100%;height: 200px;}
 }
 @media only screen and (min-width:600px){.cd-user-modal-container{margin:10em auto}
 .cd-user-modal-container .cd-switcher a{height:60px;line-height:60px}
