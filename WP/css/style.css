@@ -857,7 +857,8 @@ to{transform:rotate(360deg)}
 .excerpt-text{padding-left:20px;}
 .excerpt-text .note{margin-bottom:0;}
 .posts-wrapper .excerpt{border-radius:5px;}
-.excerpt:hover{background-color:#f9f9f9;position:relative;z-index:2;}
+.excerpt:hover{position:relative;}
+.excerpt:hover img{transform:scale(1.1);}
 .excerpt .post_def_right{display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box}
 .excerpt .focus{float:left;margin-left:-235px;width:220px;}
 .excerpt .thumb{width:220px;height:150px;}
