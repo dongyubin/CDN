@@ -1,9 +1,9 @@
 /* ChatGPT */
-#summary-container {padding: 25px 30px;margin-bottom: 25px;border: 1px solid;border-radius: 5px;}
+#summary-container {padding: 25px 30px;margin-bottom: 25px;border: 1px solid #e3e8f7;border-radius: 5px;background: #f1f3f8;}
 .post-ai-summary_title {display: flex;align-items: center;margin-bottom: 15px;}
 .post-ai-summary_title i {margin-right: 10px;font-size: 2em;}
 .post-ai-summary_title span {font-weight: bold;font-size: 15px}
-.post-ai-summary_content {display: block;}
+.post-ai-summary_content {display: block;background: #fff;padding: 5px;border: 1px solid #e3e8f7;border-radius: 7px;}
 .post-ai-summary_content span {vertical-align: middle; font-size: .875rem;}
 .typing::after {content: '▌';}
 .blinker::after { animation: blinker 1s step-end infinite;}
