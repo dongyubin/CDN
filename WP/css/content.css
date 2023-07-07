@@ -1,10 +1,17 @@
 /* ChatGPT */
-.post-ai-summary {padding: 25px 30px;margin-bottom: 25px;border: 1px solid;border-radius: 5px;}
+#summary-container {padding: 25px 30px;margin-bottom: 25px;border: 1px solid;border-radius: 5px;}
 .post-ai-summary_title {display: flex;align-items: center;margin-bottom: 15px;}
 .post-ai-summary_title i {margin-right: 10px;font-size: 2em;}
 .post-ai-summary_title span {font-weight: bold;font-size: 15px}
 .post-ai-summary_content {display: block;}
 .post-ai-summary_content span {vertical-align: middle; font-size: .875rem;}
+.typing::after {content: '▌';}
+.blinker::after { animation: blinker 1s step-end infinite;}
+@keyframes blinker {
+0% {visibility: visible;}
+50% {visibility: hidden;}
+100% {visibility: visible;}
+}
 /* image alt位置*/
 .img-alt{font-size: 16px;margin: 0;color: #858585;}
 .is-center{text-align:center;}
