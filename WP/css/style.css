@@ -603,8 +603,8 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:var(
 .owl-carousel .owl-dots.disabled,.owl-carousel .owl-nav.disabled{display:none}
 .owl-carousel .owl-dot,.owl-carousel .owl-next,.owl-carousel .owl-prev{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .owl-carousel .owl-next,.owl-carousel .owl-prev{align-items:center;background-color:#fff;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,.05);color:var(--font-color);display:flex;font-size:20px;height:40px;justify-content:center;line-height:1;margin-top:-20px;position:absolute;top:50%;transition:color .5s cubic-bezier(.4,.01,.165,.99);width:40px}
-.owl-carousel .owl-nav .owl-next,.owl-carousel .owl-nav .owl-prev {opacity: 0;}
-.owl-carousel:hover .owl-nav .owl-next,.owl-carousel:hover .owl-nav .owl-prev {opacity: 1;}
+/* .owl-carousel .owl-nav .owl-next,.owl-carousel .owl-nav .owl-prev {opacity: 1;} */
+/* .owl-carousel:hover .owl-nav .owl-next,.owl-carousel:hover .owl-nav .owl-prev {opacity: 1;} */
 .owl-carousel .owl-next.disabled,.owl-carousel .owl-prev.disabled{color:#aaa;cursor:no-drop;display:none;}
 .owl-carousel .owl-prev{left:20px}
 .owl-carousel .owl-next{right:20px}
@@ -868,8 +868,8 @@ to{transform:rotate(360deg)}
 .excerpt time, .excerpt .pv, .excerpt .pc, .excerpt .comment {margin-right: 10px;}
 .excerpt .share{margin-left: 10px;}
 .excerpt .note{display: none;}
-.featured-posts.owl-carousel .owl-prev,.category-boxes.owl-carousel .owl-prev {left: 15px;}
-.featured-posts.owl-carousel .owl-next,.category-boxes.owl-carousel .owl-next {right: 15px;}
+.featured-posts.owl-carousel .owl-prev,.category-boxes.owl-carousel .owl-prev {left: -15px;}
+.featured-posts.owl-carousel .owl-next,.category-boxes.owl-carousel .owl-next {right: -15px;}
 .grid-item{padding-left: 5px;padding-right: 5px;}
 }
 /*登陆注册*/
@@ -1080,3 +1080,9 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
   background-size: 200%;
 }
 .pace.pace-inactive {opacity: 0;transition: 0.3s;top: -8px;}
+/* 轮播图数字页码 */
+.carousel-nums{position: absolute;bottom: 6px;left: 48%;color: #fff;background-color: rgba(0,0,0,.6);padding: 4px 12px;border-radius: 16px;border: 1px solid rgba(255,255,255,0.4);z-index: 10;}
+
+@media (max-width: 767px) {
+  .carousel-nums{left: 43%;}
+}
