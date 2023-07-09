@@ -509,7 +509,7 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:var(
 .widget-area .widget.small-padding{padding:5px}
 .widget-area .widget-title{border-bottom:1px solid var(--index-background-color);font-size:14px;letter-spacing:.5px;line-height:1;margin:-20px -20px 20px;padding:15px 20px;text-transform:uppercase}
 .widget ul{list-style-type:none;margin:0;padding:0}
-.widget ul li>a{color:#777;display:inline-block}
+.widget ul li>a{display:inline-block}
 .widget ul li+li>a,.widget ul ul li>a{margin-top:10px}
 
 .widget_calendar #wp-calendar{margin:0;width:100%}
@@ -1027,7 +1027,7 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 .widget_recent_entries ul{margin-left:5px;}
 .widget_recent_entries ul li{border-left:2px solid #eaeef5;padding-bottom:20px;padding-left:20px;position:relative;}
 .widget_recent_entries ul li a{margin-bottom:6px;display:block;font-size:13px;}
-.widget_recent_entries ul li span{color:#7d7d7d;display:block;font-weight:300;font-size:12px;}
+.widget_recent_entries ul li span{display:block;font-weight:300;font-size:12px;}
 .widget_recent_entries ul li:last-child{border-bottom:none;padding-bottom:0px;margin-bottom:0px;}
 .widget_recent_entries ul li:before{content:"";position:absolute;background-color:#fff;height:4px;width:4px;border-radius:50%;left:-3px;top:8px;z-index:9;}
 .widget_recent_entries ul li:after{content:"";position:absolute;background-color:var(--accent-color);height:14px;width:14px;border-radius:50%;left:-8px;top:3px;transition:.6s;border:3px solid #fff;}
