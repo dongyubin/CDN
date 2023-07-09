@@ -266,12 +266,13 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:var(
 .entry-excerpt {min-height: auto;}
 }
 .site-content{padding-bottom:50px;padding-top:30px}
-.site-header{-webkit-backface-visibility:hidden;backface-visibility:hidden;background-color:#fff;border-bottom:1px solid #e6e6e6;left:0;position:relative;right:0;top:0;transition:background-color .5s cubic-bezier(.4,.01,.165,.99),border-color .5s cubic-bezier(.4,.01,.165,.99);z-index:80}
+.site-header{-webkit-backface-visibility:hidden;backface-visibility:hidden;/*background-color:#fff;border-bottom:1px solid #e6e6e6;*/left:0;position:relative;right:0;top:0;transition:background-color .5s cubic-bezier(.4,.01,.165,.99),border-color .5s cubic-bezier(.4,.01,.165,.99);z-index:80}
+.scrolled{border-radius: 0px 0px 10px 10px;    background: rgba(251,251,253,0.92);transition: background 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);-webkit-backdrop-filter: saturate(180%) blur(20px);-webkit-transition-property: background, backdrop-filter, -webkit-backdrop-filter;}
 .navbar-full .site-header{padding:0 30px}
 .navbar{align-items:center;display:flex;height:70px;justify-content:space-between;position:relative}
 .navbar>:first-child,.navbar>:last-child{flex:2}
 .navbar>:last-child{align-items:center;display:flex;height:70px;justify-content:flex-end}
-.navbar>:last-child>div{align-items:center;border-left:1px solid #e6e6e6;display:flex;height:100%;padding-left:25px}
+.navbar>:last-child>div{align-items:center;display:flex;height:100%;padding-left:25px}
 .navbar .col-hamburger{display:flex}
 .navbar .navbar-button{align-items:center;background-color:#fff;border:1px solid #e6e6e6;border-radius:3px;color:var(--font-color);cursor:pointer;display:flex;font-size:15px;height:30px;justify-content:center;width:30px}
 .navbar .menu-item{display:inline-block;position:relative}
