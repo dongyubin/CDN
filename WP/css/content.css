@@ -144,7 +144,15 @@ pre:before{content:"";position:absolute;border-radius:50%;background:#fc625d;wid
 /*目录*/
 /* 注册登录弹窗出现时，将页面放置在阴影里 */
 .is-visible2 .toc-sidebar-button{z-index: 0;}
-#toc-sidebar-button {position: fixed;top: 50%;left: 0;transform: translateY(-50%);background-color: #fff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 1px 1px 5px rgba(0,0,0,0.25);padding: 8px;font-size: 14px;cursor: pointer;z-index: 9999;writing-mode: vertical-rl;text-orientation: upright;
+#toc {height: auto;max-height:400px;overflow: auto;position: fixed;top: 50%;left: 0;transform: translateY(-50%);
+width: 260px;background-color: #fff;border: 1px solid #ccc;border-radius: 4px;box-shadow: 1px 1px 5px rgba(0,0,0,0.25);padding: 12px;font-size: 14px;z-index: 999;display: none;}
+#toc .toc-title {margin-bottom: 12px;}
+#toc ul {margin: 0;padding: 0;list-style: none;}
+toc ul ul {margin-top: 6px;margin-left: 12px;}
+.toc-controller {cursor: pointer;font-size: 12px;color: #666;text-decoration: underline;}
+#toc-sidebar-button {position: fixed;top: 50%;left: 0;transform: translateY(-50%);background-color: #fff;border: 1px solid #ccc;box-shadow: 1px 1px 5px rgba(0,0,0,0.25);padding: 8px;font-size: 14px;cursor: pointer;z-index: 9999;border-radius: 0 16px 16px 0;}
+@media (max-width:992px){
+    #toc-sidebar-button {border-radius: 4px;writing-mode: vertical-rl;text-orientation: upright;}
 }
 /*面包屑*/
 .breadcrumbs {color: #999;margin-top: 15px;margin-bottom: 15px;font-size: 12px;font-weight: bold;text-transform: uppercase;}
