@@ -873,7 +873,7 @@ to{transform:rotate(360deg)}
 .dark-mode .excerpt .note{color: #999;}
 .dark-mode .excerpt .meta{color: #999;}
 .dark-mode .excerpt .meta a {color: #fff;}
-@media (max-width:640px){
+@media (max-width:767px){
 .modal {width: auto;}
 .excerpt{padding: 0;margin-left: 15px;margin-right: 15px;}
 .excerpt .focus{width: 100%;margin: 0;float: none;}
