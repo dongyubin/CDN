@@ -156,11 +156,11 @@ toc ul ul {margin-top: 6px;margin-left: 12px;}
 }
 /*面包屑*/
 .breadcrumbs {color: #eee;margin-top: 15px;margin-bottom: 15px;font-size: 12px;font-weight: bold;text-transform: uppercase;}
-.breadcrumbs ul {margin: 0;padding: 0;list-style: none;display: flex;}
-.breadcrumbs ul li {display: inline-block;margin-right: 5px;line-height: 20px;width: auto;}
-.breadcrumbs ul li:last-child {color: #eee;}
-.dark-mode .breadcrumbs ul li:last-child {color: rgba(255,255,255,0.8);}
-.breadcrumbs ul li:not(:first-child)::before {content: ">";font-family: dashicons;margin-right: 5px;}
+.breadcrumbs .breadcrumbs-items {margin: 0;padding: 0;list-style: none;display: flex;}
+.breadcrumbs .breadcrumbs-items span {display: inline-block;margin-right: 5px;line-height: 20px;width: auto;}
+.breadcrumbs .breadcrumbs-items span:last-child {color: #eee;}
+.dark-mode .breadcrumbs .breadcrumbs-items span:last-child {color: rgba(255,255,255,0.8);}
+.breadcrumbs .breadcrumbs-items span:not(:first-child)::before {content: ">";font-family: dashicons;margin-right: 5px;}
 .breadcrumbs a {color: #eee;text-decoration: none;-webkit-transition: all .3s ease;-moz-transition: all .3s ease;transition: all .3s ease;}
 .breadcrumbs a:hover {color: var(--accent-color);}
 .dark-mode .breadcrumbs a:hover {color: #fff;}
