@@ -237,13 +237,13 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:var(
 .entry-author img{border-radius:50%;margin-right:7px;width:30px}
 .entry-author .author-info{color:#aaa;display:flex;flex-direction:column;line-height:1;margin-top:1px}
 .entry-author .author-name{color:#777;font-weight:500;margin-bottom:5px}
-.entry-action{align-items:center;background-color:#fff;border-top:1px solid var(--index-background-color);display:flex;font-size:12px;font-weight:500;height:37px;justify-content:space-between;line-height:1;padding:12px 20px}
+/* .entry-action{align-items:center;background-color:#fff;border-top:1px solid var(--index-background-color);display:flex;font-size:12px;font-weight:500;height:37px;justify-content:space-between;line-height:1;padding:12px 20px}
 .entry-action>div{align-items:center;display:flex}
 .entry-action a{color:#aaa}
 .entry-action a+a{margin-left:8px}
 .entry-action .comment .mdi{font-size:10px}
 .entry-action .count{margin-left:2px}
-.entry-action>div:last-child a{align-items:center;display:flex}
+.entry-action>div:last-child a{align-items:center;display:flex} */
 /* .entry-action>div:last-child span{display:none;font-size:10px;margin-left:2px;text-transform:uppercase} */
 .entry-action .share .mdi{font-size:15px}
 .no-thumbnail.single .entry-action,.with-hero.single .entry-action{border-bottom:1px solid var(--index-background-color)}
