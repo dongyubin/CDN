@@ -18,6 +18,10 @@
     color: #eee;
 }
 
+.post-header .post-action a:hover{
+    color: var(--accent-color);
+}
+
 .post-header .post-info {
     position: absolute;
     bottom: 100px;
