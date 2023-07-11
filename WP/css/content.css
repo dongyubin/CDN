@@ -1,3 +1,113 @@
+/* 头部样式 */
+.post-header{width: 100%; display: flex; flex-direction: column; position: relative; height: 400px; background-color: var(--accent-color); background-position: center center;
+    background-size: cover;background-repeat: no-repeat; color: #fff; margin-bottom: 0px;  }
+.post-header::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    content: '';
+}
+
+.post-header .post-action {
+    color: #eee;
+    font-size: 95%;
+}
+
+.post-header .post-action a {
+    color: #eee;
+}
+
+.post-header .post-info {
+    position: absolute;
+    bottom: 100px;
+    padding: 0 8%;
+    width: 100%;
+    text-align: center;
+}
+
+.post-header .entry-title {
+    margin-bottom: 8px;
+    color: #eee;
+    font-weight: bold;
+    font-size: 2.5em;
+    line-height: 1.5;
+    -webkit-line-clamp: 3;
+}
+
+.post-action .post-meta-icon,
+.post-action .post-meta-label {
+    margin-right: 4px;
+}
+
+.post-action .post-meta-separator {
+    margin: 0 5px;
+}
+
+.wave-area {
+
+    /*height: 25rem;*/
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px;
+    /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+}
+
+/* Animation */
+
+.parallax>use {
+    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+    .post-header .entry-title {
+        font-size: 1.4rem;
+    }
+}
 /* ChatGPT */
 #summary-container {padding: 25px 30px;margin-bottom: 25px;border: 1px solid #e3e8f7;border-radius: 5px;background: #f1f3f8;}
 .post-ai-summary_title {display: flex;align-items: center;margin-bottom: 15px;}
