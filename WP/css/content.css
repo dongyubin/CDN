@@ -155,16 +155,16 @@ toc ul ul {margin-top: 6px;margin-left: 12px;}
     #toc-sidebar-button {border-radius: 4px;writing-mode: vertical-rl;text-orientation: upright;}
 }
 /*面包屑*/
-.breadcrumbs {color: #999;margin-top: 15px;margin-bottom: 15px;font-size: 12px;font-weight: bold;text-transform: uppercase;}
+.breadcrumbs {color: #eee;margin-top: 15px;margin-bottom: 15px;font-size: 12px;font-weight: bold;text-transform: uppercase;}
 .breadcrumbs ul {margin: 0;padding: 0;list-style: none;display: flex;}
 .breadcrumbs ul li {display: inline-block;margin-right: 5px;line-height: 20px;width: auto;}
-.breadcrumbs ul li:last-child {color: #333;}
+.breadcrumbs ul li:last-child {color: #eee;}
 .dark-mode .breadcrumbs ul li:last-child {color: rgba(255,255,255,0.8);}
 .breadcrumbs ul li:not(:first-child)::before {content: ">";font-family: dashicons;margin-right: 5px;}
-.breadcrumbs a {color: #999;text-decoration: none;-webkit-transition: all .3s ease;-moz-transition: all .3s ease;transition: all .3s ease;}
-.breadcrumbs a:hover {color: #555;}
+.breadcrumbs a {color: #eee;text-decoration: none;-webkit-transition: all .3s ease;-moz-transition: all .3s ease;transition: all .3s ease;}
+.breadcrumbs a:hover {color: var(--accent-color);}
 .dark-mode .breadcrumbs a:hover {color: #fff;}
-.breadcrumbs i {color: #666;margin: 0 5px;} 
+.breadcrumbs i {color: #eee;margin: 0 5px;} 
 /*fancybox*/
 .single .entry-content .gallery{margin-bottom: 30px;clear:both;font-size:18px;}
 .single .entry-content .gallery .gallery-item{margin:0!important;overflow:hidden;position:relative;float:left;clear: none}
