@@ -244,7 +244,7 @@ form.inline button[type=submit]{background-color:transparent;border:0;color:var(
 .entry-action .comment .mdi{font-size:10px}
 .entry-action .count{margin-left:2px}
 .entry-action>div:last-child a{align-items:center;display:flex}
-.entry-action>div:last-child span{display:none;font-size:10px;margin-left:2px;text-transform:uppercase}
+/* .entry-action>div:last-child span{display:none;font-size:10px;margin-left:2px;text-transform:uppercase} */
 .entry-action .share .mdi{font-size:15px}
 .no-thumbnail.single .entry-action,.with-hero.single .entry-action{border-bottom:1px solid var(--index-background-color)}
 @media (min-width:768px){.posts-wrapper>.col-12 .entry-action>div:last-child span{display:inline}
