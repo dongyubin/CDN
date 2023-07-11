@@ -873,7 +873,7 @@ to{transform:rotate(360deg)}
 .dark-mode .excerpt .note{color: #999;}
 .dark-mode .excerpt .meta{color: #999;}
 .dark-mode .excerpt .meta a {color: #fff;}
-@media (max-width:767px){
+@media (max-width:640px){
 .modal {width: auto;}
 .excerpt{padding: 0;margin-left: 15px;margin-right: 15px;}
 .excerpt .focus{width: 100%;margin: 0;float: none;}
@@ -903,7 +903,7 @@ ul.cd-switcher{list-style: none;margin: 0;padding: 0;}
 .cd-user-modal-container .cd-switcher a.selected{background:#FFF;color:#505260}
 .is-visible2{position: fixed;width: 100%;}
 .is-visible2 .index-sidebar{z-index: 0;}
-@media (max-width:640px){.main-nav{margin-top: 5px;}
+@media (max-width:767px){.main-nav{margin-top: 5px;}
 .dahuzi-land {margin-left: 10px;}
 .navbar .navbar-button {background-color: #0000;border: none;}
 .excerpt img{width: 100%;height: 200px;}
