@@ -70,27 +70,6 @@ body.dark-mode {
         --color-memos-pre-bg: #2d333b;
     }
 }
-blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
-    margin: 0;
-}
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
-        Arial, "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei",
-        "Microsoft Yahei", "Segoe UI", sans-serif, serif;
-    color: var(--color-main);
-    background-color: var(--color-background);
-    box-sizing: border-box;
-    /* min-width: 200px; */
-    /* max-width: 980px; */
-    margin: 0 auto;
-    padding: 45px;
-}
-
-/* header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
 
 .menu {
     display: flex;
