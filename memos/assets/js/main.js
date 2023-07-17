@@ -90,8 +90,8 @@ if (memoDom) {
 function getFirstList() {
     var memoUrl_first = memoUrl + "&limit=" + limit;
     fetch(memoUrl_first).then(res => res.json()).then(resdata => {
-        updateHTMl(resdata.data)
-        var nowLength = resdata.data.length
+        updateHTMl(resdata)
+        var nowLength = resdata.length
         if (nowLength < limit) { // 返回数据条数小于 limit 则直接移除“加载更多”按钮，中断预加载
             document.querySelector("button.button-load").remove()
             return
@@ -105,7 +105,7 @@ function getFirstList() {
 function getNextList() {
     var memoUrl_next = memoUrl + "&limit=" + limit + "&offset=" + offset;
     fetch(memoUrl_next).then(res => res.json()).then(resdata => {
-        nextDom = resdata.data
+        nextDom = resdata
         nextLength = nextDom.length
         page++
         offset = limit * (page - 1)
@@ -288,8 +288,8 @@ window.ViewImage && ViewImage.init('.entry-wrapper img');
 function getTotal() {
     var totalUrl = memos + "api/v1/memo/stats?creatorId=" + memo.creatorId
     fetch(totalUrl).then(res => res.json()).then(resdata => {
-        if (resdata.data) {
-            var allnums = resdata.data.length
+        if (resdata) {
+            var allnums = resdata.length
             var memosCount = document.getElementById('total');
             memosCount.innerHTML = allnums;
         }
