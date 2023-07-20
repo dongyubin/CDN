@@ -1,51 +1,3 @@
-// Lazyload Start
-(function () {
-    function logElementEvent(eventName, element) {
-        console.log(Date.now(), eventName, element.getAttribute("data-src"));
-    }
-
-    var callback_enter = function (element) {
-        logElementEvent("🔑 ENTERED", element);
-    };
-    var callback_exit = function (element) {
-        logElementEvent("🚪 EXITED", element);
-    };
-    var callback_loading = function (element) {
-        logElementEvent("⌚ LOADING", element);
-    };
-    var callback_loaded = function (element) {
-        logElementEvent("👍 LOADED", element);
-    };
-    var callback_error = function (element) {
-        logElementEvent("💀 ERROR", element);
-        element.src = "/assets/img/error.png";
-    };
-    var callback_finish = function () {
-        logElementEvent("✔️ FINISHED", document.documentElement);
-    };
-    var callback_cancel = function (element) {
-        logElementEvent("🔥 CANCEL", element);
-    };
-
-    var ll = new LazyLoad({
-        class_applied: "lz-applied",
-        class_loading: "lz-loading",
-        class_loaded: "lz-loaded",
-        class_error: "lz-error",
-        class_entered: "lz-entered",
-        class_exited: "lz-exited",
-        // Assign the callbacks defined above
-        callback_enter: callback_enter,
-        callback_exit: callback_exit,
-        callback_cancel: callback_cancel,
-        callback_loading: callback_loading,
-        callback_loaded: callback_loaded,
-        callback_error: callback_error,
-        callback_finish: callback_finish
-    });
-})();
-// Lazyload End
-
 // Memos Start
 var memo = {
     host: 'https://demo.usememos.com/',
@@ -126,7 +78,7 @@ function updateHTMl(data) {
     var memoResult = "", resultAll = "";
 
     // 解析 TAG 标签，添加样式
-    const TAG_REG = /#((?!^\d+$)[^\s#,.!()/\d]+)/g
+    const TAG_REG = /#([^\s#]+?) /g;
 
     // 解析 BiliBili
     const BILIBILI_REG = /<a\shref="https:\/\/www\.bilibili\.com\/video\/((av[\d]{1,10})|(BV([\w]{10})))\/?">.*<\/a>/g;
@@ -161,7 +113,7 @@ function updateHTMl(data) {
         let createdTs  = data[i].createdTs;
         let creatorName = data[i].creatorName;
         var memoContREG = data[i].content
-            .replace(TAG_REG, " ")
+            .replace(TAG_REG, "")
 
         // For CJK language users
         // 用 PanguJS 自动处理中英文混合排版
@@ -200,7 +152,7 @@ function updateHTMl(data) {
                     resLink = memos + 'o/r/' + resourceList[j].id + '/' + resourceList[j].publicId
                 }
                 if (resType == 'image') {
-                    imgUrl += '<img class="lozad" loading="lazy" src="    ' + resLink + '"/>'
+                    imgUrl += '<img class="lozad" data-src="    ' + resLink + '"/>'
                     resImgLength = resImgLength + 1
                 }
                 if (resType !== 'image') {
@@ -217,11 +169,26 @@ function updateHTMl(data) {
             }
         }
 
+        let memos_header =`<div class="memos-header">
+        <div class="memos-userinfo">
+        <div class="item-avatar" style="background-image:url('${avatar}')"></div>
+        <a href='${website}' target="_blank">${memo.name}</a>
+        <span class="bbs-dot">·</span>
+        <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}">${moment(createdTs * 1000).twitter()}</time>
+        </div>`
+
+        let memos_content = `<div class="memos-content">
+        <div class="memos-text">${memoContREG}</div>
+        <div class="memos-footer">
+        <div class="memos-tags">${memosTag}</div>
+        <div class="memos-tools">
+        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a></div>
+        <div class="item d-flex align-items-center"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">👉</a></div>
+        </div>
+        </div>
+        </div><div id="${(memosId+createdTs)}" class="item-comment mt-3 d-none"></div>`
         
-        // <div class="memos__id">@' + memo.username + '</div><div><svg viewBox="0 0 24 24" aria-label="认证账号" class="memos__verify"><g><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path></g></svg></div>
-        // <div class="memos__meta"><small class="memos__date">+ moment(createdTs * 1000).twitter()+ ' • 来自「<a href="' + memosLink + '" target="_blank">Memos</a>」</small></div>'
-        
-        memoResult += '<div class="item"><div class="memos-content"><div class="memos-text"><div class="memos-userinfo"><div class="item-avatar" style="background-image:url('+ avatar +')"></div><div class="item-info"><div class="memos-name"><a href='+website+' target="_blank">'+ memo.name + '</a></div><time title="'+new Date(createdTs * 1000).toLocaleString()+'">'+ moment(createdTs * 1000).twitter() +'</time></div></div><p>' + memoContREG + '</p></div><div class="memos-footer"><div class="memos-tags">'+ memosTag + '</div><div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center mr-3"><a data-id="'+data[i].id+'" data-time="'+createdTs+'" data-env="'+twikooEnv+'" data-path="'+memosLink+'" onclick="loadTwikoo(this)" rel="noopener noreferrer">🎉</a></div><div class="item d-flex align-items-center"><a onclick="transPond('+ JSON.stringify(memosForm).replace(/"/g, '&quot;') +')">🎉</a></div></div><div id="'+(memosId+createdTs)+'" class="item-comment mt-3 d-none"></div></div></div></div></div>'
+        memoResult += `<div class="item">${memos_header + memos_content}</div>`
     }
     // var memoBefore = '<div class="memos-list">'
     // var memoAfter = '</div>'
@@ -230,6 +197,9 @@ function updateHTMl(data) {
     //取消这行注释解析豆瓣电影和豆瓣阅读
     // fetchDB()
     document.querySelector('button.button-load').textContent = '加载更多';
+    window.Lately && Lately.init({
+        target: '.item-time'
+      });
 }
 // Memos End
 
