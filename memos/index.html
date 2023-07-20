@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<link href="https://cdn.wangdu.site/memos/assets/css/style.css" rel="stylesheet" type="text/css">
+<link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/APlayer.min.css" rel="stylesheet" type="text/css">
+<!--<link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/highlight.github.min.css" rel="stylesheet" type="text/css">-->
+<!--<link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/custom.css" rel="stylesheet" type="text/css">-->
+<div class="site-content container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="content-area">
+				<main class="site-main">
+				<article class="type-post post">
+				<header class="entry-header page">
+				</header>
+				<div class="entry-wrapper">
+					<div class="entry-content u-clearfix">
+	<!--<section id="main" class="container">-->
+        <div class="total">总共 <span id="total">0</span> Memos 🎉</div>
+        <div id="memos" class="memos"></div>
+    <!--</section>-->
+					</div>
+				</div>
+				</article>
+				</main>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 修改自己的 Memos 设置 -->
+    <script type="text/javascript">
+        var memos = {
+            host: 'https://bw.wangdu.site:4730/',  //修改为自己部署 Memos 的网址，末尾有 / 斜杠
+            limit: '10',  //默认每次显示 10条
+            creatorId: '101',  //默认为 101用户 https://demo.usememos.com/u/101
+            domId: '#memos',  //默认为 #memos
+            username: '斌仔',  //发布者 ID 自定义
+            name: '斌仔',  //发布者全称自定义
+        }
+
+    </script>
+   
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/lazyload.min.js?v=17.8.3"></script>
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/marked.min.js?v=4.2.2"></script>
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/moment.min.js?v=2.29.4"></script>
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/moment.twitter.js"></script>
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/APlayer.min.js"></script>
+    <script type="text/javascript" src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/Meting.min.js"></script>
+     <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="text/javascript" src="./assets/js/custom.js"></script>
+</body>
+</html>
