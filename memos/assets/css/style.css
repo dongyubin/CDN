@@ -157,7 +157,7 @@ blockquote {
 .memos__content:before {
     content: '';
     position: absolute;
-    background: url('https://cdn.sep.cc/avatar/3f86f3f1aa105924d030b7d3040a0037?s=32&d=mm&r=g') no-repeat;
+    background: url('https://cdn.sep.cc/avatar/3f86f3f1aa105924d030b7d3040a0037?s=400') no-repeat;
     background-size: contain;
     width: 40px;
     height: 40px;
