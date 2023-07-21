@@ -149,10 +149,11 @@ function updateHTMl(data) {
                 if (resexlink) {
                     resLink = resexlink
                 } else {
-                    resLink = memos + 'o/r/' + resourceList[j].id + '/' + resourceList[j].publicId
+                    fileId = resourceList[j].publicId || resourceList[j].filename
+                    resLink = memos + 'o/r/' + resourceList[j].id + '/' + fileId
                 }
                 if (resType == 'image') {
-                    imgUrl += '<img class="lozad" data-src="    ' + resLink + '"/>'
+                    imgUrl += '<img class="lozad" data-src="'+resLink +'"/>'
                     resImgLength = resImgLength + 1
                 }
                 if (resType !== 'image') {
@@ -162,7 +163,7 @@ function updateHTMl(data) {
             if (imgUrl) {
                 var resImgGrid = ""
                 if (resImgLength !== 1) { var resImgGrid = "grid grid-" + resImgLength }
-                memoContREG += '<div class="resimg ' + resImgGrid + '">' + imgUrl + '</div>'
+                memoContREG += '<div class="resimg' + resImgGrid + '">' + imgUrl + '</div>'
             }
             if (resUrl) {
                 memoContREG += '<p class="datasource">' + resUrl + '</p>'
@@ -200,6 +201,9 @@ function updateHTMl(data) {
     window.Lately && Lately.init({
         target: '.item-time'
       });
+    //延迟加载
+    var observer = lozad('.lozad');
+    observer.observe();
 }
 // Memos End
 
