@@ -185,7 +185,7 @@ function updateHTMl(data) {
         <div class="memos-footer">
         <div class="memos-tags">${memosTag}</div>
         <div class="memos-tools">
-        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a></div>
+        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" onmouseenter="insertTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
         <div class="item d-flex align-items-center"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">👉</a></div>
         </div>
         </div>
@@ -370,4 +370,22 @@ function loadTwikoo(i) {
       twikooDom.classList.add('d-none');
       document.getElementById("twikoo").remove()
     }
+    
+}
+
+function insertTwikoo(e){
+    var twikooEnv = e.getAttribute("data-env")
+    var twikooPath = e.getAttribute("data-path")
+    var twikooId = e.getAttribute("data-id")
+    twikoo.getCommentsCount({
+        envId: twikooEnv,
+        urls: [ twikooPath],
+        includeReply: false // 评论数是否包括回复，默认：false
+    }).then(function (res) {
+      console.log(res);
+      document.querySelector('#twikooCount-'+twikooId).textContent = res[0].count
+    }).catch(function (err) {
+      // 发生错误
+      console.error(err);
+    });
 }
