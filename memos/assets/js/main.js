@@ -18,6 +18,8 @@ if (typeof (memos) !== "undefined") {
     }
 }
 
+
+
 var limit = memo.limit
 var memos = memo.host
 var memoUrl = memos + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL"
@@ -278,7 +280,7 @@ function bookShow(fetch_href, fetch_item) {
 // 解析豆瓣 End
 
 // Images lightbox
-window.ViewImage && ViewImage.init('.entry-wrapper img');
+window.ViewImage && ViewImage.init('.memos-content img');
 
 // Memos Total Start
 // Get Memos total count
@@ -368,4 +370,4 @@ function loadTwikoo(i) {
       twikooDom.classList.add('d-none');
       document.getElementById("twikoo").remove()
     }
-  }
+}
