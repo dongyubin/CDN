@@ -6,7 +6,7 @@ var memo = {
     domId: '#memos',
     username: 'Admin',
     name: 'Administrator',
-    twikoo:'https://wwsay.wangdu.site',
+    twikoo: 'https://wwsay.wangdu.site',
     gravatar: 'https://cdn.sep.cc',
     website: 'https://www.wangdu.site'
 }
@@ -18,13 +18,11 @@ if (typeof (memos) !== "undefined") {
     }
 }
 
-
-
 var limit = memo.limit
 var memos = memo.host
 var memoUrl = memos + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL"
 let twikooEnv = memo.twikoo;
-let avatar = memo.gravatar+'/avatar/3f86f3f1aa105924d030b7d3040a0037?s=400'
+let avatar = memo.gravatar + '/avatar/3f86f3f1aa105924d030b7d3040a0037?s=400'
 let website = memo.website
 var page = 1,
     offset = 0,
@@ -112,7 +110,7 @@ function updateHTMl(data) {
     for (var i = 0; i < data.length; i++) {
         let memosId = data[i].id;
         let memosLink = memo.host + 'm/' + memosId;
-        let createdTs  = data[i].createdTs;
+        let createdTs = data[i].createdTs;
         let creatorName = data[i].creatorName;
         var memoContREG = data[i].content
             .replace(TAG_REG, "")
@@ -132,14 +130,14 @@ function updateHTMl(data) {
             .replace(YOUKU_REG, "<div class='video-wrapper'><iframe src='https://player.youku.com/embed/$1' frameborder=0 'allowfullscreen'></iframe></div>")
             .replace(YOUTUBE_REG, "<div class='video-wrapper'><iframe src='https://www.youtube.com/embed/$1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen title='YouTube Video'></iframe></div>")
 
-            let memosForm = {creatorName:creatorName,content:memoContREG,url:memosLink};
+        let memosForm = { creatorName: creatorName, content: memoContREG, url: memosLink };
         var tagArr = data[i].content.match(TAG_REG);
-      var memosTag = '';
-      if (tagArr) {
-        memosTag = tagArr.map(t=>{
-          return '<div class="item-tag">'+ String(t).replace(/[#]/g, '') +'</div>';
-        }).join('');
-      }
+        var memosTag = '';
+        if (tagArr) {
+            memosTag = tagArr.map(t => {
+                return '<div class="item-tag">' + String(t).replace(/[#]/g, '') + '</div>';
+            }).join('');
+        }
         // 解析内置资源文件 
         if (data[i].resourceList && data[i].resourceList.length > 0) {
             var resourceList = data[i].resourceList;
@@ -155,7 +153,7 @@ function updateHTMl(data) {
                     resLink = memos + 'o/r/' + resourceList[j].id + '/' + fileId
                 }
                 if (resType == 'image') {
-                    imgUrl += '<img class="lozad" data-src="'+resLink +'"/>'
+                    imgUrl += '<img class="lozad" data-src="' + resLink + '"/>'
                     resImgLength = resImgLength + 1
                 }
                 if (resType !== 'image') {
@@ -172,7 +170,7 @@ function updateHTMl(data) {
             }
         }
 
-        let memos_header =`<div class="memos-header">
+        let memos_header = `<div class="memos-header">
         <div class="memos-userinfo">
         <div class="item-avatar" style="background-image:url('${avatar}')"></div>
         <a href='${website}' target="_blank">${memo.name}</a>
@@ -186,11 +184,11 @@ function updateHTMl(data) {
         <div class="memos-tags">${memosTag}</div>
         <div class="memos-tools">
         <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" onmouseenter="insertTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
-        <div class="item d-flex align-items-center"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">👉</a></div>
+        <div class="memos-link"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">👉</a></div>
         </div>
         </div>
-        </div><div id="${(memosId+createdTs)}" class="item-comment mt-3 d-none"></div>`
-        
+        </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`
+
         memoResult += `<div class="item">${memos_header + memos_content}</div>`
     }
     // var memoBefore = '<div class="memos-list">'
@@ -202,7 +200,7 @@ function updateHTMl(data) {
     document.querySelector('button.button-load').textContent = '加载更多';
     window.Lately && Lately.init({
         target: '.item-time'
-      });
+    });
     //延迟加载
     var observer = lozad('.lozad');
     observer.observe();
@@ -332,60 +330,60 @@ window.onload = getTotal();
 // Darkmode End
 
 //转发
-function transPond(a){
+function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
-    if(memosOpenId && getEditor == "show"){
-      var transRes = '[@'+ a.creatorName+']('+a.url+') \n\n> '+a.creatorName+': '+a.content;
-      memosTextarea.value = transRes;
-      memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
-      document.body.scrollIntoView({behavior: 'smooth'})
-    }else{
-      window.open(a.url);
+        memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+    if (memosOpenId && getEditor == "show") {
+        var transRes = '[@' + a.creatorName + '](' + a.url + ') \n\n> ' + a.creatorName + ': ' + a.content;
+        memosTextarea.value = transRes;
+        memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
+        document.body.scrollIntoView({ behavior: 'smooth' })
+    } else {
+        window.open(a.url);
     }
-  }
+}
 
-  
+
 // 加载Twikoo评论
 function loadTwikoo(i) {
     var twikooEnv = i.getAttribute("data-env")
     var twikooPath = i.getAttribute("data-path")
     var twikooId = i.getAttribute("data-id")
     var twikooTime = i.getAttribute("data-time")
-    var twikooDom = document.getElementById(Number(twikooTime)+Number(twikooId));
+    var twikooDom = document.getElementById(Number(twikooTime) + Number(twikooId));
     var twikooCon = "<div id='twikoo'></div>"
     if (twikooDom.classList.contains('d-none')) {
-      document.querySelectorAll('.item-comment').forEach((item) => {item.classList.add('d-none');})
-      if(document.getElementById("twikoo")){
+        document.querySelectorAll('.item-comment').forEach((item) => { item.classList.add('d-none'); })
+        if (document.getElementById("twikoo")) {
+            document.getElementById("twikoo").remove()
+        }
+        twikooDom.insertAdjacentHTML('beforeend', twikooCon);
+        twikooDom.classList.remove('d-none');
+        twikoo.init({
+            envId: twikooEnv,
+            el: '#twikoo',
+            path: twikooPath
+        });
+    } else {
+        twikooDom.classList.add('d-none');
         document.getElementById("twikoo").remove()
-      }
-      twikooDom.insertAdjacentHTML('beforeend', twikooCon);
-      twikooDom.classList.remove('d-none');
-      twikoo.init({
-        envId: twikooEnv,
-        el: '#twikoo', 
-        path: twikooPath 
-      });
-    }else{
-      twikooDom.classList.add('d-none');
-      document.getElementById("twikoo").remove()
     }
-    
+
 }
 
-function insertTwikoo(e){
+function insertTwikoo(e) {
     var twikooEnv = e.getAttribute("data-env")
     var twikooPath = e.getAttribute("data-path")
     var twikooId = e.getAttribute("data-id")
     twikoo.getCommentsCount({
         envId: twikooEnv,
-        urls: [ twikooPath],
+        urls: [twikooPath],
         includeReply: false // 评论数是否包括回复，默认：false
     }).then(function (res) {
-      console.log(res);
-      document.querySelector('#twikooCount-'+twikooId).textContent = res[0].count
+        console.log(res);
+        document.querySelector('#twikooCount-' + twikooId).textContent = res[0].count
     }).catch(function (err) {
-      // 发生错误
-      console.error(err);
+        // 发生错误
+        console.error(err);
     });
 }
