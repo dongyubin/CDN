@@ -14,26 +14,26 @@ var memosEditorCont = `
             <img src="https://cdn.wangdu.site/memos/assets/img/memos_tag.svg">
           </div>
           <div class="button outline action-btn image-btn mr-2" onclick="this.lastElementChild.click()">
-            <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_up.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_up.svg" title="上传图片">
             <input class="memos-upload-image-input d-none" type="file" accept="image/*">
           </div>
           <div class="button outline p-2 action-btn code-btn mr-2">
-            <img src="https://cdn.wangdu.site/memos/assets/img/memos_code.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_code.svg" title="代码块">
           </div>
           <div class="button outline action-btn code-single mr-2">
-          <img src="https://cdn.wangdu.site/memos/assets/img/memos-code-s.svg">
+          <img src="https://cdn.wangdu.site/memos/assets/img/memos-code-s.svg" title="短代码">
           </div>
           <div class="button outline action-btn mr-2 link-btn">
-            <img src="https://cdn.wangdu.site/memos/assets/img/memos_link.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_link.svg" title="链接">
           </div>
           <div class="button outline action-btn mr-2 link-img">
-          <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_quote.svg">
+          <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_quote.svg" title="图像">
         </div>
         <div class="button outline action-btn biao-qing mr-2">
-        <img src="https://cdn.wangdu.site/memos/assets/img/memos-emoji.svg">
+        <img src="https://cdn.wangdu.site/memos/assets/img/memos-emoji.svg" title="Emoji表情">
         </div>
           <div class="button outline action-btn p-2 switchUser-btn">
-            <img src="https://cdn.wangdu.site/memos/assets/img/memos_user.svg" alt="退出">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_user.svg" alt="切换" title="切换账号">
           </div>
         </div>
         <div class="d-flex flex-fill">
