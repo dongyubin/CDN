@@ -175,7 +175,7 @@ function updateHTMl(data) {
         <div class="item-avatar" style="background-image:url('${avatar}')"></div>
         <a href='${website}' target="_blank">${memo.name}</a>
         <span class="bbs-dot">·</span>
-        <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}">${moment(createdTs * 1000).twitter()}</time>
+        <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs * 1000).twitter()}</a></time>
         </div>`
 
         let memos_content = `<div class="memos-content">
@@ -184,7 +184,6 @@ function updateHTMl(data) {
         <div class="memos-tags">${memosTag}</div>
         <div class="memos-tools">
         <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" onmouseenter="insertTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
-        <div class="memos-link"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">👉</a></div>
         </div>
         </div>
         </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`
