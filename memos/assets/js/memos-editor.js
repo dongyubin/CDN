@@ -11,29 +11,29 @@ var memosEditorCont = `
       <div class="memos-editor-tools pt-3">
         <div class="d-flex">
           <div class="button outline action-btn tag-btn mr-2">
-            <img src="./assets/img/memos_tag.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_tag.svg">
           </div>
           <div class="button outline action-btn image-btn mr-2" onclick="this.lastElementChild.click()">
-            <img src="./assets/img/memos_img_up.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_up.svg">
             <input class="memos-upload-image-input d-none" type="file" accept="image/*">
           </div>
           <div class="button outline p-2 action-btn code-btn mr-2">
-            <img src="./assets/img/memos_code.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_code.svg">
           </div>
           <div class="button outline action-btn code-single mr-2">
-          <img src="./assets/img/memos-code-s.svg">
+          <img src="https://cdn.wangdu.site/memos/assets/img/memos-code-s.svg">
           </div>
           <div class="button outline action-btn mr-2 link-btn">
-            <img src="./assets/img/memos_link.svg">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_link.svg">
           </div>
           <div class="button outline action-btn mr-2 link-img">
-          <img src="./assets/img/memos_img_quote.svg">
+          <img src="https://cdn.wangdu.site/memos/assets/img/memos_img_quote.svg">
         </div>
         <div class="button outline action-btn biao-qing mr-2">
-        <img src="./assets/img/memos-emoji.svg">
+        <img src="https://cdn.wangdu.site/memos/assets/img/memos-emoji.svg">
         </div>
           <div class="button outline action-btn p-2 switchUser-btn">
-            <img src="./assets/img/memos_user.svg" alt="退出">
+            <img src="https://cdn.wangdu.site/memos/assets/img/memos_user.svg" alt="退出">
           </div>
         </div>
         <div class="d-flex flex-fill">
@@ -584,7 +584,7 @@ function displayEmojiSelector() {
 
 // 获取json文件中的数据
 async function getEmojisData() {
-  const response = await fetch('./assets/suju/owo.json');
+  const response = await fetch('https://cdn.wangdu.site/memos/assets/suju/owo.json');
   const data = await response.json();
   return data.Emoji.container;
 }
