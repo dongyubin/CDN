@@ -1,28 +1,98 @@
-var editIcon = '<button class="load-memos-editor p-1"><i class="iconfont iconedit-square"></i></button>';
-document.body.insertAdjacentHTML('beforeend', editIcon);
-
 var memosDom = document.querySelector(memosData.dom);
-var memosEditorCont = '<div class="memos-editor animate__animated animate__fadeIn d-none col-12"><div class="memos-editor-body mb-3 p-3"><div class="memos-editor-inner animate__animated animate__fadeIn d-none"><div class="memos-editor-content"><textarea class="memos-editor-textarea text-sm" rows="1" placeholder="任何想法..."></textarea></div><div class="memos-image-list d-flex flex-fill line-xl"></div><div class="memos-editor-tools pt-3"><div class="d-flex"><div class="button outline action-btn tag-btn mr-2"><i class="iconfont iconnumber"></i></div><div class="button outline action-btn todo-btn mr-2"><i class="iconfont iconunorderedlist"></i></div><div class="button outline action-btn code-btn mr-2"><i class="iconfont iconcode"></i></div><div class="button outline action-btn mr-2 link-btn"><i class="iconfont iconlink"></i></div><div class="button outline action-btn image-btn mr-2" onclick="this.lastElementChild.click()"><i class="iconfont iconimage"></i><input class="memos-upload-image-input d-none" type="file" accept="image/*"></div></div><div class="d-flex flex-fill"><div class="memos-tag-list d-none mt-2 animate__animated animate__fadeIn"></div></div></div><div class="memos-editor-footer border-t mt-3 pt-3 "><div class="d-flex"><div class="editor-selector select outline"><select class="select-memos-value pl-2 pr-4 py-2"><option value="PUBLIC">所有人可见</option><option value="PROTECTED">仅登录可见</option><option value="PRIVATE">仅自己可见</option></select></div><div class="button outline random-btn mx-2 p-2"><i class="iconfont iconretweet"></i></div><div class="button outline switchUser-btn d-none d-md-flex mr-2 p-2"><i class="iconfont iconswitchuser"></i></div></div><div class="editor-submit d-flex flex-fill justify-content-end"><div class="edit-memos d-none"><button class="outline cancel-edit-btn mr-2 px-3 py-2" title="取消">取消</button><button class="primary edit-memos-btn px-3 py-2" title="保存">保存</button></div><button class="primary submit-memos-btn px-3 py-2" title="记下">记下</button></div></div></div><div class="memos-editor-option animate__animated animate__fadeIn d-none"><input name="memos-api-url" class="memos-open-api-input input-text flex-fill mr-3 p-2" type="password" value="" maxlength="120" placeholder="OpenAPI"><button class="primary submit-openapi-btn px-3 py-2">保存</button></div></div><div class="memos-random d-none"></div></div>';
+var editIcon = "<div class='load-memos-editor'></div>";
+var memosEditorCont = `
+<div class="memos-editor animate__animated animate__fadeIn d-none col-12">
+  <div class="memos-editor-body mb-3 p-3">
+    <div class="memos-editor-inner animate__animated animate__fadeIn">
+      <div class="memos-editor-content">
+        <textarea class="memos-editor-textarea text-sm" rows="1" placeholder="嘀咕点什么..."></textarea>
+      </div>
+      <div class="memos-image-list d-flex flex-fill line-xl"></div>
+      <div class="memos-editor-tools pt-3">
+        <div class="d-flex">
+          <div class="button outline action-btn tag-btn mr-2">
+            <img src="./assets/img/memos_tag.svg">
+          </div>
+          <div class="button outline action-btn image-btn mr-2" onclick="this.lastElementChild.click()">
+            <img src="./assets/img/memos_img_up.svg">
+            <input class="memos-upload-image-input d-none" type="file" accept="image/*">
+          </div>
+          <div class="button outline p-2 action-btn code-btn mr-2">
+            <img src="./assets/img/memos_code.svg">
+          </div>
+          <div class="button outline action-btn code-single mr-2">
+          <img src="./assets/img/memos-code-s.svg">
+          </div>
+          <div class="button outline action-btn mr-2 link-btn">
+            <img src="./assets/img/memos_link.svg">
+          </div>
+          <div class="button outline action-btn mr-2 link-img">
+          <img src="./assets/img/memos_img_quote.svg">
+        </div>
+        <div class="button outline action-btn biao-qing mr-2">
+        <img src="./assets/img/memos-emoji.svg">
+        </div>
+          <div class="button outline action-btn p-2 switchUser-btn">
+            <img src="./assets/img/memos_user.svg" alt="退出">
+          </div>
+        </div>
+        <div class="d-flex flex-fill">
+          <div class="memos-tag-list d-none mt-2 animate__animated animate__fadeIn"></div>
+        </div>
+      </div>
+      <div class="memos-editor-footer border-t pt-3 mt-3">
+        <div class="editor-selector mr-2">
+          <select class="select-memos-value outline px-2 py-1">
+            <option value="PUBLIC">所有人可见</option>
+            <option value="PROTECTED">仅登录可见</option>
+            <option value="PRIVATE">仅自己可见</option>
+          </select>
+        </div>
+        <div class="editor-submit d-flex flex-fill justify-content-end">
+        <div class="edit-memos d-none">
+        <div class="primary cancel-edit-btn mr-2 px-3 py-2">取消</div>
+        <div class="primary edit-memos-btn px-3 py-2">修改完成</div>
+        </div>
+          <div class="primary submit-memos-btn px-3 py-1">嘀咕一下</div>
+        </div>
+      </div>
+    </div>
+    <div class="memos-editor-option d-flex animate__animated animate__fadeIn">
+      <input name="memos-api-url" class="memos-open-api-input input-text flex-fill mr-3 px-2 py-1" type="text" value="" maxlength="120" placeholder="OpenAPI">
+      <div class="primary submit-openapi-btn">保存</div>
+    </div>
+  </div>
+  <div class="memos-random d-none"></div>
+</div>
+`;
+
+
+const element = document.querySelector('.entry-header'); // 选择器是你想要操作的元素的选择器
+element.insertAdjacentHTML('afterend', editIcon);
 memosDom.insertAdjacentHTML('afterbegin',memosEditorCont);
+
 
 var memosEditorInner = document.querySelector(".memos-editor-inner"); 
 var memosEditorOption = document.querySelector(".memos-editor-option");
 var memosRadomCont = document.querySelector(".memos-random");
 
 var taglistBtn = document.querySelector(".tag-btn");
-var todoBtn = document.querySelector(".todo-btn");
-var todoBtn = document.querySelector(".todo-btn");
 var codeBtn = document.querySelector(".code-btn");
+var codesingle = document.querySelector(".code-single");
 var linkBtn = document.querySelector(".link-btn");
-var randomBtn = document.querySelector(".random-btn");
+var linkimg = document.querySelector(".link-img");
 var switchUserBtn = document.querySelector(".switchUser-btn");
-var loadEditorBtn = document.querySelector(".load-memos-editor");
+var loadEditorBtn = document.querySelector(".entry-header");
 var submitApiBtn = document.querySelector(".submit-openapi-btn");
 var submitMemoBtn = document.querySelector(".submit-memos-btn");
 var memosVisibilitySelect = document.querySelector(".select-memos-value");
 var openApiInput = document.querySelector(".memos-open-api-input");
 var uploadImageInput = document.querySelector(".memos-upload-image-input");
-var memosTextarea = document.querySelector(".memos-editor-textarea");
+var memosTextarea = document.querySelector(".memos-editor-textarea"); 
+var editMemoDom = document.querySelector(".edit-memos");
+var editMemoBtn = document.querySelector(".edit-memos-btn");
+var cancelEditBtn = document.querySelector(".cancel-edit-btn");
+var biaoqing = document.querySelector(".biao-qing");
 
 document.addEventListener("DOMContentLoaded", () => {
   getEditIcon();
@@ -35,10 +105,8 @@ function getEditIcon() {
   var memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   var getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
   var isHide = getEditor === "hide";
-
   window.localStorage && window.localStorage.setItem("memos-resource-list",  JSON.stringify(memosResource));
   window.localStorage && window.localStorage.setItem("memos-relation-list",  JSON.stringify(memosRelation));
-
   memosTextarea.addEventListener('input', (e) => {
     memosTextarea.style.height = 'inherit';
     memosTextarea.style.height = e.target.scrollHeight + 'px';
@@ -46,13 +114,18 @@ function getEditIcon() {
 
   if (getEditor !== null) {
 		document.querySelector(".memos-editor").classList.toggle("d-none",isHide);
-    getEditor == "show" ? hasMemosOpenId() : '';
+    getEditor == "show" ? hasMemosOpenId() : ''
 	};
 
   loadEditorBtn.addEventListener("click", function () {
-    getEditor != "show" ? hasMemosOpenId() : '';
+    getEditor != "show" ? hasMemosOpenId() : ''
     document.querySelector(".memos-editor").classList.toggle("d-none"); 
     window.localStorage && window.localStorage.setItem("memos-editor-display", document.querySelector(".memos-editor").classList.contains("d-none") ? "hide" : "show");
+    memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
+    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+    if (!memosPath && !memosOpenId) {
+      memosEditorInner.classList.add("d-none");
+    }
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
   });
 
@@ -64,75 +137,84 @@ function getEditIcon() {
     }
   });
 
-  todoBtn.addEventListener("click", function () {
-    memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+  codeBtn.addEventListener("click", function() {
+    const memosPath = window.localStorage?.getItem("memos-access-path");
+    const memosOpenId = window.localStorage?.getItem("memos-access-token");
     if (memosPath && memosOpenId) {
-      let memoTodo = '- [] \n';
-      insertValue(memoTodo);
-      let bracketIndex = memosTextarea.value.indexOf("[]");
-      if (bracketIndex !== -1) {
-        memosTextarea.selectionStart = bracketIndex + 1;
-        memosTextarea.selectionEnd = bracketIndex + 1;
-      }
+      const memoCode = '```\n\n```';
+      const textareaValue = memosTextarea.value;
+      const lastBacktickIndex = textareaValue.lastIndexOf('```');
+      const caretPos = lastBacktickIndex !== -1 ? lastBacktickIndex : textareaValue.length; // 将光标定位到最后一个 ``` 的位置
+      memosTextarea.value = textareaValue.substring(0, caretPos) + memoCode;
+      memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
+      memosTextarea.setSelectionRange(caretPos + 4, caretPos + 4); // 将光标定位到 ``` 中间
+      memosTextarea.focus();
     }
   });
 
-  codeBtn.addEventListener("click", function () {
-    memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+//代码单反引号
+  codesingle.addEventListener("click", function() {
+    const memosPath = window.localStorage?.getItem("memos-access-path");
+    const memosOpenId = window.localStorage?.getItem("memos-access-token");
     if (memosPath && memosOpenId) {
-      let memoCode = '```\n\n```';
-      insertValue(memoCode);
-      let bracketIndex = memosTextarea.value.indexOf("\n\n");
-      if (bracketIndex !== -1) {
-        memosTextarea.selectionStart = bracketIndex + 1;
-        memosTextarea.selectionEnd = bracketIndex + 1;
+      const memoCode = '`'; // 行内代码的起始和结束标记为单个反引号
+      const textareaValue = memosTextarea.value;
+      const selectionStart = memosTextarea.selectionStart;
+      const selectionEnd = memosTextarea.selectionEnd;
+      const selectedText = textareaValue.substring(selectionStart, selectionEnd);
+      const insertCode = `${memoCode}${selectedText}${memoCode}`;
+      const caretPos = selectionStart !== selectionEnd ? selectionEnd + memoCode.length * 2 : selectionStart + memoCode.length;
+      
+      memosTextarea.setRangeText(
+        insertCode,
+        selectionStart,
+        selectionEnd,
+        "end"
+      ); 
+      // 根据是否有选中内容，决定光标位置
+      memosTextarea.setSelectionRange(caretPos, caretPos);
+  
+      memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
+      memosTextarea.focus();
+    }
+  });
+  
+  linkBtn.addEventListener("click", function() {
+    const memosPath = window.localStorage?.getItem("memos-access-path");
+    const memosOpenId = window.localStorage?.getItem("memos-access-token");
+    if (memosPath && memosOpenId) {
+      const memoLink = '[]()';
+      const selectedText = memosTextarea.value.substring(memosTextarea.selectionStart, memosTextarea.selectionEnd);
+      let caretPos;
+  
+      if (selectedText) {
+        // 如果有选中的文本，则插入到 [] 中
+        const startText = memosTextarea.value.substring(0, memosTextarea.selectionStart);
+        const endText = memosTextarea.value.substring(memosTextarea.selectionEnd);
+        caretPos = startText.length + '['.length + selectedText.length + ']'.length + 1;
+        memosTextarea.value = startText + '[' + selectedText + ']' + memoLink.substring(2) + endText;
+      } else {
+        // 如果没有选中文本，则将光标定位在 ()
+        const startText = memosTextarea.value.substring(0, memosTextarea.selectionStart);
+        const endText = memosTextarea.value.substring(memosTextarea.selectionEnd);
+        caretPos = startText.length + memoLink.indexOf("()") + 1;
+        memosTextarea.value = startText + memoLink + endText;
       }
+  
+      memosTextarea.setSelectionRange(caretPos, caretPos);
+      memosTextarea.focus();
     }
   });
 
-  linkBtn.addEventListener("click", function () {
-    memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+  linkimg.addEventListener("click", function() {
+    const memosPath = window.localStorage?.getItem("memos-access-path");
+    const memosOpenId = window.localStorage?.getItem("memos-access-token");
     if (memosPath && memosOpenId) {
-      let memoLink = '[]()';
-      insertValue(memoLink);
-      let bracketIndex = memosTextarea.value.indexOf("()");
-      if (bracketIndex !== -1) {
-        memosTextarea.selectionStart = bracketIndex + 1;
-        memosTextarea.selectionEnd = bracketIndex + 1;
-      }
-    }
-  });
-
-  function insertValue(t) {
-    var textLength = t.length;
-    memosTextarea.value += t;
-    memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
-    // 更新光标位置
-    memosTextarea.selectionStart = textLength;
-    memosTextarea.selectionEnd = textLength;
-    memosTextarea.focus()
-  }
-
-  randomBtn.addEventListener("click", function () {
-    memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
-    memosCount = window.localStorage && window.localStorage.getItem("memos-response-count");
-    if (memosPath && memosOpenId) {
-      let randomNum = random(0,memosCount);
-      let randomUrl= memosPath+"/api/v1/memo/all?&limit=1&offset="+randomNum;
-      fetch(randomUrl).then(res => {
-        if (res.status == 200) {
-          return res.json()
-        }else{
-          cocoMessage.error('出错了，再检查一下吧!')
-        }
-      }).then(resdata => {
-        updateAvatarUrl(resdata);
-      })
-      .catch(err => {cocoMessage.error('网络错误')});
+      const memoLink = '![]()';
+      const caretPos = memosTextarea.selectionStart + memoLink.indexOf("()") + 1;
+      memosTextarea.value = memosTextarea.value.substring(0, memosTextarea.selectionStart) + memoLink + memosTextarea.value.substring(memosTextarea.selectionEnd);
+      memosTextarea.setSelectionRange(caretPos, caretPos);
+      memosTextarea.focus();
     }
   });
 
@@ -158,7 +240,7 @@ function getEditIcon() {
     const res = await resp.json().then(res => {
       if(res.id){
         let imageList = "";
-        imageList += '<div data-id="'+res.id+'" class="memos-tag d-flex text-xs mt-2 mr-2" onclick="deleteImage(this)"><div class="d-flex px-2 justify-content-center">'+res.filename+'</div></div>'
+        imageList += '<div data-id="'+res.id+'" class="memos-img-edit d-flex text-xs mt-2 mr-2" onclick="deleteImage(this)"><div class="d-flex px-2 justify-content-center">'+res.filename+'</div></div>'
         document.querySelector(".memos-image-list").insertAdjacentHTML('afterbegin', imageList);
         cocoMessage.success(
         '上传成功',
@@ -189,12 +271,12 @@ function getEditIcon() {
     }
   });
 
-  submitMemoBtn.addEventListener("click", function () {
+   submitMemoBtn.addEventListener("click", function () {
     memosContent = memosTextarea.value;
     memosVisibility = memosVisibilitySelect.value;
     memosResource = window.localStorage && JSON.parse(window.localStorage.getItem("memos-resource-list"));
     memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
-    let TAG_REG = /(?<=#)([^ ]*)(?= )/g;
+    let TAG_REG = /(?<=#)([^#\s!.,;:?"'()]+)(?= )/g;
     let memosTag = memosContent.match(TAG_REG);
     let  hasContent = memosContent.length !== 0;
     if (memosOpenId && hasContent) {
@@ -225,13 +307,12 @@ function getEditIcon() {
             })();
           }
           cocoMessage.success(
-            '发送成功',
+            '嘀咕成功',
             () => {
               location.reload();
             })
         }
       });
-      
     }else if(!hasContent){
       cocoMessage.info('内容不能为空');
     }else{
@@ -250,13 +331,13 @@ function getEditIcon() {
       memosEditorOption.classList.remove("d-none"); 
       cocoMessage.info('请设置 Memos Open API');
     }else{
-      const tagUrl = memosPath+"/api/v1/tag?openId="+memosOpenId;
+      const tagUrl = `${memosPath}/api/v1/tag?openId=${memosOpenId}`;
       const response = fetch(tagUrl).then(response => response.json()).then(resdata => {
         return resdata
       }).then(response => {
         let taglist = "";
         response.map((t)=>{
-          taglist += '<div class="memos-tag d-flex text-xs mt-2 mr-2"><a class="d-flex px-2 justify-content-center" onclick="setMemoTag(this)">#'+t+'</a></div>'
+          taglist += `<div class="memos-tag d-flex text-xs mt-2 mr-2"><a class="d-flex px-2 justify-content-center" onclick="setMemoTag(this)">#${t}</a></div>`;
         })
         document.querySelector(".memos-tag-list").innerHTML = taglist;
         cocoMessage.success('准备就绪');
@@ -295,123 +376,18 @@ function getEditIcon() {
         cocoMessage.success(
         '保存成功',
         ()=>{
+          memosEditorOption.classList.add("d-none");
+          memosEditorInner.classList.remove("d-none"); 
           memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
           memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
-          location.reload();
           hasMemosOpenId();
-          
         })
       }
     })
   };
-
-  function updateAvatarUrl(e) {
-    let avatarUrl = memosPath+"/api/v1/user/me?openId="+memosOpenId;
-    fetch(avatarUrl).then(res => {
-      if (res.status == 200) {
-        return res.json()
-      }else{
-        cocoMessage.error('出错了，再检查一下吧!')
-      }
-    }).then(resdata => {
-      let d = resdata;
-      e.map(item => {
-        return item.avatarUrl = d.avatarUrl
-      });
-      updateRadom(e);
-    })
-  }
-
-  function updateRadom(data) {
-    let result = '';
-    let TAG_REG = /#((?!^\d+$)[^\s#,.!()/\d]+)/g, 
-      IMG_REG = /\!\[(.*?)\]\((.*?)\)/g,
-      LINK_REG = /\[(.*?)\]\((.*?)\)/g, 
-      BILIBILI_REG = /<a.*?href="https:\/\/www\.bilibili\.com\/video\/((av[\d]{1,10})|(BV([\w]{10})))\/?".*?>.*<\/a>/g,
-      NETEASE_MUSIC_REG = /<a.*?href="https:\/\/music\.163\.com\/.*id=([0-9]+)".*?>.*<\/a>/g,
-      QQMUSIC_REG = /<a.*?href="https\:\/\/y\.qq\.com\/.*(\/[0-9a-zA-Z]+)(\.html)?".*?>.*?<\/a>/g;
-      marked.setOptions({
-        breaks: !0,
-        smartypants: !0,
-        langPrefix: 'language-'
-      });
-
-    for (var i = 0; i < data.length; i++) {
-      let avatar = data[i].avatarUrl;
-      let creatorName = data[i].creatorName;
-      let createdTs = data[i].createdTs;
-      let memosId = data[i].id;
-      let memosLink = memosPath + "/m/" + memosId;
-      let memosRes = data[i].content
-        .replace(TAG_REG, "")
-        .replace(IMG_REG, "")
-        .replace(LINK_REG, '<a class="primary" href="$2" target="_blank">$1</a>')
-        memosRes = marked.parse(memosRes)
-        .replace(BILIBILI_REG, '<div class="video-wrapper"><iframe src="//player.bilibili.com/player.html?bvid=$1&as_wide=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>')
-        .replace(NETEASE_MUSIC_REG, '<meting-js auto="https://music.163.com/#/song?id=$1"></meting-js>')
-        .replace(QQMUSIC_REG, '<meting-js auto="https://y.qq.com/n/yqq/song$1.html"></meting-js>')
-      
-      //解析 content 内 md 格式图片
-      var imgArr = data[i].content.match(IMG_REG);
-      var imgStr = String(imgArr).replace(/[,]/g, '');
-      if (imgArr) {
-          var memosImg = imgStr.replace(IMG_REG, '<div class="memo-resource width-100"><img loading="lazy" src="$2"></div>')
-          memosRes += '<div class="resource-wrapper"><div class="images-wrapper my-2">' + memosImg + '</div></div>'
-      }
-      var tagArr = data[i].content.match(TAG_REG);
-      var memosTag = '';
-      if (tagArr) {
-        memosTag = tagArr.map(t=>{
-          return '<div class="item-tag d-flex align-items-center text-xs mr-2 px-2">'+ String(t).replace(/[#]/g, '') +'</div>';
-        }).join('');
-      }else{
-        memosTag = '<div class="item-tag d-flex align-items-center text-xs mr-2 px-2">动态</div>';
-      }
-      
-      //解析内置资源文件
-      if (data[i].resourceList && data[i].resourceList.length > 0) {
-        var resourceList = data[i].resourceList;
-        var imgUrl = '',resUrl = '',resImgLength = 0;
-        for (var j = 0; j < resourceList.length; j++) {
-          var restype = resourceList[j].type.slice(0, 5);
-          var resexlink = resourceList[j].externalLink;
-          var imgLink = '', fileId = '';
-            if (resexlink) {
-                imgLink = resexlink
-            } else {
-                fileId = resourceList[j].publicId || resourceList[j].filename
-                imgLink = data[i].link + '/o/r/' + resourceList[j].id + '/' + fileId
-            }
-          if (restype == 'image') {
-            imgUrl += '<div class="memo-resource w-100"><img loading="lazy" src="' + imgLink + '"/></div>'
-            resImgLength = resImgLength + 1
-          }
-          if (restype !== 'image') {
-            resUrl += '<a target="_blank" rel="noreferrer" href="' + imgLink + '">' + resourceList[j].filename + '</a>'
-          }
-        }
-        if (imgUrl) {
-          memosRes += '<div class="resource-wrapper"><div class="images-wrapper my-2">' + imgUrl + '</div></div>'
-        }
-        if (resUrl) {
-          memosRes += '<p class="datasource">' + resUrl + '</p>'
-        }
-      }
-      result += '<div class="d-flex animate__animated animate__fadeIn mb-3"><div class="card-item flex-fill p-3"><div class="item-header d-flex mb-3"><div class="item-avatar mr-3" style="background-image:url('+ avatar +')"></div><div class="item-sub d-flex flex-column"><div class="item-creator"><a href='+ memosPath +' target="_blank">' + creatorName + '</a></div><div class="item-mate mt-2 text-xs">' + new Date(createdTs * 1000).toLocaleString() + '</div></div></div><div class="item-content"><div class="item-inner">' + memosRes + '</div><div class="item-footer d-flex mt-2"><div class="d-flex">'+ memosTag +'</div>';
-      result += '<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a href="'+memosLink+'" target="_blank"><i class="iconfont iconlink-ex"></i></a></div></div></div>';
-      result += '</div></div></div>';
-    };
-    memosRadomCont.innerHTML = result;
-
-    //图片灯箱
-    window.ViewImage && ViewImage.init('.images-wrapper img')
-    //相对时间
-    window.Lately && Lately.init({
-      target: '.item-mate'
-    });
-  }
 }
 
+//发布框 TAG
 function setMemoTag(e){
   let memoTag = e.textContent + " ";
   memosTextarea.value += memoTag;
@@ -425,4 +401,201 @@ function deleteImage(e){
     window.localStorage && window.localStorage.setItem("memos-resource-list",  JSON.stringify(memosResourceList));
     e.remove()
   } 
+}
+
+//增加memos编辑功能
+function editMemo(e) {
+  var memoContent = e.content,memoId = e.id,memoRelationList = e.relationList,memoResourceList = e.resourceList,memoVisibility = e.visibility;
+  getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
+  memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+  if(memosOpenId && getEditor == "show"){
+    memosTextarea.value = memoContent;
+    memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
+    submitMemoBtn.classList.add("d-none");
+    editMemoDom.classList.remove("d-none");
+    document.body.scrollIntoView({behavior: 'smooth'});
+  }
+  editMemoBtn.addEventListener("click", function () {
+    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token"),
+    memoContent = memosTextarea.value;
+    memoResourceList = window.localStorage && JSON.parse(window.localStorage.getItem("memos-resource-list")) ? window.localStorage && JSON.parse(window.localStorage.getItem("memos-resource-list")) : e.resourceList,
+    memoVisibility = memosVisibilitySelect.value;
+    let TAG_REG = /(?<=#)([^#\s!.,;:?"'()]+)(?= )/g;
+    let memosTag = memoContent.match(TAG_REG);
+    let hasContent = memoContent.length !== 0;
+    if (hasContent) {
+      var memoUrl = memosPath+"/api/v1/memo/"+memoId+"?openId="+memosOpenId;
+      var memoBody = {content:memoContent,id:memoId,relationList:memoRelationList,resourceList:memoResourceList,visibility:memoVisibility}
+      fetch(memoUrl, {
+        method: 'PATCH',
+        body: JSON.stringify(memoBody),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(res) {
+        if (res.status == 200) {
+          if (memosTag !== null) {
+            const memoTagUrl = memosPath + "/api/v1/tag?openId=" + memosOpenId;
+            (async () => {
+              for await (const i of memosTag) {
+                const response = await fetch(memoTagUrl, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    name: i
+                  })
+                });
+              }
+            })();
+          }
+          cocoMessage.success(
+          '修改成功',
+          ()=>{
+            submitMemoBtn.classList.remove("d-none");
+            editMemoDom.classList.add("d-none");
+            location.reload();
+          })
+        }
+      })
+    }
+  })
+}
+
+//增加memo编辑的时候取消功能
+cancelEditBtn.addEventListener("click", function () {
+  if (!editMemoDom.classList.contains("d-none")) {
+    memosTextarea.value = '';
+    memosTextarea.style.height = 'inherit';
+    editMemoDom.classList.add("d-none");
+    submitMemoBtn.classList.remove("d-none");
+  }
+})
+
+//增加memos归档功能
+function archiveMemo(memoId) { //获取Memos的ID值
+  memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token"); //登录信息
+  if(memosOpenId && memoId){ //判断是否登录以及获取到Memos的ID值
+    var memoUrl = memosPath+"/api/v1/memo/"+memoId+"?openId="+memosOpenId;
+    var memoBody = {id:memoId,rowStatus:"ARCHIVED"};
+    fetch(memoUrl, {
+      method: 'PATCH',
+      body: JSON.stringify(memoBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function(res) {
+      if (res.status == 200) {
+        cocoMessage.success(
+        '归档成功',
+        ()=>{
+          location.reload();
+        })
+      }
+    })
+  }
+}
+
+//增加memo删除功能
+function deleteMemo(memoId) {
+  memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+  if(memosOpenId && memoId){
+    var memoUrl = memosPath+"/api/v1/memo/"+memoId+"?openId="+memosOpenId;
+    fetch(memoUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function(res) {
+      if (res.status == 200) {
+        cocoMessage.success(
+        '删除成功',
+        ()=>{
+          location.reload();
+        })
+      }
+    }).catch(err => {
+      cocoMessage.error('出错了，再检查一下吧')
+    })
+  }
+}
+
+// Emoji表情选择
+
+let emojiSelectorVisible = false;
+let emojiSelector;
+let emojis = []; // 缓存表情数据
+
+// 页面加载时获取表情数据
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    emojis = await getEmojisData(); // 获取表情数据
+  } catch (error) {
+    console.error('Failed to fetch emojis data:', error);
+  }
+});
+
+// 表情选择器点击事件处理
+biaoqing.addEventListener("click", function (event) {
+  event.stopPropagation();
+  emojiSelectorVisible = !emojiSelectorVisible;
+  const memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
+  const memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+
+  if (emojiSelectorVisible && memosPath && memosOpenId) {
+    displayEmojiSelector();
+  } else {
+    emojiSelector?.remove();
+  }
+});
+
+// 显示表情选择器
+function displayEmojiSelector() {
+  if (!emojiSelector) {
+    emojiSelector = document.createElement('div');
+    emojiSelector.classList.add('emoji-selector');
+
+//     // 使用事件代理，将事件监听器添加到父元素上
+    emojiSelector.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.classList.contains('emoji-item')) {
+        insertEmoji(target.innerHTML); // 直接插入emoji图标
+      }
+    });
+  }
+
+//   emojiSelector.innerHTML = ''; // 清空表情选择器内容
+
+  emojis.forEach(emoji => {
+    const emojiItem = document.createElement('div');
+    emojiItem.classList.add('emoji-item');
+    emojiItem.innerHTML = emoji.icon;
+    emojiItem.title = emoji.text;
+    emojiSelector.appendChild(emojiItem);
+  });
+
+//   // 将表情下拉框插入到对应位置
+  const memosEditorTools = document.querySelector(".memos-editor-tools");
+  if (memosEditorTools) {
+    memosEditorTools.insertAdjacentElement('afterend', emojiSelector);
+  }
+}
+
+// 获取json文件中的数据
+async function getEmojisData() {
+  const response = await fetch('./assets/suju/owo.json');
+  const data = await response.json();
+  return data.Emoji.container;
+}
+
+// 表情光标位置
+function insertEmoji(emojiText) {
+  const selectionStart = memosTextarea.selectionStart;
+  const newValue = `${memosTextarea.value.substring(0, selectionStart)}${emojiText}${memosTextarea.value.substring(memosTextarea.selectionEnd)}`;
+  memosTextarea.value = newValue;
+  memosTextarea.dispatchEvent(new Event('input'));
+  const newCursorPosition = selectionStart + emojiText.length;
+  memosTextarea.setSelectionRange(newCursorPosition, newCursorPosition);
+  memosTextarea.focus();
 }

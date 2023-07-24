@@ -30,6 +30,10 @@ var page = 1,
     nextDom = '';
 var memoDom = document.querySelector(memo.domId);
 var load = '<button class="load-btn button-load">努力加载中……</button>'
+// 增加memos编辑及归档
+var memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+var memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
+var getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
 if (memoDom) {
     memoDom.insertAdjacentHTML('afterend', load);
     getFirstList() // 首次加载数据
@@ -76,7 +80,6 @@ function getNextList() {
 // 插入 html
 function updateHTMl(data) {
     var memoResult = "", resultAll = "";
-
     // 解析 TAG 标签，添加样式
     const TAG_REG = /#([^\s#]+?) /g;
 
@@ -331,7 +334,7 @@ window.onload = getTotal();
 //转发
 function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
-        memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
     if (memosOpenId && getEditor == "show") {
         var transRes = '[@' + a.creatorName + '](' + a.url + ') \n\n> ' + a.creatorName + ': ' + a.content;
         memosTextarea.value = transRes;
