@@ -29,10 +29,6 @@
             margin-bottom: 1rem;
         }
 
-        .memos-content img {
-            max-height: 30vh;
-        }
-
         .dark-mode .memos-content {
             background-color: #272727;
             border: 1px solid #3b3d42;
@@ -148,8 +144,18 @@
         .load-btn {
             padding: 10px;
             border: 0px;
-            border-radius: 0.33rem;
+            border-radius: 1rem;
             background-color: rgba(0, 0, 0, .05);
+            display: block;
+            width: 40%;
+            max-width: 472px;
+            margin: 0 auto;
+            transition: all 0.3s linear;
+            cursor: pointer;
+        }
+
+        .load-btn:hover {
+            width: 30%;
         }
 
         .dark-mode .load-btn {
@@ -157,8 +163,12 @@
             border: 1px solid #3b3d42;
             color: #fafafa;
         }
-        .resimggrid{
-            display: flex;
+
+        .resimggrid {
+            /* display: flex; */
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
             margin-bottom: 10px;
         }
 
@@ -319,18 +329,23 @@
             border: 1px solid #3b3d42;
             color: #fafafa;
         }
-        @media (max-width:425px){
-            .resimggrid{overflow-y: auto;}
-            .resimggrid img{padding: 4px;}
+
+        @media (max-width:425px) {
+            .resimggrid {
+                overflow-y: auto;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
-        .button-list{
+
+        .button-list {
             flex-wrap: wrap;
         }
     </style>
 </head>
 
 <!-- <body class="dark-mode"> -->
-    <body>
+
+<body>
     <!-- <link href="./assets/css/style.css" rel="stylesheet" type="text/css"> -->
 
     <!--<link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/highlight.github.min.css" rel="stylesheet" type="text/css">-->
@@ -341,7 +356,9 @@
                 <div class="content-area">
                     <main class="site-main">
                         <article class="type-post post">
-                            <header class="entry-header page"><h1 class="entry-title">嘀咕</h1></header>
+                            <header class="entry-header page">
+                                <h1 class="entry-title">嘀咕</h1>
+                            </header>
                             <div class="entry-wrapper">
                                 <div class="entry-content u-clearfix">
                                     <!--<section id="main" class="container">-->
