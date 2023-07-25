@@ -157,6 +157,10 @@
             border: 1px solid #3b3d42;
             color: #fafafa;
         }
+        .resimggrid{
+            display: flex;
+            margin-bottom: 10px;
+        }
 
         .d-none {
             display: none !important;
@@ -315,10 +319,15 @@
             border: 1px solid #3b3d42;
             color: #fafafa;
         }
+        @media (max-width:425px){
+            .resimggrid{overflow-y: auto;}
+            .resimggrid img{padding: 4px;}
+        }
     </style>
 </head>
 
-<body class="dark-mode">
+<!-- <body class="dark-mode"> -->
+    <body>
     <!-- <link href="./assets/css/style.css" rel="stylesheet" type="text/css"> -->
 
     <!--<link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/highlight.github.min.css" rel="stylesheet" type="text/css">-->

@@ -328,6 +328,7 @@ function getEditIcon() {
 
   function hasMemosOpenId() {
     if (!memosOpenId) {
+      memosEditorInner.classList.add("d-none");
       memosEditorOption.classList.remove("d-none"); 
       cocoMessage.info('请设置 Memos Open API');
     }else{
