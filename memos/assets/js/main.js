@@ -389,3 +389,13 @@ function insertTwikoo(e) {
         console.error(err);
     });
 }
+
+var OwO_demo = new OwO({
+    logo: '😀',
+    container: document.getElementsByClassName('OwO')[0],
+    target: document.getElementsByClassName('memos-editor-textarea')[0],
+    api: './assets/suju/OwO-all.json',
+    position: 'down',
+    width: '100%',
+    maxHeight: '250px'
+});

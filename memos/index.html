@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/css/basic.css">
     <link href="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/css/APlayer.min.css" rel="stylesheet"
         type="text/css">
+    <!-- <link rel="stylesheet" href="./assets/css/OwO.min.css"> -->
     <!-- <link rel="stylesheet" href="https://nuoea.com/css/style.css"> -->
     <!-- <link rel="stylesheet" href="https://nuoea.com/css/iconfont.css"> -->
     <style>
@@ -335,10 +336,27 @@
                 overflow-y: auto;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+            #editor .OwO-body{
+                top: 15.5rem !important;
+            }
+            #editor .OwO-item{
+                width: auto !important;
+            }
         }
 
         .button-list {
             flex-wrap: wrap;
+            align-items: center;
+        }
+
+        #editor .OwO .OwO-logo {
+            width: auto !important;
+        }
+
+        #editor .OwO-body {
+            width: auto !important;
+            top: 12.5rem;
+            left: 9rem;
         }
     </style>
 </head>
@@ -387,6 +405,7 @@
             name: '斌仔',  //发布者全称自定义
         }
         var memosData = { dom: '#editor', }
+
     </script>
 
     <script type="text/javascript">
@@ -409,7 +428,7 @@
     <script type="text/javascript" src="https://nuoea.com/js/lately.min.js"></script>
     <script type="text/javascript" src="https://nuoea.com/js/lozad.min.js"></script>
     <script type="text/javascript" src="https://nuoea.com/js/view-image.min.js"></script>
-
+    <script src="./assets/js/OwO.min.js"></script>
     <!-- <script type="text/javascript" src="./assets/js/custom.js"></script> -->
 
     <script src="./assets/js/memos-editor.js"></script>

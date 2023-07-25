@@ -35,11 +35,13 @@ var memosEditorCont = `
           <div class="button outline action-btn p-2 switchUser-btn">
             <img src="https://cdn.wangdu.site/memos/assets/img/memos_user.svg" alt="切换" title="切换账号">
           </div>
+        
         </div>
         <div class="d-flex flex-fill">
           <div class="memos-tag-list d-none mt-2 animate__animated animate__fadeIn"></div>
         </div>
       </div>
+      
       <div class="memos-editor-footer border-t pt-3 mt-3">
         <div class="editor-selector mr-2">
           <select class="select-memos-value outline px-2 py-1">
@@ -48,6 +50,7 @@ var memosEditorCont = `
             <option value="PRIVATE">仅自己可见</option>
           </select>
         </div>
+        <div class="OwO"></div>
         <div class="editor-submit d-flex flex-fill justify-content-end">
         <div class="edit-memos d-none">
         <div class="primary cancel-edit-btn mr-2 px-3 py-2">取消</div>
