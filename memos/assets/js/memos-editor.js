@@ -3,13 +3,13 @@ var editIcon = "<div class='load-memos-editor'></div>";
 var memosEditorCont = `
 <div class="memos-editor animate__animated animate__fadeIn d-none col-12">
   <div class="memos-editor-body mb-3 p-3">
-    <div class="memos-editor-inner animate__animated animate__fadeIn">
+    <div class="memos-editor-inner animate__animated animate__fadeIn d-none">
       <div class="memos-editor-content">
         <textarea class="memos-editor-textarea text-sm" rows="1" placeholder="嘀咕点什么..."></textarea>
       </div>
       <div class="memos-image-list d-flex flex-fill line-xl"></div>
       <div class="memos-editor-tools pt-3">
-        <div class="d-flex">
+        <div class="d-flex button-list">
           <div class="button outline action-btn tag-btn mr-2">
             <img src="https://cdn.wangdu.site/memos/assets/img/memos_tag.svg">
           </div>
@@ -57,7 +57,7 @@ var memosEditorCont = `
         </div>
       </div>
     </div>
-    <div class="memos-editor-option d-flex animate__animated animate__fadeIn">
+    <div class="memos-editor-option d-flex animate__animated animate__fadeIn d-none">
       <input name="memos-api-url" class="memos-open-api-input input-text flex-fill mr-3 px-2 py-1" type="text" value="" maxlength="120" placeholder="OpenAPI">
       <div class="primary submit-openapi-btn">保存</div>
     </div>
@@ -341,10 +341,10 @@ function getEditIcon() {
           taglist += `<div class="memos-tag d-flex text-xs mt-2 mr-2"><a class="d-flex px-2 justify-content-center" onclick="setMemoTag(this)">#${t}</a></div>`;
         })
         document.querySelector(".memos-tag-list").innerHTML = taglist;
-        cocoMessage.success('准备就绪');
         memosEditorInner.classList.remove("d-none");
         memosEditorOption.classList.add("d-none"); 
         memosRadomCont.classList.remove("d-none");
+        cocoMessage.success('准备就绪');
       }).catch(err => {
         memosEditorOption.classList.remove("d-none");
         cocoMessage.error('Memos Open API 有误，请重新输入!');
@@ -566,7 +566,7 @@ function displayEmojiSelector() {
     });
   }
 
-//   emojiSelector.innerHTML = ''; // 清空表情选择器内容
+  emojiSelector.innerHTML = ''; // 清空表情选择器内容
 
   emojis.forEach(emoji => {
     const emojiItem = document.createElement('div');
