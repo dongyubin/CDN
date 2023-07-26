@@ -394,20 +394,7 @@
             </div>
         </div>
     </div>
-    <!-- 修改自己的 Memos 设置 -->
-    <script type="text/javascript">
-        var memos = {
-            host: 'https://bw.wangdu.site:4730/',  //修改为自己部署 Memos 的网址，末尾有 / 斜杠
-            limit: '7',  //默认每次显示 10条
-            creatorId: '101',  //默认为 101用户 https://demo.usememos.com/u/101
-            domId: '#memos',  //默认为 #memos
-            username: '斌仔',  //发布者 ID 自定义
-            name: '斌仔',  //发布者全称自定义
-        }
-        var memosData = { dom: '#editor', }
-        var observer = lozad('.lozad');
-    observer.observe();
-    </script>
+   
 
     <script type="text/javascript">
     // var memosData = { dom: ".memos", listDom: ".memo-list", limit: "8", path: "https://memos.nuoea.com", loadUrl: "/img/loading.svg", gravatar: "https://cravatar.cn" }
@@ -432,6 +419,19 @@
     <script src="./assets/js/OwO.min.js"></script>
     <!-- <script type="text/javascript" src="./assets/js/custom.js"></script> -->
 
+     <!-- 修改自己的 Memos 设置 -->
+     <script type="text/javascript">
+        var memos = {
+            host: 'https://bw.wangdu.site:4730/',  //修改为自己部署 Memos 的网址，末尾有 / 斜杠
+            limit: '7',  //默认每次显示 10条
+            creatorId: '101',  //默认为 101用户 https://demo.usememos.com/u/101
+            domId: '#memos',  //默认为 #memos
+            username: '斌仔',  //发布者 ID 自定义
+            name: '斌仔',  //发布者全称自定义
+        }
+        var memosData = { dom: '#editor', }
+        var observer = lozad('.lozad');observer.observe();
+    </script>
     <script src="./assets/js/memos-editor.js"></script>
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <script src="./assets/js/coco-message.min.js"></script>
