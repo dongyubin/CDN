@@ -1,11 +1,11 @@
 // Memos Start
 var memo = {
-    host: 'https://demo.usememos.com/',
-    limit: '10',
-    creatorId: '101',
-    domId: '#memos',
-    username: 'Admin',
-    name: 'Administrator',
+    host: 'https://bw.wangdu.site:4730/',  //修改为自己部署 Memos 的网址，末尾有 / 斜杠
+    limit: '7',  //默认每次显示 10条
+    creatorId: '101',  //默认为 101用户 https://demo.usememos.com/u/101
+    domId: '#memos',  //默认为 #memos
+    username: '斌仔',  //发布者 ID 自定义
+    name: '斌仔',  //发布者全称自定义
     twikoo: 'https://wwsay.wangdu.site',
     gravatar: 'https://cdn.sep.cc',
     website: 'https://www.wangdu.site'
@@ -99,16 +99,23 @@ function updateHTMl(data) {
     const YOUTUBE_REG = /<a\shref="https:\/\/www\.youtube\.com\/watch\?v\=([a-z|A-Z|0-9]{11})\".*?>.*<\/a>/g;
 
     // Marked Options
-    marked.setOptions({
-        breaks: true,
-        smartypants: true,
-        langPrefix: 'language-',
-        highlight: function (code, lang) {
-            const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-            return hljs.highlight(code, { language }).value;
-        },
-    });
+    // marked.setOptions({
+    //     breaks: true,
+    //     smartypants: true,
+    //     langPrefix: 'language-',
+    //     highlight: function (code, lang) {
+    //         const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+    //         return hljs.highlight(code, { language }).value;
+    //     },
+    // });
 
+    marked.setOptions({
+        breaks: false,
+        smartypants: false,
+        langPrefix: 'language-',
+        headerIds: false,
+        mangle: false
+      });
     // Memos Content
     for (var i = 0; i < data.length; i++) {
         let memosId = data[i].id;
@@ -334,7 +341,7 @@ window.onload = getTotal();
 //转发
 function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+        memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
     if (memosOpenId && getEditor == "show") {
         var transRes = '[@' + a.creatorName + '](' + a.url + ') \n\n> ' + a.creatorName + ': ' + a.content;
         memosTextarea.value = transRes;
@@ -394,8 +401,10 @@ var OwO_demo = new OwO({
     logo: '😀',
     container: document.getElementsByClassName('OwO')[0],
     target: document.getElementsByClassName('memos-editor-textarea')[0],
-    api: 'https://cdn.wangdu.site/memos/assets/suju/OwO-all.json',
+    api: 'https://cdn.wangdu.site/memos/assets/suju/OwO-all-del.json',
     position: 'down',
     width: '100%',
     maxHeight: '250px'
 });
+var observer = lozad('.lozad');
+observer.observe();

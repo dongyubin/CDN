@@ -1,3 +1,4 @@
+var memosData = { dom: '#editor', }
 var memosDom = document.querySelector(memosData.dom);
 var editIcon = "<div class='load-memos-editor'></div>";
 var memosEditorCont = `
