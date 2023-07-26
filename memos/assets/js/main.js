@@ -382,7 +382,7 @@ function insertTwikoo(e) {
         urls: [twikooPath],
         includeReply: false // 评论数是否包括回复，默认：false
     }).then(function (res) {
-        console.log(res);
+        // console.log(res);
         document.querySelector('#twikooCount-' + twikooId).textContent = res[0].count
     }).catch(function (err) {
         // 发生错误

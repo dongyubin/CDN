@@ -414,7 +414,7 @@ function deleteImage(e) {
 function editMemo(e) {
   var memoContent = e.content, memoId = e.id, memoRelationList = e.relationList, memoResourceList = e.resourceList, memoVisibility = e.visibility;
   getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
-    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+  memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   if (memosOpenId && getEditor == "show") {
     memosTextarea.value = memoContent;
     memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
