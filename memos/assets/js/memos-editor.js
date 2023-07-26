@@ -107,10 +107,12 @@ function getEditIcon() {
   var memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
   var memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   var getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
+
   var isHide = getEditor === "hide";
   window.localStorage && window.localStorage.setItem("memos-resource-list", JSON.stringify(memosResource));
   window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
   memosTextarea.addEventListener('input', (e) => {
+    window.localStorage && window.localStorage.setItem("memos-textare-value", memosTextarea.value);
     memosTextarea.style.height = 'inherit';
     memosTextarea.style.height = e.target.scrollHeight + 'px';
   });
@@ -347,6 +349,7 @@ function getEditIcon() {
         memosEditorInner.classList.remove("d-none");
         memosEditorOption.classList.add("d-none");
         memosRadomCont.classList.remove("d-none");
+        memosTextarea.value = window.localStorage && window.localStorage.getItem("memos-textare-value");
         cocoMessage.success('准备就绪');
       }).catch(err => {
         memosEditorOption.classList.remove("d-none");
