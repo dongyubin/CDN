@@ -97,9 +97,11 @@ var editMemoDom = document.querySelector(".edit-memos");
 var editMemoBtn = document.querySelector(".edit-memos-btn");
 var cancelEditBtn = document.querySelector(".cancel-edit-btn");
 var biaoqing = document.querySelector(".biao-qing");
+var emojiBtn = document.querySelector('.OwO');
 
 document.addEventListener("DOMContentLoaded", () => {
   getEditIcon();
+  getEmoji();
 });
 
 function getEditIcon() {
@@ -223,6 +225,11 @@ function getEditIcon() {
       memosTextarea.focus();
     }
   });
+
+  emojiBtn.addEventListener("click", function () {
+    var observer = lozad('.lozad');
+    observer.observe();
+  })
 
   uploadImageInput.addEventListener('change', () => {
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
@@ -415,7 +422,7 @@ function deleteImage(e) {
 function editMemo(e) {
   var memoContent = e.content, memoId = e.id, memoRelationList = e.relationList, memoResourceList = e.resourceList, memoVisibility = e.visibility;
   getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
-  memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
+    memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   if (memosOpenId && getEditor == "show") {
     memosTextarea.value = memoContent;
     memosTextarea.style.height = memosTextarea.scrollHeight + 'px';
@@ -581,11 +588,11 @@ function displayEmojiSelector() {
       // console.log(`类型: ${emojis[key].type}`);
       // 遍历容器
       // console.log('容器内容:');
-      
+
       emojis[key].container.forEach(item => {
-      //   console.log(`- 图标: ${item.icon}`);
-      //   console.log(`  文本: ${item.text}`);
-      const emojiItem = document.createElement('div');
+        //   console.log(`- 图标: ${item.icon}`);
+        //   console.log(`  文本: ${item.text}`);
+        const emojiItem = document.createElement('div');
         emojiItem.classList.add('emoji-item');
         emojiItem.innerHTML = item.icon;
         emojiItem.title = item.text;
@@ -631,4 +638,15 @@ function insertEmoji(emojiText) {
   const newCursorPosition = selectionStart + emojiText.length;
   memosTextarea.setSelectionRange(newCursorPosition, newCursorPosition);
   memosTextarea.focus();
+}
+function getEmoji() {
+  var owoInstance = new OwO({
+    logo: '😀',
+    container: document.getElementsByClassName('OwO')[0],
+    target: document.getElementsByClassName('memos-editor-textarea')[0],
+    api: 'https://cdn.wangdu.site/memos/assets/suju/OwO-all-del.json',
+    position: 'down',
+    width: '100%',
+    maxHeight: '250px'
+  });
 }
