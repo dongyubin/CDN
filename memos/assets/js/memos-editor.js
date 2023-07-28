@@ -323,6 +323,7 @@ function getEditIcon() {
             '嘀咕成功',
             () => {
               location.reload();
+              window.localStorage && window.localStorage.setItem("memos-textare-value", '');
             })
         }
       });
