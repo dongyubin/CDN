@@ -1,29 +1,21 @@
 // Memos Start
-var memo = {
-    host: 'https://bw.wangdu.site:4730/',  //修改为自己部署 Memos 的网址，末尾有 / 斜杠
-    limit: '7',  //默认每次显示 10条
-    creatorId: '101',  //默认为 101用户 https://demo.usememos.com/u/101
-    domId: '#memos',  //默认为 #memos
-    username: '斌仔',  //发布者 ID 自定义
-    name: '斌仔',  //发布者全称自定义
+const memo = {
+    host: 'https://bw.wangdu.site:4730/',
+    limit: '7',
+    creatorId: '101',
+    domId: '#memos',
+    username: '斌仔',
+    name: '斌仔',
     twikoo: 'https://wwsay.wangdu.site',
     gravatar: 'https://cdn.sep.cc',
     website: 'https://www.wangdu.site'
-}
-if (typeof (memos) !== "undefined") {
-    for (var key in memos) {
-        if (memos[key]) {
-            memo[key] = memos[key];
-        }
-    }
-}
-
-var limit = memo.limit
-var memos = memo.host
-var memoUrl = memos + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL"
-let twikooEnv = memo.twikoo;
-let avatar = memo.gravatar + '/avatar/3f86f3f1aa105924d030b7d3040a0037?s=400'
-let website = memo.website
+};
+const limit = memo.limit;
+const memoUrl = memo.host + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL";
+const twikooEnv = memo.twikoo;
+const avatar = memo.gravatar + '/avatar/3f86f3f1aa105924d030b7d3040a0037?s=400';
+const website = memo.website;
+const memos = memo.host
 var page = 1,
     offset = 0,
     nextLength = 0,
@@ -40,7 +32,8 @@ if (memoDom) {
     var btn = document.querySelector("button.button-load");
     btn.addEventListener("click", function () {
         btn.textContent = '努力加载中……';
-        updateHTMl(nextDom)
+        updateHTMl(nextDom);
+        insertTwikoo(nextDom);
         if (nextLength < limit) { // 返回数据条数小于限制条数，隐藏
             document.querySelector("button.button-load").remove()
             return
@@ -53,6 +46,7 @@ function getFirstList() {
     var memoUrl_first = memoUrl + "&limit=" + limit;
     fetch(memoUrl_first).then(res => res.json()).then(resdata => {
         updateHTMl(resdata)
+        insertTwikoo(resdata);
         var nowLength = resdata.length
         if (nowLength < limit) { // 返回数据条数小于 limit 则直接移除“加载更多”按钮，中断预加载
             document.querySelector("button.button-load").remove()
@@ -115,7 +109,7 @@ function updateHTMl(data) {
         langPrefix: 'language-',
         headerIds: false,
         mangle: false
-      });
+    });
     // Memos Content
     for (var i = 0; i < data.length; i++) {
         let memosId = data[i].id;
@@ -180,6 +174,7 @@ function updateHTMl(data) {
             }
         }
 
+
         let memos_header = `<div class="memos-header">
         <div class="memos-userinfo">
         <div class="item-avatar" style="background-image:url('${avatar}')"></div>
@@ -187,17 +182,17 @@ function updateHTMl(data) {
         <span class="bbs-dot">·</span>
         <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs * 1000).twitter()}</a></time>
         </div>`
+        // onmouseenter="insertTwikoo(this)"
 
         let memos_content = `<div class="memos-content">
         <div class="memos-text">${memoContREG}</div>
         <div class="memos-footer">
         <div class="memos-tags">${memosTag}</div>
         <div class="memos-tools">
-        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" onmouseenter="insertTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
+        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
         </div>
         </div>
         </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`
-
         memoResult += `<div class="item">${memos_header + memos_content}</div>`
     }
     // var memoBefore = '<div class="memos-list">'
@@ -306,38 +301,6 @@ function getTotal() {
 window.onload = getTotal();
 // Memos Total End
 
-// Toggle Darkmode
-// const localTheme = window.localStorage && window.localStorage.getItem("theme");
-// const themeToggle = document.querySelector(".theme-toggle");
-
-// if (localTheme) {
-//     document.body.classList.remove("light-theme", "dark-theme");
-//     document.body.classList.add(localTheme);
-// }
-
-// themeToggle.addEventListener("click", () => {
-//     const themeUndefined = !new RegExp("(dark|light)-theme").test(document.body.className);
-//     const isOSDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-//     if (themeUndefined) {
-//         if (isOSDark) {
-//             document.body.classList.add("light-theme");
-//         } else {
-//             document.body.classList.add("dark-theme");
-//         }
-//     } else {
-//         document.body.classList.toggle("light-theme");
-//         document.body.classList.toggle("dark-theme");
-//     }
-
-//     window.localStorage &&
-//         window.localStorage.setItem(
-//             "theme",
-//             document.body.classList.contains("dark-theme") ? "dark-theme" : "light-theme",
-//         );
-// });
-// Darkmode End
-
 //转发
 function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
@@ -381,20 +344,20 @@ function loadTwikoo(i) {
 }
 
 function insertTwikoo(e) {
-    var twikooEnv = e.getAttribute("data-env")
-    var twikooPath = e.getAttribute("data-path")
-    var twikooId = e.getAttribute("data-id")
-    twikoo.getCommentsCount({
-        envId: twikooEnv,
-        urls: [twikooPath],
-        includeReply: false // 评论数是否包括回复，默认：false
-    }).then(function (res) {
-        // console.log(res);
-        document.querySelector('#twikooCount-' + twikooId).textContent = res[0].count
-    }).catch(function (err) {
-        // 发生错误
-        console.error(err);
-    });
+    for(const item of e){
+        let twikooId = item.id
+        let twikooPath = `${memos}m/${twikooId}`;
+        twikoo.getCommentsCount({
+            envId: twikooEnv,
+            urls: [twikooPath],
+            includeReply: false // 评论数是否包括回复，默认：false
+        }).then(function (res) {
+            // console.log(res);
+            document.querySelector('#twikooCount-' + twikooId).textContent = res[0].count
+        }).catch(function (err) {
+            // 发生错误
+            console.error(err);
+        });
+    }
+    
 }
-
-

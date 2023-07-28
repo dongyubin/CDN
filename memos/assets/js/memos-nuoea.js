@@ -1,20 +1,21 @@
+var memosData={dom:".memo",listDom:".memo-list",limit:"8",path:"https://memos.nuoea.com",loadUrl:"/img/loading.svg",gravatar:"https://cravatar.cn"}
 var gravatar = memosData.gravatar;
 var memoList = [
   {creatorName:'归臧',website:'https://nuoea.com',link:'https://memos.nuoea.com',creatorId:'101',avatar:gravatar+'/avatar/020d365ea2596ef6d516143bb0552704.jpeg?s=400',twikoo:'https://twikoo.nuoea.com',artalk:'',artSite:''},
-  {creatorName:'林木木',website:'https://immmmm.com',link:'https://me.edui.fun',creatorId:'101',avatar:gravatar+'/avatar/ba83fa02fc4b2ba621514941307e21be.jpeg?s=400',twikoo:'https://metk.edui.fun',artalk:'',artSite:''},
-  {creatorName:'大大的小蜗牛',website:'https://eallion.com',link:'https://memos.eallion.com',creatorId:'101',avatar:gravatar+'/avatar/171e4c30959e8c077a6c58b958624b31.jpeg?s=400',twikoo:'',artalk:'https://api.eallion.com/artalk',artSite:'memos'},
-  {creatorName:'胡家小子',website:'https://www.boyhu.cn',link:'https://qzone.boyhu.cn',creatorId:'101',avatar:gravatar+'/avatar/55be217893c75baf8571837197de4a3e.jpeg?s=400',twikoo:'https://tk.boyhu.cn',artalk:'',artSite:''},
-  {creatorName:'koobai',website:'https://koobai.com',link:'https://memos.koobai.com',creatorId:'1',avatar:gravatar+'/avatar/3b3d336a7d389b7ae8531cbe177ae9b7.jpeg?s=400',twikoo:'',artalk:'https://c.koobai.com',artSite:'空白唠叨'},
-  {creatorName:'小饿',website:'https://dongjunke.cn',link:'https://memos.dongjunke.cn',creatorId:'1',avatar:gravatar+'/avatar/42542189ddb33064599dc88a5149bea7.jpeg?s=400',twikoo:'https://twikoo.dongjunke.cn',artalk:'',artSite:''},
-  {creatorName:'老陳网志',website:'https://chenyyds.com',link:'https://me.chenplus.com',creatorId:'101',avatar:gravatar+'/avatar/d1ed9c15ba6d0cb18464118c6288a8ff.webp?s=400',twikoo:'https://twikoo.chenyyds.com',artalk:'',artSite:''},
-  {creatorName:'VeryJack',website:'https://veryjack.com',link:'https://say.veryjack.com',creatorId:'1',avatar:gravatar+'/avatar/7a41a0e8e1df8e964fa1268193b03508.jpeg?s=400',twikoo:'',artalk:'https://artalk.veryjack.com',artSite:'Jack\'s Space'},
-  {creatorName:'1900',website:'https://1900.live',link:'https://memos.1900.live',creatorId:'101',avatar:gravatar+'/avatar/cc38267b10cc25dfc62209f8ca34589e.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
-  {creatorName:'胡鹤仙',website:'https://zuofei.net',link:'https://memo.eirms.com',creatorId:'1',avatar:gravatar+'/avatar/dc75b1021b41486d062ff0285fb94749.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
-  {creatorName:'wananaiko',website:'https://wananaiko.com',link:'https://memo.wananaiko.com',creatorId:'1',avatar:gravatar+'/avatar/11e15a8d264f1110f822ef2c55eeb965.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
-  {creatorName:'不亦乐乎',website:'https://muxer.cn',link:'https://b.lms.im',creatorId:'1',avatar:gravatar+'/avatar/d9cc49ea0301640d7a19b6a1e77012dd.jpeg?s=400',twikoo:'https://b.lms.im/tk/',artalk:'',artSite:''},
-  {creatorName:'老张',website:'https://laozhang.org',link:'https://memos.laozhang.org',creatorId:'1',avatar:gravatar+'/avatar/679666f7bd1af3e55f0e51dd70ed161c.jpeg?s=400',twikoo:'',artalk:'https://artalk.laozhang.org',artSite:'memos'},
-  {creatorName:'拾月',website:'https://www.skyue.com',link:'https://memos.skyue.com',creatorId:'1',avatar:gravatar+'/avatar/c3fb4bb4d5101284ddd672fb722cdd7d.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
-  {creatorName:'wangyunzi',website:'https://wangyunzi.com',link:'https://s.dusays.com',creatorId:'9',avatar:gravatar+'/avatar/c1b204bab687a23c8b6d7c8de11c7c59.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  // {creatorName:'林木木',website:'https://immmmm.com',link:'https://me.edui.fun',creatorId:'101',avatar:gravatar+'/avatar/ba83fa02fc4b2ba621514941307e21be.jpeg?s=400',twikoo:'https://metk.edui.fun',artalk:'',artSite:''},
+  // {creatorName:'大大的小蜗牛',website:'https://eallion.com',link:'https://memos.eallion.com',creatorId:'101',avatar:gravatar+'/avatar/171e4c30959e8c077a6c58b958624b31.jpeg?s=400',twikoo:'',artalk:'https://api.eallion.com/artalk',artSite:'memos'},
+  // {creatorName:'koobai',website:'https://koobai.com',link:'https://memos.koobai.com',creatorId:'1',avatar:gravatar+'/avatar/3b3d336a7d389b7ae8531cbe177ae9b7.jpeg?s=400',twikoo:'',artalk:'https://c.koobai.com',artSite:'空白唠叨'},
+  // {creatorName:'不亦乐乎',website:'https://muxer.cn',link:'https://b.lms.im',creatorId:'1',avatar:gravatar+'/avatar/d9cc49ea0301640d7a19b6a1e77012dd.jpeg?s=400',twikoo:'https://b.lms.im/tk/',artalk:'',artSite:''},
+  // {creatorName:'老张',website:'https://laozhang.org',link:'https://memos.laozhang.org',creatorId:'1',avatar:gravatar+'/avatar/679666f7bd1af3e55f0e51dd70ed161c.jpeg?s=400',twikoo:'',artalk:'https://artalk.laozhang.org',artSite:'memos'},
+  // {creatorName:'wangyunzi',website:'https://wangyunzi.com',link:'https://s.dusays.com',creatorId:'9',avatar:gravatar+'/avatar/c1b204bab687a23c8b6d7c8de11c7c59.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  // {creatorName:'拾月',website:'https://www.skyue.com',link:'https://memos.skyue.com',creatorId:'1',avatar:gravatar+'/avatar/c3fb4bb4d5101284ddd672fb722cdd7d.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  // {creatorName:'1900',website:'https://1900.live',link:'https://memos.1900.live',creatorId:'101',avatar:gravatar+'/avatar/cc38267b10cc25dfc62209f8ca34589e.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  // {creatorName:'VeryJack',website:'https://veryjack.com',link:'https://say.veryjack.com',creatorId:'1',avatar:gravatar+'/avatar/7a41a0e8e1df8e964fa1268193b03508.jpeg?s=400',twikoo:'',artalk:'https://artalk.veryjack.com',artSite:'Jack\'s Space'},
+  // {creatorName:'小饿',website:'https://dongjunke.cn',link:'https://memos.dongjunke.cn',creatorId:'1',avatar:gravatar+'/avatar/42542189ddb33064599dc88a5149bea7.jpeg?s=400',twikoo:'https://twikoo.dongjunke.cn',artalk:'',artSite:''},
+  // {creatorName:'胡鹤仙',website:'https://zuofei.net',link:'https://memo.eirms.com',creatorId:'1',avatar:gravatar+'/avatar/dc75b1021b41486d062ff0285fb94749.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  // {creatorName:'wananaiko',website:'https://wananaiko.com',link:'https://memo.wananaiko.com',creatorId:'1',avatar:gravatar+'/avatar/11e15a8d264f1110f822ef2c55eeb965.jpeg?s=400',twikoo:'',artalk:'',artSite:''},
+  //{creatorName:'老陳网志',website:'https://chenyyds.com',link:'https://me.chenplus.com',creatorId:'101',avatar:gravatar+'/avatar/d1ed9c15ba6d0cb18464118c6288a8ff.webp?s=400',twikoo:'https://twikoo.chenyyds.com',artalk:'',artSite:''},
+  //{creatorName:'胡家小子',website:'https://www.boyhu.cn',link:'https://qzone.boyhu.cn',creatorId:'101',avatar:gravatar+'/avatar/55be217893c75baf8571837197de4a3e.jpeg?s=400',twikoo:'https://tk.boyhu.cn',artalk:'',artSite:''},
   //{creatorName:'',website:'',link:'',creatorId:'',avatar:'',twikoo:'',artalk:'',artSite:''}
 ];
 
@@ -30,13 +31,13 @@ var cancelEditBtn = document.querySelector(".cancel-edit-btn");
 
 var memoDom = document.querySelector(memosData.listDom);
 var skeleton = `<div class="el-loading"><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div></div>`;
-var titleDom = document.querySelector('.title-line');
+var titleDom = document.querySelector('.entry-title');
 var load = `<div class="load col-12"><button class="load-btn button-load d-none flex-fill mb-3 p-3">加载更多</button></div>`;
 memoDom.insertAdjacentHTML('afterend', load);
 var loadBtn = document.querySelector("button.button-load");
 
 var limit = memosData.limit,page = 1,nums = 0,dataNum = 0,memosContType = 0, memosAccess = 0;
-var memoData = [],memosStr = [];
+var memoData = [],memosStr = [],memoCreatorMap = {},twikooCount = {},artalkCount = {};
 
 var memosAccessPath = memosData.path;
 
@@ -69,7 +70,7 @@ function memoFollow() {
   };
   
   async function getMemos() {
-    memoData = [], page = 1, nums = 0, dataNum = 0, memosContType = 0, memosAccess = 0;
+    memoData = [], memoCreatorMap = {}, page = 1, nums = 0, dataNum = 0, memosContType = 0, memosAccess = 0;
     memoDom.innerHTML = skeleton;
     loadBtn.classList.add("d-none");
     let results = await Promise.allSettled(memoList.map(u => 
@@ -83,25 +84,112 @@ function memoFollow() {
     )));
     results = results.filter(i => i.status === 'fulfilled');
     memoData = results.flatMap(result => result.value);
+    memoList.forEach(item => {
+      memoCreatorMap[item.creatorName] = item;
+    });
+    memoData = memoData.map(item => {
+      let data = memoCreatorMap[item.creatorName];
+      return {...item, ...data};
+    });
+
+    let twikooData = memoData.filter(item => item.twikoo);
+    if (twikooData.length !== 0) {
+      let twikooRes = {};
+      for (const { creatorName, twikoo, link, id } of twikooData) {
+        if (!twikooRes[creatorName]) {
+          twikooRes[creatorName] = {
+            creatorName,
+            envId: twikoo,
+            urls: []
+          };
+        }
+        twikooRes[creatorName].urls.push(`${link}/m/${id}`);
+      }
+      let twikooList = Object.values(twikooRes);
+      let twikooPromise = await Promise.all(
+        twikooList.map(async (item) => {
+          try {
+            let res = await twikoo.getCommentsCount({
+              envId: item.envId,
+              urls: item.urls,
+              includeReply: false
+            });
+            return res;
+          } catch (err) {
+            console.error(err);
+            return [];
+          }
+        })
+      );
+      twikooCount = twikooPromise.flatMap(r => r);
+    }
+
+    let artalkData = memoData.filter(item => item.artalk);
+    if (artalkData.length !== 0) {
+      let artalkRes = {};
+      for (const { creatorName, artalk, artSite, link, id } of artalkData) {
+        if (!artalkRes[creatorName]) {
+          artalkRes[creatorName] = {
+            creatorName,
+            envId: artalk,
+            site_name: artSite,
+            link,
+            urls: []
+          };
+        }
+        artalkRes[creatorName].urls.push(`/m/${id}`);
+      }
+      let artalkList = Object.values(artalkRes);
+      let artalkPromise = await Promise.all(
+        artalkList.map(async (item) => {
+          try {
+            let formData = new FormData();
+            formData.append('type', 'page_comment');
+            formData.append('page_keys', item.urls.join(','));
+            formData.append('site_name', item.site_name);
+            let response = await fetch(`${item.envId}/api/stat`, {
+              method: 'POST',
+              body: formData
+            });
+            if (!response.ok) {
+              throw new Error(`Request failed for ${item.envId}/api/stat`);
+            }
+            let results = await response.json();
+            let countList = item.urls.map(url => {
+              let count = results.data[url] || 0;
+              return { url: item.link + url, count };
+            });
+            return countList;
+          } catch (err) {
+            return []; 
+          }
+        })
+      )
+      artalkCount = artalkPromise.flatMap(r => r);
+    }
+    console.log(memoData);
+    for (const item of memoData) {
+      let count = 0;
+      let url = `${item.link}/m/${item.id}`;
+      if (item.twikoo) {
+        let memoCount = twikooCount.find((o) => o.url === url);
+        if (memoCount) {
+          count = memoCount.count;
+        }
+      } else if (item.artalk) {
+        let memoCount = artalkCount.find((o) => o.url === url);
+        if (memoCount) {
+          count = memoCount.count;
+        }
+      }
+      item.count = count;
+    }
     memoDom.innerHTML = "";
     loadBtn.classList.remove("d-none");
     updateData(memoData);
   }
 
-  function updateData(a) {
-    let memoCreatorMap = {};
-    memoList.forEach(item => {
-      memoCreatorMap[item.creatorName] = item;
-    });
-
-    let res = a.map(item => {
-      let data = memoCreatorMap[item.creatorName] || { products: [] };
-      return {
-        ...item,
-        ...data,
-        products: data.products
-      };
-    });
+  function updateData(res) {
     res.sort((i,o)=>{
       return( o.createdTs - i.createdTs)
     })
@@ -124,7 +212,7 @@ function memoFollow() {
     };
     updateHtml(memosStr);
   }
-
+  
   // 插入 html 
   function updateHtml(data) {
     let result = '',itemOption = '',itemContent = '';
@@ -149,6 +237,7 @@ function memoFollow() {
       let memo = data[i];
       let memoString = JSON.stringify(memo).replace(/"/g, '&quot;');
       let avatar = memo.avatar;
+      let count = memo.count;
       let website = memo.website;
       let creatorName = memo.creatorName;
       let createdTs = memo.createdTs;
@@ -235,14 +324,14 @@ function memoFollow() {
       }
       itemContent = `<div class="item-content"><div class="item-inner">${memosRes}</div><div class="item-footer d-flex mt-2"><div class="d-flex">${memosTag}</div>`;
       if (twikooEnv) {
-        itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer"><i class="iconfont iconmessage"></i></a></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
+        itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer"><i class="iconfont iconmessage"></i></a><span class="ml-1">${count}</span></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
       } else if (artalkEnv) {
-        itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${artalkEnv}" data-path="${artSite}" onclick="loadArtalk(this)" rel="noopener noreferrer"><i class="iconfont iconmessage"></i></a></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
+        itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${artalkEnv}" data-path="${artSite}" onclick="loadArtalk(this)" rel="noopener noreferrer"><i class="iconfont iconmessage"></i></a><span class="ml-1">${count}</span></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
       } else {
         itemContent += `<div class="d-flex flex-fill justify-content-end"></div></div>`;
       }
       itemContent += `</div></div></div>`
-      result += `<div class="d-flex animate__animated mb-3"><div class="card-item flex-fill p-3"><div class="item-header d-flex mb-3"><div class="d-flex flex-fill"><div class="item-avatar mr-3" style="background-image:url(${avatar})"></div><div class="item-sub d-flex flex-column p-1"><div class="item-creator"><a href="${website}" target="_blank">${creatorName}</a></div><div class="item-mate mt-2 text-xs">${new Date(createdTs * 1000).toLocaleString()}</div></div></div>${itemOption}</div>${itemContent}</div></div>`;
+      result += `<div class="memo-${memosId} d-flex animate__animated mb-3"><div class="card-item flex-fill p-3"><div class="item-header d-flex mb-3"><div class="d-flex flex-fill"><div class="item-avatar mr-3" style="background-image:url(${avatar})"></div><div class="item-sub d-flex flex-column p-1"><div class="item-creator"><a href="${website}" target="_blank">${creatorName}</a></div><div class="item-mate mt-2 text-xs">${new Date(createdTs * 1000).toLocaleString()}</div></div></div>${itemOption}</div>${itemContent}</div></div>`;
     } // end for
 
     memoDom.insertAdjacentHTML('beforeend', result);
@@ -274,7 +363,6 @@ function memoFollow() {
         });
       });
     });
-
   }
 };
 
@@ -283,24 +371,125 @@ async function getUserMemos(u,i) {
   if(memosContType == 0) {
     memoDom.innerHTML = skeleton;
     loadBtn.classList.add('d-none');
-    memoData = [],page = 1,nums = 0,dataNum = 0,memosContType = 1;
+    memoData = [],memoCreatorMap = {}, page = 1,nums = 0,dataNum = 0,memosContType = 1;
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
     if (u == memosPath) {
       memosAccess = 1;
     };
     let userMemoUrl = `${u}/api/v1/memo?creatorId=${i}&rowStatus=NORMAL`;
-    let response = await fetch(userMemoUrl).then(res => {
-      if (!res.ok) {
-        throw new Error(res.statusText); 
+    try {
+      let response = await fetch(userMemoUrl);
+      if (!response.ok) {
+        throw new Error(response.statusText);
       }
-      return res.json();
-    }).then(response => {
-      memoDom.innerHTML = ""; 
-      memoData = response.flatMap(result => result);
+      let data = await response.json();
+      memoData = data.flatMap(result => result);
+      memoList.forEach(item => {
+        memoCreatorMap[item.creatorName] = item;
+      });
+      memoData = memoData.map(item => {
+        let data = memoCreatorMap[item.creatorName];
+        return {...item, ...data};
+      });
+      let twikooData = memoData.filter(item => item.twikoo);
+      if (twikooData.length !== 0) {
+        let twikooRes = {};
+        for (const { creatorName, twikoo, link, id } of twikooData) {
+          if (!twikooRes[creatorName]) {
+            twikooRes[creatorName] = {
+              creatorName,
+              envId: twikoo,
+              urls: []
+            };
+          }
+          twikooRes[creatorName].urls.push(`${link}/m/${id}`);
+        }
+        let twikooList = Object.values(twikooRes);
+        let twikooPromise = await Promise.all(
+          twikooList.map(async (item) => {
+            try {
+              let res = await twikoo.getCommentsCount({
+                envId: item.envId,
+                urls: item.urls,
+                includeReply: false
+              });
+              return res;
+            } catch (err) {
+              console.error(err);
+              return [];
+            }
+          })
+        );
+        twikooCount = twikooPromise.flatMap(r => r);
+      }
+
+      let artalkData = memoData.filter(item => item.artalk);
+      if (artalkData.length !== 0) {
+        let artalkRes = {};
+        for (const { creatorName, artalk, artSite, link, id } of artalkData) {
+          if (!artalkRes[creatorName]) {
+            artalkRes[creatorName] = {
+              creatorName,
+              envId: artalk,
+              site_name: artSite,
+              link,
+              urls: []
+            };
+          }
+          artalkRes[creatorName].urls.push(`/m/${id}`);
+        }
+        let artalkList = Object.values(artalkRes);
+        let artalkPromise = await Promise.all(
+          artalkList.map(async (item) => {
+            try {
+              let formData = new FormData();
+              formData.append('type', 'page_comment');
+              formData.append('page_keys', item.urls.join(','));
+              formData.append('site_name', item.site_name);
+              let response = await fetch(`${item.envId}/api/stat`, {
+                method: 'POST',
+                body: formData
+              });
+              if (!response.ok) {
+                throw new Error(`Request failed for ${item.envId}/api/stat`);
+              }
+              let results = await response.json();
+              let countList = item.urls.map(url => {
+                let count = results.data[url] || 0;
+                return { url: item.link + url, count };
+              });
+              return countList;
+            } catch (err) {
+              return []; 
+            }
+          })
+        )
+        artalkCount = artalkPromise.flatMap(r => r);
+      }
+      
+      for (const item of memoData) {
+        let count = 0;
+        let url = `${item.link}/m/${item.id}`;
+        if (item.twikoo) {
+          let memoCount = twikooCount.find((o) => o.url === url);
+          if (memoCount) {
+            count = memoCount.count;
+          }
+        } else if (item.artalk) {
+          let memoCount = artalkCount.find((o) => o.url === url);
+          if (memoCount) {
+            count = memoCount.count;
+          }
+        }
+        item.count = count;
+      }
+      memoDom.innerHTML = "";
       loadBtn.classList.remove('d-none');
       this.updateData(memoData);
       titleDom.innerText = "返回";
-    });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
@@ -310,7 +499,7 @@ function loadTwikoo(i) {
   let twikooPath = i.getAttribute("data-path")
   let twikooId = i.getAttribute("data-id")
   let twikooTime = i.getAttribute("data-time")
-  let twikooDom = document.getElementById(Number(twikooTime)+Number(twikooId));
+  let twikooDom = document.getElementById(`${Number(twikooTime)+Number(twikooId)}`);
   let twikooCon = "<div id='twikoo'></div>"
   if (twikooDom.classList.contains('d-none')) {
     document.querySelectorAll('.item-comment').forEach((item) => {item.classList.add('d-none');})
@@ -324,6 +513,11 @@ function loadTwikoo(i) {
       el: '#twikoo', 
       path: twikooPath 
     });
+    let memoDom = document.querySelector(`.memo-${Number(twikooTime)+Number(twikooId)}`)
+    window.scrollTo({
+      top: memoDom.offsetTop,
+      behavior: "smooth"
+    });
   }else{
     twikooDom.classList.add('d-none');
     document.getElementById("twikoo").remove()
@@ -336,7 +530,7 @@ function loadArtalk(e) {
   let artalkPath= e.getAttribute("data-path")
   let artalkId = e.getAttribute("data-id")
   let artalkTime = e.getAttribute("data-time")
-  let artalkDom = document.getElementById(Number(artalkTime)+Number(artalkId));
+  let artalkDom = document.getElementById(`${Number(artalkTime) + Number(artalkId)}`);
   let artalkCon = "<div id='artalk'></div>"
   if (artalkDom.classList.contains('d-none')) {
     document.querySelectorAll('.item-comment').forEach((item) => {item.classList.add('d-none');})
@@ -352,6 +546,11 @@ function loadArtalk(e) {
       site: artalkPath,
       server: artalkEnv,
       emoticons: false
+    });
+    let memoDom = document.querySelector(`.memo-${Number(artalkTime) + Number(artalkId)}`)
+    window.scrollTo({
+      top: memoDom.offsetTop,
+      behavior: "smooth"
     });
   }else{
     artalkDom.classList.add('d-none');
@@ -407,10 +606,10 @@ function editMemo(memo) {
       }).then(function(res) {
         if (res.ok) {
           if (memosTag !== null) {
-            const memoTagUrl = `${memosPath}/api/v1/tag?openId=${memosOpenId}`;
+            let memoTagUrl = `${memosPath}/api/v1/tag?openId=${memosOpenId}`;
             (async () => {
-              for await (const i of memosTag) {
-                const response = await fetch(memoTagUrl, {
+              for await (let i of memosTag) {
+                let response = await fetch(memoTagUrl, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'

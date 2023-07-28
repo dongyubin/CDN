@@ -1,4 +1,4 @@
-var headerDom = document.querySelector(".entry-header");
+var headerDom = document.querySelector(".header-title");
 var editIcon = `<button class="load-memos-editor outline p-1" title=""><i class="iconfont iconedit-square"></i></button>`;
 headerDom.insertAdjacentHTML('afterend', editIcon);
 
