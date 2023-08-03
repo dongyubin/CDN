@@ -36,7 +36,7 @@
             color: #fafafa;
         }
 
-        .memos-header {
+        .memos-item {
             margin-bottom: 1rem;
         }
 
@@ -381,8 +381,65 @@
             height: 1.25rem;
         }
 
-        .mark-icon svg{
+        .mark-icon svg {
             width: 0.75rem;
+        }
+
+        .edit-memos {
+            display: flex;
+        }
+
+        .memos-edit {
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .memos-edit {
+            margin-left: auto;
+            position: relative;
+            display: inline-block;
+        }
+
+        .memos-edit {
+            margin-left: auto;
+            position: relative;
+            display: inline-block;
+        }
+
+        .memos-menu {
+            margin-left: 50px;
+        }
+
+        .memos-menu-d {
+            z-index: 999;
+            width: 60px;
+            position: absolute;
+            right: -35%;
+            background-color: #fff;
+            padding: 8px 0 8px 0;
+            box-shadow: 2px 4px 16px rgba(0, 0, 0, .15);
+            text-align: center;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .memos-edit:hover .memos-menu-d {
+            display: block;
+        }
+
+        .delete-btn,
+        .edit-btn,
+        .archive-btn {
+            cursor: pointer;
+            line-height: 1.8;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .delete-btn:hover,
+        .edit-btn:hover,
+        .archive-btn:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -409,7 +466,6 @@
                                     <div id="editor"></div>
                                     <div class="total">总共 <span id="total">0</span> Memos 🎉</div>
                                     <div id="memos" class="memos">
-                                        <div class="memo-list"></div>
                                     </div>
                                     <!--</section>-->
                                 </div>

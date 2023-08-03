@@ -10,6 +10,7 @@ const memo = {
     gravatar: 'https://cdn.sep.cc',
     website: 'https://www.wangdu.site'
 };
+var hasLogin = 0
 const limit = memo.limit;
 const memoUrl = memo.host + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL";
 const twikooEnv = memo.twikoo;
@@ -73,7 +74,10 @@ function getNextList() {
 }
 // 插入 html
 function updateHTMl(data) {
-    var memoResult = "", resultAll = "";
+    //登录显示编辑归档按钮
+    if (memosOpenId && getEditor == "show") {
+        hasLogin = 1
+    }
     // 解析 TAG 标签，添加样式
     const TAG_REG = /#([^\s#]+?) /g;
 
@@ -110,8 +114,10 @@ function updateHTMl(data) {
         headerIds: false,
         mangle: false
     });
+    var resultAll = "";
     // Memos Content
     for (var i = 0; i < data.length; i++) {
+        var memoResult = ''
         let memosId = data[i].id;
         let memosLink = memo.host + 'm/' + memosId;
         let createdTs = data[i].createdTs;
@@ -182,32 +188,47 @@ function updateHTMl(data) {
                 memoContREG += '<p class="datasource">' + resUrl + '</p>'
             }
         }
-
-
-        let memos_header = `<div class="memos-header">
-        <div class="memos-userinfo">
-        <div class="item-avatar" style="background-image:url('${avatar}')"></div>
-        <a href='${website}' target="_blank">${memo.name}</a>
-        <span class="bbs-dot">·</span>
-        <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"><a onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs * 1000).twitter()}</a></time>
-        </div>`
         // onmouseenter="insertTwikoo(this)"
+        memoResult += `
+        <div class="memos-item" id="${memosId}">
+            <div class="memos-userinfo">
+                <div class="item-avatar" style="background-image:url('${avatar}')"></div>
+                <a href='${website}' target="_blank">${memo.name}</a>
+                <span class="bbs-dot">·</span>
+                <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"
+                    onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs *
+            1000).twitter()}</time>
+            ${hasLogin == 0 ? '' : `
+            <div class="memos-edit">
+             <div class="memos-menu">...</div>
+             <div class="memos-menu-d">
+              <div class="delete-btn" onclick="deleteMemo('${data[i].id}')">删除</div>
+              <div class="archive-btn" onclick="archiveMemo('${data[i].id}')">归档</div>
+              <div class="edit-btn" onclick="editMemo(${JSON.stringify(data[i]).replace(/"/g, '&quot;')})">修改</div>
+              </div>
+              </div>
+            `}
+            </div>
+            <div class="memos-content">
+                <div class="memos-text" id="text-${memosId}">${memoContREG}</div>
+                <div class="memos-footer">
+                    <div class="memos-tags">${memosTag}</div>
+                    <div class="memos-tools">
+                        <div class="memos-talk"><a data-id="${memosId}" data-time="${createdTs}" data-env="${twikooEnv}"
+                                data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a><span
+                                id="twikooCount-${memosId}"></span></div>
+                    </div>
+                </div>
+                <div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>
+            </div>
+        </div>`;
 
-        let memos_content = `<div class="memos-content">
-        <div class="memos-text" id="text-${memosId}">${memoContREG}</div>
-        <div class="memos-footer">
-        <div class="memos-tags">${memosTag}</div>
-        <div class="memos-tools">
-        <div class="memos-talk"><a data-id="${memosId}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${memosId}"></span></div>
-        </div>
-        </div>
-        </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`
-        memoResult += `<div class="item">${memos_header + memos_content}</div>`
+        resultAll += memoResult;
     }
-    // var memoBefore = '<div class="memos-list">'
-    // var memoAfter = '</div>'
-    // resultAll = memoBefore + memoResult + memoAfter
-    memoDom.insertAdjacentHTML('beforeend', memoResult);
+    var memoBefore = '<div class="memos-list">'
+    var memoAfter = '</div>'
+    resultAll = memoBefore + resultAll + memoAfter
+    memoDom.insertAdjacentHTML('beforeend', resultAll);
     //取消这行注释解析豆瓣电影和豆瓣阅读
     // fetchDB()
     document.querySelector('button.button-load').textContent = '加载更多';
@@ -321,6 +342,7 @@ async function getMarkContent(b) {
     }
     return mContent;
 }
+
 //转发
 function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
@@ -379,4 +401,17 @@ function insertTwikoo(e) {
         });
     }
 
+}
+
+function showBtns() {
+    var memosMenu = document.querySelector('.memos-menu');
+    var memosMenuD = document.querySelector('.memos-menu-d');
+
+    memosMenu.addEventListener('mouseover', function () {
+        memosMenuD.style.display = 'block';
+    });
+
+    memosMenu.addEventListener('mouseout', function () {
+        memosMenuD.style.display = 'none';
+    });
 }
