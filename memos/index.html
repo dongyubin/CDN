@@ -336,10 +336,12 @@
                 overflow-y: auto;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            #editor .OwO-body{
+
+            #editor .OwO-body {
                 top: 15.5rem !important;
             }
-            #editor .OwO-item{
+
+            #editor .OwO-item {
                 width: auto !important;
             }
         }
@@ -357,6 +359,30 @@
             width: auto !important;
             top: 12.5rem;
             left: 9rem;
+        }
+
+        .mark {
+            padding: 4px;
+            display: flex;
+            background: rgb(243 244 246 / 1);
+            color: rgb(107 114 128 / 1);
+            margin: 0 0 15px;
+            border-radius: 4px;
+        }
+
+        .mark-icon {
+            background: rgb(243 244 246 / 1);
+            border-radius: 9999px;
+            width: 1.25rem;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 1.25rem;
+        }
+
+        .mark-icon svg{
+            width: 0.75rem;
         }
     </style>
 </head>
@@ -394,10 +420,10 @@
             </div>
         </div>
     </div>
-   
+
 
     <script type="text/javascript">
-    
+
     </script>
     <script type="text/javascript" src="https://cdn.staticfile.org/twikoo/1.6.16/twikoo.all.min.js"></script>
     <!-- <script type="text/javascript"

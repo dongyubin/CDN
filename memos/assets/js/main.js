@@ -45,7 +45,7 @@ if (memoDom) {
 function getFirstList() {
     var memoUrl_first = memoUrl + "&limit=" + limit;
     fetch(memoUrl_first).then(res => res.json()).then(resdata => {
-        updateHTMl(resdata)
+        updateHTMl(resdata);
         insertTwikoo(resdata);
         var nowLength = resdata.length
         if (nowLength < limit) { // 返回数据条数小于 limit 则直接移除“加载更多”按钮，中断预加载
@@ -117,8 +117,17 @@ function updateHTMl(data) {
         let createdTs = data[i].createdTs;
         let creatorName = data[i].creatorName;
         var memoContREG = data[i].content
-            .replace(TAG_REG, "")
-
+            .replace(TAG_REG, "");
+        var memosRelationList = data[i].relationList;
+        getMarkContent(memosRelationList).then(r => {
+            if (r) {
+                const newElement = document.createElement("div");
+                newElement.className = "mark";
+                newElement.innerHTML = `<div class="mark-icon"><a href="${memo.host + 'm/' + r.id}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-auto"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></div><div class="mark-text">${marked.parse(r.content)}</div>`;
+                let textNode = document.getElementById('text-' + memosId)
+                textNode.appendChild(newElement);
+            }
+        })
         // For CJK language users
         // 用 PanguJS 自动处理中英文混合排版
         // 在 index.html 引入 JS：<script type="text/javascript" src="assets/js/pangu.min.js?v=4.0.7"></script>
@@ -185,11 +194,11 @@ function updateHTMl(data) {
         // onmouseenter="insertTwikoo(this)"
 
         let memos_content = `<div class="memos-content">
-        <div class="memos-text">${memoContREG}</div>
+        <div class="memos-text" id="text-${memosId}">${memoContREG}</div>
         <div class="memos-footer">
         <div class="memos-tags">${memosTag}</div>
         <div class="memos-tools">
-        <div class="memos-talk"><a data-id="${data[i].id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${data[i].id}"></span></div>
+        <div class="memos-talk"><a data-id="${memosId}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer">💬</a><span id="twikooCount-${memosId}"></span></div>
         </div>
         </div>
         </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`
@@ -301,6 +310,17 @@ function getTotal() {
 window.onload = getTotal();
 // Memos Total End
 
+async function getMarkContent(b) {
+    let mContent;
+    const response = await fetch(memoUrl);
+    const resdata = await response.json();
+    if (b.length !== 0) {
+        for (const res of b) {
+            mContent = resdata.find(obj => obj.id === res.relatedMemoId);
+        }
+    }
+    return mContent;
+}
 //转发
 function transPond(a) {
     getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
@@ -314,7 +334,6 @@ function transPond(a) {
         window.open(a.url);
     }
 }
-
 
 // 加载Twikoo评论
 function loadTwikoo(i) {
@@ -344,7 +363,7 @@ function loadTwikoo(i) {
 }
 
 function insertTwikoo(e) {
-    for(const item of e){
+    for (const item of e) {
         let twikooId = item.id
         let twikooPath = `${memos}m/${twikooId}`;
         twikoo.getCommentsCount({
@@ -359,5 +378,5 @@ function insertTwikoo(e) {
             console.error(err);
         });
     }
-    
+
 }
