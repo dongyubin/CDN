@@ -361,15 +361,16 @@
             left: 9rem;
         }
 
-        .memos-mark{
+        .memos-mark {
             width: 100%;
         }
 
-        .memos-mark .markarea{
+        .memos-mark .markarea {
             background: rgb(255 255 255 / 1);
         }
 
-        .mark,.markarea {
+        .mark,
+        .markarea {
             padding: 4px;
             display: flex;
             background: rgb(243 244 246 / 1);
@@ -379,7 +380,8 @@
             align-items: center;
         }
 
-        .mark-icon,.mark-icon-del{
+        .mark-icon,
+        .mark-icon-del {
             background: rgb(243 244 246 / 1);
             border-radius: 9999px;
             width: 1.25rem;
@@ -390,7 +392,8 @@
             height: 1.25rem;
         }
 
-        .mark-icon svg,.mark-icon-del svg{
+        .mark-icon svg,
+        .mark-icon-del svg {
             width: 0.75rem;
         }
 
@@ -399,7 +402,9 @@
             margin-left: auto;
         }
 
-        .mark-text p{
+        .mark-text p,
+        ul,
+        ol {
             margin: 0;
         }
 
@@ -407,7 +412,7 @@
             display: flex;
         }
 
-        .login .memos-edit{
+        .login .memos-edit {
             display: inline-block;
         }
 
@@ -449,7 +454,7 @@
             font-size: 14px;
         }
 
-        .edit-open .mark-btn{
+        .edit-open .mark-btn {
             display: none;
         }
 
@@ -458,6 +463,21 @@
         .edit-btn:hover,
         .archive-btn:hover {
             text-decoration: underline;
+        }
+
+        .search-menu {
+            display: flex;
+            border-radius: 0.33rem;
+            background-color: #f4f5f9;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+        }
+        .submit-search-btn{
+            padding: 0.3rem;
         }
     </style>
 </head>
@@ -481,6 +501,18 @@
                             <div class="entry-wrapper">
                                 <div class="entry-content u-clearfix">
                                     <!--<section id="main" class="container">-->
+                                    <div class="search-menu col-12">
+                                        <input class="search-input input-text flex-fill mr-3 px-2 py-1" type="text"
+                                            value="" maxlength="120" placeholder="搜索备忘录">
+                                        <div class="primary submit-search-btn outline action-btn" onclick="searchContent()"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="w-4 h-auto opacity-30 dark:text-gray-200">
+                                                <circle cx="11" cy="11" r="8"></circle>
+                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                            </svg></div>
+                                    </div>
                                     <div id="editor"></div>
                                     <div class="total">总共 <span id="total">0</span> Memos 🎉</div>
                                     <div id="memos" class="memos">

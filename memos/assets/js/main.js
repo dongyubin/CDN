@@ -396,3 +396,20 @@ function insertTwikoo(e) {
     }
 
 }
+
+// 增加memos搜索功能
+function searchContent(){
+    var searchText = searchInput.value;
+    let allMemosUrl = memos + 'api/v1/memo/all?rowStatus=NORMAL';
+    var result;
+    if (searchText == null || searchText == '') {
+      cocoMessage.info('搜索内容不能为空');
+    } else {
+      fetch(allMemosUrl).then(res => res.json()).then(resdata => {
+        result = resdata.filter(obj => obj.content.includes(searchText));
+        memoDom.innerHTML = ""
+        updateHTMl(result);
+        document.querySelector("button.button-load").remove()
+      })
+    }
+  }

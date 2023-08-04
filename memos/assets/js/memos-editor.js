@@ -101,6 +101,8 @@ var biaoqing = document.querySelector(".biao-qing");
 var emojiBtn = document.querySelector('.OwO');
 let textNode = document.querySelector('.memos-mark');
 let markArea = document.querySelector('.markarea');
+var searchInput = document.querySelector(".search-input");
+
 document.addEventListener("DOMContentLoaded", () => {
   getEditIcon();
   getEmoji();
@@ -428,8 +430,8 @@ function deleteImage(e) {
 }
 
 function markMemo(e) {
-  var result;
   let allMemosUrl = memosPath + '/api/v1/memo/all?rowStatus=NORMAL';
+  var result;
   fetch(allMemosUrl).then(res => res.json()).then(resdata => {
     result = resdata.filter(obj => obj.id == e);
     markArea.innerHTML = `<div class="mark-icon"><a href="${memo.host + 'm/' + e}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-auto"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></div><div class="mark-text">${marked.parse(result[0].content)}</div><div class="mark-icon-del"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto hover:opacity-80 shrink-0"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>`;
