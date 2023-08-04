@@ -40,6 +40,7 @@ var memosEditorCont = `
         </div>
         <div class="d-flex flex-fill">
           <div class="memos-tag-list d-none mt-2 animate__animated animate__fadeIn"></div>
+          <div class="memos-mark d-none mt-2 animate__animated animate__fadeIn"><div class="markarea"></div></div>
         </div>
       </div>
       
@@ -54,10 +55,10 @@ var memosEditorCont = `
         <div class="OwO"></div>
         <div class="editor-submit d-flex flex-fill justify-content-end">
         <div class="edit-memos d-none">
-        <div class="primary cancel-edit-btn mr-2 px-3 py-2">取消</div>
-        <div class="primary edit-memos-btn px-3 py-2">修改完成</div>
+        <div class="primary cancel-edit-btn mr-2">取消</div>
+        <div class="primary edit-memos-btn">修改完成</div>
         </div>
-          <div class="primary submit-memos-btn px-3 py-1">嘀咕一下</div>
+          <div class="primary submit-memos-btn">嘀咕一下</div>
         </div>
       </div>
     </div>
@@ -98,7 +99,8 @@ var editMemoBtn = document.querySelector(".edit-memos-btn");
 var cancelEditBtn = document.querySelector(".cancel-edit-btn");
 var biaoqing = document.querySelector(".biao-qing");
 var emojiBtn = document.querySelector('.OwO');
-
+let textNode = document.querySelector('.memos-mark');
+let markArea = document.querySelector('.markarea');
 document.addEventListener("DOMContentLoaded", () => {
   getEditIcon();
   getEmoji();
@@ -123,10 +125,12 @@ function getEditIcon() {
   if (getEditor !== null) {
     document.querySelector(".memos-editor").classList.toggle("d-none", isHide);
     getEditor == "show" ? hasMemosOpenId() : ''
+    memosOpenId && getEditor == "show" ? document.body.classList.add('login') : document.body.classList.remove('login')
   };
 
   loadEditorBtn.addEventListener("click", function () {
     getEditor != "show" ? hasMemosOpenId() : ''
+    memosOpenId && getEditor != "show" ? document.body.classList.add('login') : document.body.classList.remove('login')
     document.querySelector(".memos-editor").classList.toggle("d-none");
     window.localStorage && window.localStorage.setItem("memos-editor-display", document.querySelector(".memos-editor").classList.contains("d-none") ? "hide" : "show");
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
@@ -288,6 +292,7 @@ function getEditIcon() {
     memosContent = memosTextarea.value;
     memosVisibility = memosVisibilitySelect.value;
     memosResource = window.localStorage && JSON.parse(window.localStorage.getItem("memos-resource-list"));
+    memosRelation = window.localStorage && JSON.parse(window.localStorage.getItem("memos-relation-list"));
     memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
     let TAG_REG = /(?<=#)([^#\s!.,;:?"'()]+)(?= )/g;
     let memosTag = memosContent.match(TAG_REG);
@@ -324,6 +329,8 @@ function getEditIcon() {
             () => {
               location.reload();
               window.localStorage && window.localStorage.setItem("memos-textare-value", '');
+              memosRelation = [];
+              window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
             })
         }
       });
@@ -359,6 +366,7 @@ function getEditIcon() {
         memosEditorOption.classList.add("d-none");
         memosRadomCont.classList.remove("d-none");
         memosTextarea.value = window.localStorage && window.localStorage.getItem("memos-textare-value");
+
         cocoMessage.success('准备就绪');
       }).catch(err => {
         memosEditorOption.classList.remove("d-none");
@@ -419,9 +427,58 @@ function deleteImage(e) {
   }
 }
 
+function markMemo(e) {
+  var result;
+  let allMemosUrl = memosPath + '/api/v1/memo/all?rowStatus=NORMAL';
+  fetch(allMemosUrl).then(res => res.json()).then(resdata => {
+    result = resdata.filter(obj => obj.id == e);
+    markArea.innerHTML = `<div class="mark-icon"><a href="${memo.host + 'm/' + e}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-auto"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></div><div class="mark-text">${marked.parse(result[0].content)}</div><div class="mark-icon-del"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto hover:opacity-80 shrink-0"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>`;
+    textNode.classList.remove("d-none");
+    memosRelation = [{
+      "memoId": -1,
+      "relatedMemoId": parseInt(e),
+      "type": "REFERENCE"
+    }]
+    window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
+    var markDel = document.querySelector('.mark-icon-del');
+    if (markDel) {
+      markDel.addEventListener("click", function () {
+        memosRelation = [];
+        window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
+        markArea.innerHTML = "";
+        textNode.classList.add("d-none");
+      })
+    }
+  })
+
+}
+
 //增加memos编辑功能
 function editMemo(e) {
+  document.body.classList.add('edit-open');
   var memoContent = e.content, memoId = e.id, memoRelationList = e.relationList, memoResourceList = e.resourceList, memoVisibility = e.visibility;
+  var memosRelationList = window.localStorage && JSON.parse(window.localStorage.getItem("memos-relation-list"));
+  if ((memosRelationList && memosRelationList.length === 0) || (memosRelationList.length !== 0 && memosRelationList[0].relatedMemoId == memoId)) {
+    getMarkContent(memoRelationList).then(r => {
+      if (r) {
+        markArea.innerHTML = `<div class="mark-icon"><a href="${memo.host + 'm/' + r.id}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-auto"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></div><div class="mark-text">${marked.parse(r.content)}</div><div class="mark-icon-del"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto hover:opacity-80 shrink-0"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>`;
+        textNode.classList.remove("d-none");
+        var markDel = document.querySelector('.mark-icon-del');
+        if (markDel) {
+          markDel.addEventListener("click", function () {
+            memoRelationList = [];
+            markArea.innerHTML = "";
+            textNode.classList.add("d-none");
+          })
+        }
+      }
+    })
+  } else {
+    memosRelationList[0].memoId = memoId;
+    memosRelationList[0].relatedMemoId = memosRelationList[0].relatedMemoId;
+    memoRelationList = memosRelationList;
+  }
+
   getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display"),
     memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   if (memosOpenId && getEditor == "show") {
@@ -431,6 +488,7 @@ function editMemo(e) {
     editMemoDom.classList.remove("d-none");
     document.body.scrollIntoView({ behavior: 'smooth' });
   }
+
   editMemoBtn.addEventListener("click", function () {
     memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token"),
       memoContent = memosTextarea.value;
@@ -472,6 +530,10 @@ function editMemo(e) {
               submitMemoBtn.classList.remove("d-none");
               editMemoDom.classList.add("d-none");
               location.reload();
+              window.localStorage && window.localStorage.setItem("memos-textare-value", '');
+              memosRelation = [];
+              window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
+              document.body.classList.remove('edit-open');
             })
         }
       })
@@ -483,9 +545,15 @@ function editMemo(e) {
 cancelEditBtn.addEventListener("click", function () {
   if (!editMemoDom.classList.contains("d-none")) {
     memosTextarea.value = '';
+    window.localStorage && window.localStorage.setItem("memos-textare-value", '');
     memosTextarea.style.height = 'inherit';
     editMemoDom.classList.add("d-none");
     submitMemoBtn.classList.remove("d-none");
+    textNode.classList.add("d-none");
+    markArea.innerHTML = ""
+    memosRelation = [];
+    window.localStorage && window.localStorage.setItem("memos-relation-list", JSON.stringify(memosRelation));
+    document.body.classList.remove('edit-open');
   }
 })
 

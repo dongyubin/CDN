@@ -10,7 +10,6 @@ const memo = {
     gravatar: 'https://cdn.sep.cc',
     website: 'https://www.wangdu.site'
 };
-var hasLogin = 0
 const limit = memo.limit;
 const memoUrl = memo.host + "api/v1/memo?creatorId=" + memo.creatorId + "&rowStatus=NORMAL";
 const twikooEnv = memo.twikoo;
@@ -74,10 +73,6 @@ function getNextList() {
 }
 // 插入 html
 function updateHTMl(data) {
-    //登录显示编辑归档按钮
-    if (memosOpenId && getEditor == "show") {
-        hasLogin = 1
-    }
     // 解析 TAG 标签，添加样式
     const TAG_REG = /#([^\s#]+?) /g;
 
@@ -198,16 +193,15 @@ function updateHTMl(data) {
                 <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"
                     onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs *
             1000).twitter()}</time>
-            ${hasLogin == 0 ? '' : `
             <div class="memos-edit">
              <div class="memos-menu">...</div>
              <div class="memos-menu-d">
-              <div class="delete-btn" onclick="deleteMemo('${data[i].id}')">删除</div>
-              <div class="archive-btn" onclick="archiveMemo('${data[i].id}')">归档</div>
               <div class="edit-btn" onclick="editMemo(${JSON.stringify(data[i]).replace(/"/g, '&quot;')})">修改</div>
+              <div class="mark-btn" onclick="markMemo('${data[i].id}')">引用</div>
+              <div class="archive-btn" onclick="archiveMemo('${data[i].id}')">归档</div>
+              <div class="delete-btn" onclick="deleteMemo('${data[i].id}')">删除</div>
               </div>
               </div>
-            `}
             </div>
             <div class="memos-content">
                 <div class="memos-text" id="text-${memosId}">${memoContREG}</div>
@@ -401,17 +395,4 @@ function insertTwikoo(e) {
         });
     }
 
-}
-
-function showBtns() {
-    var memosMenu = document.querySelector('.memos-menu');
-    var memosMenuD = document.querySelector('.memos-menu-d');
-
-    memosMenu.addEventListener('mouseover', function () {
-        memosMenuD.style.display = 'block';
-    });
-
-    memosMenu.addEventListener('mouseout', function () {
-        memosMenuD.style.display = 'none';
-    });
 }
