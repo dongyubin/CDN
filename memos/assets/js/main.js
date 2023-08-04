@@ -194,6 +194,9 @@ function updateHTMl(data) {
                 <time class="item-time" title="${new Date(createdTs * 1000).toLocaleString()}"
                     onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs *
             1000).twitter()}</time>
+            <div class="emoji-reaction">
+                    <emoji-reaction reactTargetId="/m/${memosId}" availableArrayString="👍,thumbs-up;😄,smile-face;🎉,confused-face;❤️,red-heart;🚀,rocket;"></emoji-reaction>
+                    </div>
             <div class="memos-edit">
              <div class="memos-menu">...</div>
              <div class="memos-menu-d">
@@ -399,18 +402,19 @@ function insertTwikoo(e) {
 }
 
 // 增加memos搜索功能
-function searchContent(){
+function searchContent() {
     var searchText = searchInput.value;
     let allMemosUrl = memos + 'api/v1/memo/all?rowStatus=NORMAL';
     var result;
     if (searchText == null || searchText == '') {
-      cocoMessage.info('搜索内容不能为空');
+        cocoMessage.info('搜索内容不能为空');
+        location.reload()
     } else {
-      fetch(allMemosUrl).then(res => res.json()).then(resdata => {
-        result = resdata.filter(obj => obj.content.includes(searchText));
-        memoDom.innerHTML = ""
-        updateHTMl(result);
-        document.querySelector("button.button-load").remove()
-      })
+        fetch(allMemosUrl).then(res => res.json()).then(resdata => {
+            result = resdata.filter(obj => obj.content.includes(searchText));
+            memoDom.innerHTML = ""
+            updateHTMl(result);
+            document.querySelector("button.button-load").remove()
+        })
     }
-  }
+}

@@ -115,7 +115,7 @@
         }
 
         .item-comment {
-            margin-bottom: 3rem;
+            margin-top: 1rem;
         }
 
         .twikoo {
@@ -476,8 +476,17 @@
         .search-input {
             flex: 1;
         }
-        .submit-search-btn{
+
+        .submit-search-btn {
             padding: 0.3rem;
+        }
+
+        .emoji-reaction {
+            display: flex;
+            margin-left: auto;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -504,10 +513,10 @@
                                     <div class="search-menu col-12">
                                         <input class="search-input input-text flex-fill mr-3 px-2 py-1" type="text"
                                             value="" maxlength="120" placeholder="搜索备忘录">
-                                        <div class="primary submit-search-btn outline action-btn" onclick="searchContent()"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
+                                        <div class="primary submit-search-btn outline action-btn"
+                                            onclick="searchContent()"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                 class="w-4 h-auto opacity-30 dark:text-gray-200">
                                                 <circle cx="11" cy="11" r="8"></circle>
                                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -544,6 +553,7 @@
         src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/APlayer.min.js"></script>
     <script type="text/javascript"
         src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/Meting.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/emaction/frontend.dist@1.0.4/bundle.js"></script>
     <!-- <script type="text/javascript" src="https://nuoea.com/js/all.js"></script> -->
     <script type="text/javascript" src="https://nuoea.com/js/lately.min.js"></script>
     <script type="text/javascript" src="./assets/js/lozad.min.js"></script>
@@ -554,6 +564,7 @@
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <!-- <script src="./assets/js/memos-nuoea.js"></script> -->
     <script src="./assets/js/coco-message.min.js"></script>
+
 </body>
 
 </html>
