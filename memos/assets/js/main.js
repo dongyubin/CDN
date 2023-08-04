@@ -26,6 +26,7 @@ var load = '<button class="load-btn button-load">努力加载中……</button>'
 var memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
 var memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
 var getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
+var searchInput = document.querySelector(".search-input");
 if (memoDom) {
     memoDom.insertAdjacentHTML('afterend', load);
     getFirstList() // 首次加载数据

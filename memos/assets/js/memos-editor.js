@@ -101,7 +101,6 @@ var biaoqing = document.querySelector(".biao-qing");
 var emojiBtn = document.querySelector('.OwO');
 let textNode = document.querySelector('.memos-mark');
 let markArea = document.querySelector('.markarea');
-var searchInput = document.querySelector(".search-input");
 
 document.addEventListener("DOMContentLoaded", () => {
   getEditIcon();
