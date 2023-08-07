@@ -195,7 +195,7 @@ function updateHTMl(data) {
                     onclick="transPond(${JSON.stringify(memosForm).replace(/"/g, '&quot;')})">${moment(createdTs *
             1000).twitter()}</time>
             <div class="emoji-reaction">
-                    <emoji-reaction reactTargetId="/m/${memosId}" availableArrayString="👍,thumbs-up;😄,smile-face;🎉,confused-face;❤️,red-heart;🚀,rocket;"></emoji-reaction>
+                    <emoji-reaction reactTargetId="/m/${memosId}" endpoint="https://like.wwkejishe.top" availableArrayString="👍,thumbs-up;😄,smile-face;🎉,confused-face;❤️,red-heart;🚀,rocket;"></emoji-reaction>
                     </div>
             <div class="memos-edit">
              <div class="memos-menu">...</div>
