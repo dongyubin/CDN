@@ -41,6 +41,7 @@ if (memoDom) {
         }
         getNextList()
     });
+    matchTags();
 }
 
 function getFirstList() {
@@ -150,7 +151,7 @@ function updateHTMl(data) {
         var memosTag = '';
         if (tagArr) {
             memosTag = tagArr.map(t => {
-                return '<div class="item-tag">' + String(t).replace(/[#]/g, '') + '</div>';
+                return `<div class="item-tag" onclick="searchContent('${t}')">${String(t).replace(/[#]/g, '')}</div>`;
             }).join('');
         }
         // 解析内置资源文件 
@@ -186,7 +187,7 @@ function updateHTMl(data) {
         }
         // onmouseenter="insertTwikoo(this)"
         memoResult += `
-        <div class="memos-item" id="${memosId}">
+        <div class="memos-item img-hide" id="${memosId}">
             <div class="memos-userinfo">
                 <div class="item-avatar" style="background-image:url('${avatar}')"></div>
                 <a href='${website}' target="_blank">${memo.name}</a>
@@ -239,6 +240,7 @@ function updateHTMl(data) {
     //延迟加载
     var observer = lozad('.lozad');
     observer.observe();
+    animateSummaries();
 }
 // Memos End
 
@@ -404,20 +406,59 @@ function insertTwikoo(e) {
 
 }
 
+function getAllMemos() {
+    const allMemosUrl = memos + 'api/v1/memo/all?rowStatus=NORMAL';
+    return fetch(allMemosUrl).then(res => res.json());
+}
+
 // 增加memos搜索功能
-function searchContent() {
+function searchContent(e) {
     var searchText = searchInput.value;
-    let allMemosUrl = memos + 'api/v1/memo/all?rowStatus=NORMAL';
     var result;
-    if (searchText == null || searchText == '') {
-        cocoMessage.info('搜索内容不能为空');
-        location.reload()
-    } else {
-        fetch(allMemosUrl).then(res => res.json()).then(resdata => {
-            result = resdata.filter(obj => obj.content.includes(searchText));
-            memoDom.innerHTML = ""
+    if (e) {
+        getAllMemos().then(resdata => {
+            result = resdata.filter(obj => obj.content.includes(e));
+            document.querySelector(".total").classList.add("d-none");
+            document.querySelector('.search-tag').classList.remove("d-none");
+            document.querySelector('.search-tag-item').innerHTML = e;
+            memoDom.innerHTML = "";
             updateHTMl(result);
-            document.querySelector("button.button-load").remove()
+            document.querySelector("button.button-load").classList.add('d-none');
         })
+    } else {
+        if (searchText == null || searchText == '') {
+            cocoMessage.info('搜索内容不能为空');
+            location.reload()
+        } else {
+            getAllMemos().then(resdata => {
+                result = resdata.filter(obj => obj.content.includes(searchText));
+                memoDom.innerHTML = ""
+                updateHTMl(result);
+                document.querySelector("button.button-load").classList.add('d-none');
+            })
+        }
     }
+
+}
+
+// 匹配全部标签
+function matchTags() {
+    const TAG_REG = /#([^\s#]+?) /g;
+    getAllMemos().then(resdata => {
+        const allTags = [];
+        for (const json of resdata) {
+            const matchedTags = json.content.match(TAG_REG);
+            if (matchedTags !== null) {
+                for (const tag of matchedTags) {
+                    const tagContent = tag.replace(/[#\s]/g, ''); // 去掉 # 和空格
+                    allTags.push(tagContent);
+                }
+            }
+        }
+
+        const uniqueTags = [...new Set(allTags)];
+        let tagItem = uniqueTags.map(t => { return `<div class="tag-item item-tag" onclick="searchContent('${t}')">${t}</div>` }).join('');
+        document.querySelector('.tag-lists').innerHTML = tagItem;
+        document.querySelector(".tag-lists").classList.remove('d-none');
+    })
 }

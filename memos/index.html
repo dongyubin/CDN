@@ -82,6 +82,7 @@
 
         .memos-tags {
             display: flex;
+            cursor: pointer;
         }
 
         .item-tag {
@@ -110,7 +111,7 @@
             cursor: pointer;
         }
 
-        .memos-talk a{
+        .memos-talk a {
             display: flex;
             align-items: center;
         }
@@ -493,6 +494,35 @@
             justify-content: center;
             align-items: center;
         }
+
+        .search-tag {
+            display: flex;
+            align-items: center;
+            margin: 10px 0px;
+        }
+
+        .search-tag-item {
+            white-space: nowrap;
+            border-radius: 0.33rem;
+            background-color: rgba(0, 0, 0, .05);
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .search-tag-item:hover {
+            text-decoration: line-through;
+            cursor: pointer;
+        }
+
+        .tag-lists {
+            padding: 4px;
+            margin: 10px 0px;
+            flex-wrap: wrap;
+            gap: 6px;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, .04);
+        }
     </style>
 </head>
 
@@ -528,6 +558,11 @@
                                             </svg></div>
                                     </div>
                                     <div id="editor"></div>
+                                    <div class="tag-lists memos-tags d-none"></div>
+                                    <div class="search-tag d-none">
+                                        <div class="search-tag-info">标签筛选:</div>
+                                        <div class="search-tag-item" onclick="location.reload()"></div>
+                                    </div>
                                     <div class="total">总共 <span id="total">0</span> Memos 🎉</div>
                                     <div id="memos" class="memos">
                                     </div>
@@ -542,9 +577,7 @@
     </div>
 
 
-    <script type="text/javascript">
-
-    </script>
+    
     <script type="text/javascript" src="https://cdn.staticfile.org/twikoo/1.6.16/twikoo.all.min.js"></script>
     <!-- <script type="text/javascript"
         src="https://gcore.jsdelivr.net/gh/eallion/memos.top/assets/js/lazyload.min.js?v=17.8.3"></script> -->
@@ -569,7 +602,37 @@
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <!-- <script src="./assets/js/memos-nuoea.js"></script> -->
     <script src="./assets/js/coco-message.min.js"></script>
+    <script type="text/javascript">
+        function animateSummaries() {
 
+            const articles = document.querySelectorAll('.img-hide');
+
+            const shuffledArticles = Array.from(articles).sort(() => Math.random() - 0.5);
+
+            function animate(article, delay) {
+                setTimeout(() => {
+                    article.classList.add('visible');
+                }, delay);
+            }
+
+            const options = {
+                rootMargin: '0px 0px -80px 0px',
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        animate(entry.target, index * 6); // 添加延迟，实现错落效果
+                        observer.unobserve(entry.target); // 动画触发后停止观察
+                    }
+                });
+            }, options);
+
+            shuffledArticles.forEach((article) => {
+                observer.observe(article);
+            });
+        }
+    </script>
 </body>
 
 </html>
