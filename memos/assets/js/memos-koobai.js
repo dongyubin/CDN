@@ -52,6 +52,16 @@ btn.addEventListener("click", function () {
 }
 function getFirstList(){
 bbDom.insertAdjacentHTML('afterend', load);
+let tagHtml = `<div class="memos-search-all img-hide">
+<div class="memos-search">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto opacity-30 dark:text-gray-200"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input type="text" id="memos-search-input" placeholder="输入关键词，搜索唠叨..." onkeydown="searchMemoevent(event)">
+</div>
+<div id="tag-list-all"></div>
+</div>
+<div id="tag-list"></div>` // TAG筛选 memos搜索
+bbDom.insertAdjacentHTML('beforebegin', tagHtml); // TAG筛选
+showTaglist(); // 显示所有 TAG
 var bbUrl = memos+"api/v1/memo?creatorId="+bbMemo.creatorId+"&rowStatus=NORMAL&limit="+limit;
 fetch(bbUrl).then(res => res.json()).then( resdata =>{
   updateHTMl(resdata);
@@ -105,7 +115,7 @@ function updateHTMl(data){
   if(memosOpenId && getEditor == "show"){ 
     hasLogin = 1
   } 
-  const TAG_REG = /#((?!^\d+$)[^\s#,.!()/\d]+)/g
+  const TAG_REG = /#([^#\s!.,;:?"'()]+)(?= )/g
   , IMG_REG = /\!\[(.*?)\]\((.*?)\)/g //content 内 md 格式图片
   , LINK_REG = /\[(.*?)\]\((.*?)\)/g //链接新窗口打开
   marked.setOptions({
@@ -141,13 +151,11 @@ function updateHTMl(data){
       if (tagArr) {
         memosTag = tagArr.map(function(tag) {
           var tagText = String(tag).replace(/[#]/g, '');
-          return '<div class="tag-span"># ' + tagText + '</div>';
+          return '<div class="memos-tag-dg" onclick="getTagNow(this)"># ' + tagText + '</div>';
         }).join('');
       } else {
-        memosTag = '<div class="tag-span"># 日常</div>';
+        memosTag = '<div class="memos-tag-dg"># 日常</div>';
       }
-      
-      
       
       //解析内置资源文件
       if(data[i].resourceList && data[i].resourceList.length > 0){
@@ -183,31 +191,29 @@ function updateHTMl(data){
       result += `
       <li class="bb-list-li img-hide" id="${memo_id}">
         <div class="memos-pl">
-          ${memosTag}
-          <div class="talks_comments">
-            <a onclick="loadArtalk('${memo_id}')">
-              <span id="btn_memo_${memo_id}"><svg viewBox="0 0 426.666667 384" xmlns="http://www.w3.org/2000/svg">
-              <g fill-rule="evenodd"><path d="M234.666667,0 C340.706133,0 426.666667,85.9613867 426.666667,192 C426.666667,298.039467 340.706133,384 234.666667,384 L21.3333333,384 C9.55136,384 0,374.449067 0,362.666667 L0,192 C0,85.9613867 85.9613867,0 192,0 L234.666667,0 Z M234.666667,42.6666667 L192,42.6666667 C109.525547,42.6666667 42.6666667,109.525547 42.6666667,192 L42.6666667,341.333333 L234.666667,341.333333 C317.141333,341.333333 384,274.474667 384,192 C384,109.525547 317.141333,42.6666667 234.666667,42.6666667 Z M128,170.666667 C139.782187,170.666667 149.333333,180.2176 149.333333,192 C149.333333,203.7824 139.782187,213.333333 128,213.333333 C116.218027,213.333333 106.666667,203.7824 106.666667,192 C106.666667,180.2176 116.218027,170.666667 128,170.666667 Z M213.333333,170.666667 C225.115733,170.666667 234.666667,180.2176 234.666667,192 C234.666667,203.7824 225.115733,213.333333 213.333333,213.333333 C201.550933,213.333333 192,203.7824 192,192 C192,180.2176 201.550933,170.666667 213.333333,170.666667 Z M298.666667,170.666667 C310.449067,170.666667 320,180.2176 320,192 C320,203.7824 310.449067,213.333333 298.666667,213.333333 C286.884267,213.333333 277.333333,203.7824 277.333333,192 C277.333333,180.2176 286.884267,170.666667 298.666667,170.666667 Z" fill-rule="nonzero"></path></g></svg></span>
-              <span id="ArtalkCount" data-page-key="/m/${memo_id}" class="comment-s"></span>
-            </a>
-          </div>
-        </div>
-        <div class="datacont" view-image>${bbContREG}</div>
-        <div class="memos_diaoyong_top">
-          <span class="memos_diaoyong_from">
-            @ <a href="${memos}m/${memo_id}" target="_blank">koobai</a>
-          </span>
-          <span class="memos_diaoyong_time">${moment(data[i].createdTs * 1000).twitterLong()}</span>      
+        <div class="memos_diaoyong_time">${moment(data[i].createdTs * 1000).twitterLong()}</div>
         ${hasLogin == 0 ? '' : `
         <div class="memos-edit">
          <div class="memos-menu">...</div>
          <div class="memos-menu-d">
-          <div class="delete-btn" onclick="deleteMemo('${data[i].id}')">删除</div>
-          <div class="archive-btn" onclick="archiveMemo('${data[i].id}')">归档</div>
-          <div class="edit-btn" onclick="editMemo(${JSON.stringify(data[i]).replace(/"/g, '&quot;')})">修改</div>
+         <div class="edit-btn" onclick="editMemo(${JSON.stringify(data[i]).replace(/"/g, '&quot;')})">修改</div>
+         <div class="archive-btn" onclick="archiveMemo('${data[i].id}')">归档</div>
+         <div class="delete-btn" onclick="deleteMemo('${data[i].id}')">删除</div> 
           </div>
           </div>
         `}
+        </div>
+        <div class="memos-tag-wz">${memosTag}</div>
+        <div class="datacont" view-image>${bbContREG}</div>
+        <div class="memos_diaoyong_top">
+        <div class="memos-zan"><emoji-reaction class="reactions" reactTargetId="/m/${memo_id}" theme="system" endpoint="https://like.yangle.vip" availableArrayString="👍,thumbs-up;🎉,party-popper;😄,smile-face;😎,cool;"></emoji-reaction></div>
+        <div class="talks_comments">
+            <a onclick="loadArtalk('${memo_id}')">
+              <span id="ArtalkCount" data-page-key="/m/${memo_id}" class="comment-s"></span> 条评论  <span id="btn_memo_${memo_id}">
+              <svg width="6px" height="12px" viewBox="0 0 6 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><path d="M0.211503518,0.218577027 C0.493508208,-0.072859009 0.95072815,-0.072859009 1.23273284,0.218577027 L5.41780916,4.54361875 C6.19406361,5.34583421 6.19406361,6.65416579 5.41780916,7.45638125 L1.23273284,11.781423 C0.95072815,12.072859 0.493508208,12.072859 0.211503518,11.781423 C-0.0705011726,11.4899869 -0.0705011726,11.0174758 0.211503518,10.7260397 L4.39657984,6.400998 C4.60882491,6.18165462 4.60882491,5.81834538 4.39657984,5.599002 L0.211503518,1.27396027 C-0.0705011726,0.982524238 -0.0705011726,0.510013063 0.211503518,0.218577027 Z"></path></g></svg>
+              </span>
+            </a>
+          </div>
         </div>
         <div id="memo_${memo_id}" class="artalk hidden"></div>
       </li>`;    
@@ -220,7 +226,88 @@ function updateHTMl(data){
 
   animateSummaries(); // 在DOM加载完毕后执行滑动加载动画
 
-  document.querySelector('button.button-load').textContent = '看更多 ...';
+  if(document.querySelector('button.button-load')) document.querySelector('button.button-load').textContent = '看更多 ...';
+}
+
+// TAG 筛选
+function getTagNow(e){
+  //console.log(e.innerHTML)
+  let tagName = e.innerHTML.replace('# ','')
+  let domClass = document.getElementById("bber")
+  window.scrollTo({
+    top: domClass.offsetTop - 30,
+    behavior: "smooth"
+  });
+  let tagHtmlNow = `<div class='memos-tag-sc-2' onclick='javascript:location.reload();'><div class='memos-tag-sc-1' >标签筛选:</div><div class='memos-tag-sc' >${e.innerHTML}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto ml-1 opacity-40"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div></div>`
+  document.querySelector('#tag-list').innerHTML = tagHtmlNow
+  let bbUrl = memos+"api/v1/memo?creatorId="+bbMemo.creatorId+"&tag="+tagName+"&limit=20";
+  fetch(bbUrl).then(res => res.json()).then( resdata =>{
+    document.querySelector(bbMemo.domId).innerHTML = ""
+    if(document.querySelector("button.button-load")) document.querySelector("button.button-load").remove()
+    updateHTMl(resdata)
+
+  //在未展开评论时，默认显示评论数
+  Artalk.loadCountWidget({
+    server: 'https://c.koobai.com/',
+    site: '空白唠叨', 
+    countEl: '#ArtalkCount'
+  });
+  })
+}
+
+// 显示所有 TAG
+function showTaglist(){
+  let bbUrl = 'https://memostag.yangle.vip/'
+  let tagListDom = ""
+  fetch(bbUrl).then(res => res.json()).then( resdata =>{
+
+    const dynamicTags = resdata.map(tag => `#${tag}`); // 输入#标签自动补全,数据调用
+    tags.splice(0, tags.length, ...dynamicTags); // 输入#标签自动补全,数据调用
+
+    for(let i=0;i < resdata.length;i++){
+      tagListDom += `<div class="memos-tag-all img-hide" onclick='getTagNow(this)'># ${resdata[i]}</div>`
+    }
+    document.querySelector('#tag-list-all').innerHTML = tagListDom
+
+    animateSummaries(); // 加载完毕后执行滑动加载动画
+  })
+}
+
+// 搜索 Memos
+function searchMemoevent(event) {
+  if (event.key === "Enter") {
+      searchMemo();
+  }
+}
+
+function searchMemo() {
+  let searchText = document.querySelector('#memos-search-input').value;
+  let tagHtmlNow = `<div class='memos-tag-sc-2' onclick='javascript:location.reload();'><div class='memos-tag-sc-1' >关键词搜索:</div><div class='memos-tag-sc' >${searchText}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto ml-1 opacity-40"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div></div>`
+  document.querySelector('#tag-list').innerHTML = tagHtmlNow;
+  let bbUrl = memos + "api/v1/memo?creatorId=" + bbMemo.creatorId + "&content=" + searchText + "&limit=20";
+  fetchMemoDOM(bbUrl);
+}
+
+function fetchMemoDOM(bbUrl) {
+  fetch(bbUrl)
+    .then(res => res.json())
+    .then(resdata => {
+      let arrData = resdata || '';
+      if (resdata.data) {
+        arrData = resdata.data;
+      }
+      if (arrData.length > 0) {
+        // 清空旧的搜索结果和加载按钮
+        document.querySelector(bbMemo.domId).innerHTML = "";
+        if (document.querySelector("button.button-load")) {
+          document.querySelector("button.button-load").remove();
+        }
+        updateHTMl(resdata);
+      } else {
+        alert("搜不到，尝试换一个关键词");
+        setTimeout(() => location.reload(), 1000);
+      }
+    });
 }
 
 //增加memos评论
@@ -240,12 +327,12 @@ function loadArtalk(memo_id) {
     // 修改其他评论按钮文字
     for (let i = 0; i < allCommentBtns.length; i++) {
       if (allCommentBtns[i] !== commentBtn) {
-        allCommentBtns[i].innerHTML = '<svg viewBox="0 0 426.666667 384" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M234.666667,0 C340.706133,0 426.666667,85.9613867 426.666667,192 C426.666667,298.039467 340.706133,384 234.666667,384 L21.3333333,384 C9.55136,384 0,374.449067 0,362.666667 L0,192 C0,85.9613867 85.9613867,0 192,0 L234.666667,0 Z M234.666667,42.6666667 L192,42.6666667 C109.525547,42.6666667 42.6666667,109.525547 42.6666667,192 L42.6666667,341.333333 L234.666667,341.333333 C317.141333,341.333333 384,274.474667 384,192 C384,109.525547 317.141333,42.6666667 234.666667,42.6666667 Z M128,170.666667 C139.782187,170.666667 149.333333,180.2176 149.333333,192 C149.333333,203.7824 139.782187,213.333333 128,213.333333 C116.218027,213.333333 106.666667,203.7824 106.666667,192 C106.666667,180.2176 116.218027,170.666667 128,170.666667 Z M213.333333,170.666667 C225.115733,170.666667 234.666667,180.2176 234.666667,192 C234.666667,203.7824 225.115733,213.333333 213.333333,213.333333 C201.550933,213.333333 192,203.7824 192,192 C192,180.2176 201.550933,170.666667 213.333333,170.666667 Z M298.666667,170.666667 C310.449067,170.666667 320,180.2176 320,192 C320,203.7824 310.449067,213.333333 298.666667,213.333333 C286.884267,213.333333 277.333333,203.7824 277.333333,192 C277.333333,180.2176 286.884267,170.666667 298.666667,170.666667 Z" fill-rule="nonzero"></path></g></svg>';
+        allCommentBtns[i].innerHTML = '<svg width="6px" height="12px" viewBox="0 0 6 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><path d="M0.211503518,0.218577027 C0.493508208,-0.072859009 0.95072815,-0.072859009 1.23273284,0.218577027 L5.41780916,4.54361875 C6.19406361,5.34583421 6.19406361,6.65416579 5.41780916,7.45638125 L1.23273284,11.781423 C0.95072815,12.072859 0.493508208,12.072859 0.211503518,11.781423 C-0.0705011726,11.4899869 -0.0705011726,11.0174758 0.211503518,10.7260397 L4.39657984,6.400998 C4.60882491,6.18165462 4.60882491,5.81834538 4.39657984,5.599002 L0.211503518,1.27396027 C-0.0705011726,0.982524238 -0.0705011726,0.510013063 0.211503518,0.218577027 Z"></path></g></svg>';
       }
     }
 
     commentDiv.classList.remove('hidden');
-    commentBtn.innerHTML = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M256,0 C397.167,0 512,114.853 512,256 C512,397.147 397.167,512 256,512 C114.833,512 0,397.167 0,256 C0,114.833 114.833,0 256,0 Z M256,39.659 C136.725,39.659 39.659,136.705 39.659,256 C39.659,375.295 136.725,472.341 256,472.341 C375.275,472.341 472.341,375.295 472.341,256 C472.341,136.705 375.295,39.659 256,39.659 Z M242.119,184.217 C249.853,176.523 262.345,176.523 270.079,184.217 L369.227,283.365 C376.921,291.098 376.921,303.591 369.227,311.325 C361.493,319.019 349.001,319.019 341.267,311.325 L256,226.256 L170.931,311.324 C162.622,318.443 150.09,317.472 142.971,309.163 C136.606,301.747 136.606,290.781 142.971,283.365 Z" fill-rule="nonzero"></path></g></svg>';
+    commentBtn.innerHTML = '<svg width="14px" height="14px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M256,0 C397.167,0 512,114.853 512,256 C512,397.147 397.167,512 256,512 C114.833,512 0,397.167 0,256 C0,114.833 114.833,0 256,0 Z M256,39.659 C136.725,39.659 39.659,136.705 39.659,256 C39.659,375.295 136.725,472.341 256,472.341 C375.275,472.341 472.341,375.295 472.341,256 C472.341,136.705 375.295,39.659 256,39.659 Z M242.119,184.217 C249.853,176.523 262.345,176.523 270.079,184.217 L369.227,283.365 C376.921,291.098 376.921,303.591 369.227,311.325 C361.493,319.019 349.001,319.019 341.267,311.325 L256,226.256 L170.931,311.324 C162.622,318.443 150.09,317.472 142.971,309.163 C136.606,301.747 136.606,290.781 142.971,283.365 Z" fill-rule="nonzero"></path></g></svg>';
     //增加评论平滑定位
     const commentLi = document.getElementById(memo_id);
     const commentLiPosition = commentLi.getBoundingClientRect().top + window.pageYOffset;
@@ -271,6 +358,18 @@ function loadArtalk(memo_id) {
     });
   } else {
     commentDiv.classList.add('hidden');
-    commentBtn.innerHTML = '<svg viewBox="0 0 426.666667 384" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M234.666667,0 C340.706133,0 426.666667,85.9613867 426.666667,192 C426.666667,298.039467 340.706133,384 234.666667,384 L21.3333333,384 C9.55136,384 0,374.449067 0,362.666667 L0,192 C0,85.9613867 85.9613867,0 192,0 L234.666667,0 Z M234.666667,42.6666667 L192,42.6666667 C109.525547,42.6666667 42.6666667,109.525547 42.6666667,192 L42.6666667,341.333333 L234.666667,341.333333 C317.141333,341.333333 384,274.474667 384,192 C384,109.525547 317.141333,42.6666667 234.666667,42.6666667 Z M128,170.666667 C139.782187,170.666667 149.333333,180.2176 149.333333,192 C149.333333,203.7824 139.782187,213.333333 128,213.333333 C116.218027,213.333333 106.666667,203.7824 106.666667,192 C106.666667,180.2176 116.218027,170.666667 128,170.666667 Z M213.333333,170.666667 C225.115733,170.666667 234.666667,180.2176 234.666667,192 C234.666667,203.7824 225.115733,213.333333 213.333333,213.333333 C201.550933,213.333333 192,203.7824 192,192 C192,180.2176 201.550933,170.666667 213.333333,170.666667 Z M298.666667,170.666667 C310.449067,170.666667 320,180.2176 320,192 C320,203.7824 310.449067,213.333333 298.666667,213.333333 C286.884267,213.333333 277.333333,203.7824 277.333333,192 C277.333333,180.2176 286.884267,170.666667 298.666667,170.666667 Z" fill-rule="nonzero"></path></g></svg>';
+    commentBtn.innerHTML = '<svg width="6px" height="12px" viewBox="0 0 6 12" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><path d="M0.211503518,0.218577027 C0.493508208,-0.072859009 0.95072815,-0.072859009 1.23273284,0.218577027 L5.41780916,4.54361875 C6.19406361,5.34583421 6.19406361,6.65416579 5.41780916,7.45638125 L1.23273284,11.781423 C0.95072815,12.072859 0.493508208,12.072859 0.211503518,11.781423 C-0.0705011726,11.4899869 -0.0705011726,11.0174758 0.211503518,10.7260397 L4.39657984,6.400998 C4.60882491,6.18165462 4.60882491,5.81834538 4.39657984,5.599002 L0.211503518,1.27396027 C-0.0705011726,0.982524238 -0.0705011726,0.510013063 0.211503518,0.218577027 Z"></path></g></svg>';
   }
 }
+
+//调用coco-message插件暗黑模式
+const darkModeMatcher = window.matchMedia('(prefers-color-scheme: dark)'); 
+darkModeMatcher.addEventListener('change', handleDarkModeChange);
+function handleDarkModeChange(e) {
+  if (e.matches) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');  
+  }
+}
+handleDarkModeChange(darkModeMatcher);

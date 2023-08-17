@@ -523,6 +523,38 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, .04);
         }
+
+        #memos-tag-menu {
+            position: absolute;
+            background-color: #fff;
+            z-index: 100;
+            padding: 5px;
+            box-shadow: 2px 4px 16px rgba(0, 0, 0, .15);
+            color: #999;
+            border-radius: 4px;
+            font-size: 14px;
+            column-count: 3;
+            column-gap: 4
+        }
+
+        #memos-tag-menu:empty {
+            display: none
+        }
+
+        .tag-option {
+            padding: 6px 10px;
+            cursor: pointer
+        }
+
+        .tag-option:hover {
+            text-decoration: underline
+        }
+
+        .tag-option.selected {
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            color: #666
+        }
     </style>
 </head>
 
