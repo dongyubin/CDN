@@ -221,9 +221,8 @@ function updateHTMl(data) {
                         </div>
                     </div>
                 </div>
-                <div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>
             </div>
-        </div>`;
+        </div><div id="${(memosId + createdTs)}" class="item-comment mt-3 d-none"></div>`;
 
         resultAll += memoResult;
     }
